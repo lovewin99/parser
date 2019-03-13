@@ -406,6 +406,8 @@ type CreateTableStmt struct {
 	Partition   *PartitionOptions
 	OnDuplicate OnDuplicateCreateTableSelectType
 	Select      ResultSetNode
+
+	SelectStmt *SelectStmt
 }
 
 // Accept implements Node Accept interface.
