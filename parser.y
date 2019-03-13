@@ -1890,14 +1890,6 @@ CreateTableStmt:
 		stmt.Select = $10.(*ast.CreateTableStmt).Select
 		$$ = stmt
 	}
-|	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
-	{
-		$$ = &ast.CreateTableStmt{
-			Table:          $4.(*ast.TableName),
-			ReferTable:	$5.(*ast.TableName),
-			IfNotExists:    $3.(bool),
-		}
-	}
 |	"CREATE" "TABLE" IfNotExists TableName "LIKE" SelectStmt
     {
         $$ = &ast.CreateTableStmt{
@@ -1906,6 +1898,14 @@ CreateTableStmt:
             IfNotExists:    $3.(bool),
         }
     }
+|	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
+	{
+		$$ = &ast.CreateTableStmt{
+			Table:          $4.(*ast.TableName),
+			ReferTable:	$5.(*ast.TableName),
+			IfNotExists:    $3.(bool),
+		}
+	}
 
 DefaultKwdOpt:
 	{}
