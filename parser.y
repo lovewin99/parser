@@ -1898,6 +1898,14 @@ CreateTableStmt:
 			IfNotExists:    $3.(bool),
 		}
 	}
+|	"CREATE" "TABLE" IfNotExists TableName "LIKE" SelectStmt
+    {
+        $$ = &ast.CreateTableStmt{
+            Table:          $4.(*ast.TableName),
+            SelectStmt:	$6.(*ast.SelectStmt),
+            IfNotExists:    $3.(bool),
+        }
+    }
 
 DefaultKwdOpt:
 	{}
