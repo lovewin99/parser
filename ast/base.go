@@ -40,6 +40,15 @@ type stmtNode struct {
 // statement implements StmtNode interface.
 func (sn *stmtNode) statement() {}
 
+// procNode implements PROCNode interface.
+// proc implementations should embed it in.
+type procNode struct {
+	stmtNode
+}
+
+// procStatement implements PROCNode interface.
+func (pn *procNode) procStatement() {}
+
 // ddlNode implements DDLNode interface.
 // DDL implementations should embed it in.
 type ddlNode struct {

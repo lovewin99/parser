@@ -69,7 +69,7 @@ var NewParamMarkerExpr func(offset int) ParamMarkerExpr
 type BetweenExpr struct {
 	exprNode
 	// Expr is the expression to be checked.
-	Expr ExprNode
+	Expr ExprNode //
 	// Left is the expression for minimal value in the range.
 	Left ExprNode
 	// Right is the expression for maximum value in the range.

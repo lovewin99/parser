@@ -59,6 +59,9 @@ import (
 	andand					"&&"
 	pipes					"||"
 
+    out                     "OUT"
+    inout                   "INOUT"
+
 	/* The following tokens belong to ODBCDateTimeType. */
 	odbcDateType			"d"
 	odbcTimeType			"t"
@@ -605,8 +608,16 @@ import (
 	UpdateStmt			"UPDATE statement"
 	UnionStmt			"Union select state ment"
 	UseStmt				"USE statement"
+	CreateProcedureStmt "create procedure statement"
 
 %type   <item>
+    AllSymbol           "for AllWords"
+    ProcBody         "procedure sql info"
+    ProcName        "procedure name"
+    IfNotInOut      "procedure param type"
+    ProcParamList   "procedure param"
+    ProcParams      "procedure param words"
+    ProcParam       "procedure param word"
 	AdminShowSlow			"Admin Show Slow statement"
 	AlterTableOptionListOpt		"alter table option list opt"
 	AlterTableSpec			"Alter table specification"
@@ -907,9 +918,12 @@ import (
 	GetFormatSelector	"{DATE|DATETIME|TIME|TIMESTAMP}"
 
 %type	<ident>
+    UnReservedKeywordWithOutEnd "UnReservedKeyword with out end"
+    AllWords            "for procedure"
 	ODBCDateTimeType		"ODBC type keywords for date and time literals"
 	Identifier			"identifier or unreserved keyword"
 	NotKeywordToken			"Tokens not mysql keyword but treated specially"
+	ReservedKeyword         "MySQL reserved keywords"
 	UnReservedKeyword		"MySQL unreserved keywords"
 	TiDBKeyword			"TiDB added keywords"
 	FunctionNameConflict		"Built-in function call names which are conflict with keywords"
@@ -1806,6 +1820,156 @@ IndexColNameList:
 		$$ = append($1.([]*ast.IndexColName), $3.(*ast.IndexColName))
 	}
 
+/*******************************************************************
+ *
+ *  Create Procedure Statement
+ *
+ * DELIMITER //
+ * CREATE PROCEDURE myproc(OUT s int)
+ *   BEGIN
+ *     SELECT COUNT(*) INTO s FROM students;
+ *   END
+ *   //
+ * DELIMITER ;
+ *******************************************************************/
+ CreateProcedureStmt:
+    "CREATE" "PROCEDURE" ProcName ProcParamList "BEGIN" ProcBody "END"
+    {
+
+        $$ = &ast.CreateProcedureStmt{
+            ProcName:       $3.(string),
+            ProcParam:      $4.(string),
+            //ProcBody:     $6.(string),
+            ProcBody:       yyS[yypt-1].ident,
+        }
+    }
+
+ProcName:
+    Identifier
+    {
+        $$ = $1
+    }
+
+ProcParamList:
+    '(' ProcParams ')'
+    {
+        $$ = $2
+    }
+
+ProcParams:
+    ProcParam
+    {
+        $$ = $1
+    }
+|   ProcParams ',' ProcParam
+    {
+        if $1 != "" {
+            $$ = $1.(string) + "," + $3.(string)
+        } else {
+            $$ = $3.(string)
+        }
+    }
+
+ProcParam:
+    IfNotInOut ProcName Type
+    {
+        $$ = $1.(string) + " " + $2.(string) + " " + yyS[yypt].ident
+    }
+
+IfNotInOut:
+    {
+        $$ = "IN"
+    }
+|   "IN"
+    {
+        $$ = "IN"
+    }
+|   "OUT"
+    {
+        $$ = "OUT"
+    }
+|   "INOUT"
+    {
+        $$ = "INOUT"
+    }
+
+ProcBody:
+	AllWords
+    {
+        if $1 != ""  {
+            $$ = $1
+        } else {
+            $$ = ""
+        }
+
+    }
+|   ProcBody AllWords
+    {
+        if $1 != "" {
+            $$ = $1.(string) + " " + $2
+        } else {
+            $$ = $2
+        }
+
+    }
+|   ProcBody AllSymbol
+    {
+        if $1 != "" {
+            $$ = $1.(string) + yyS[yypt].ident
+        } else {
+            $$ = yyS[yypt].ident
+        }
+    }
+|   ProcBody ';'
+    {
+        if $1 != "" {
+           $$ = $1.(string) + ";"
+        }else {
+            $$ = ""
+        }
+    }
+
+AllWords:
+identifier | ReservedKeyword | UnReservedKeywordWithOutEnd | NotKeywordToken | TiDBKeyword | ODBCDateTimeType
+
+AllSymbol:
+floatLit | decLit | intLit | hexLit | bitLit | andnot | assignmentEq | eq | ge | le | jss | juss | lsh | neq
+| neqSynonym | nulleq | paramMarker | rsh
+
+UnReservedKeywordWithOutEnd:
+ "ACTION" | "ASCII" | "AUTO_INCREMENT" | "AFTER" | "ALWAYS" | "AVG" | "BEGIN" | "BIT" | "BOOL" | "BOOLEAN" | "BTREE" | "BYTE" | "CLEANUP" | "CHARSET"
+| "COLUMNS" | "COMMIT" | "COMPACT" | "COMPRESSED" | "CONSISTENT" | "CURRENT" | "DATA" | "DATE" %prec lowerThanStringLitToken| "DATETIME" | "DAY" | "DEALLOCATE" | "DO" | "DUPLICATE"
+| "DYNAMIC"| "ENGINE" | "ENGINES" | "ENUM" | "ERRORS" | "ESCAPE" | "EXECUTE" | "FIELDS" | "FIRST" | "FIXED" | "FLUSH" | "FOLLOWING" | "FORMAT" | "FULL" |"GLOBAL"
+| "HASH" | "HOUR" | "LESS" | "LOCAL" | "LAST" | "NAMES" | "OFFSET" | "PASSWORD" %prec lowerThanEq | "PREPARE" | "QUICK" | "REDUNDANT"
+| "ROLLBACK" | "SESSION" | "SIGNED" | "SNAPSHOT" | "START" | "STATUS" | "SUBPARTITIONS" | "SUBPARTITION" | "TABLES" | "TABLESPACE" | "TEXT" | "THAN" | "TIME" %prec lowerThanStringLitToken
+| "TIMESTAMP" %prec lowerThanStringLitToken | "TRACE" | "TRANSACTION" | "TRUNCATE" | "UNBOUNDED" | "UNKNOWN" | "VALUE" | "WARNINGS" | "YEAR" | "MODE"  | "WEEK"  | "ANY" | "SOME" | "USER" | "IDENTIFIED"
+| "COLLATION" | "COMMENT" | "AVG_ROW_LENGTH" | "CONNECTION" | "CHECKSUM" | "COMPRESSION" | "KEY_BLOCK_SIZE" | "MASTER" | "MAX_ROWS"
+| "MIN_ROWS" | "NATIONAL" | "ROW_FORMAT" | "QUARTER" | "GRANTS" | "TRIGGERS" | "DELAY_KEY_WRITE" | "ISOLATION" | "JSON"
+| "REPEATABLE" | "RESPECT" | "COMMITTED" | "UNCOMMITTED" | "ONLY" | "SERIALIZABLE" | "LEVEL" | "VARIABLES" | "SQL_CACHE" | "INDEXES" | "PROCESSLIST"
+| "SQL_NO_CACHE" | "DISABLE"  | "ENABLE" | "REVERSE" | "PRIVILEGES" | "NO" | "BINLOG" | "FUNCTION" | "VIEW" | "MODIFY" | "EVENTS" | "PARTITIONS"
+| "NONE" | "NULLS" | "SUPER" | "EXCLUSIVE" | "STATS_PERSISTENT" | "ROW_COUNT" | "COALESCE" | "MONTH" | "PROCESS" | "PROFILES"
+| "MICROSECOND" | "MINUTE" | "PLUGINS" | "PRECEDING" | "QUERY" | "QUERIES" | "SECOND" | "SEPARATOR" | "SHARE" | "SHARED" | "SLOW" | "MAX_CONNECTIONS_PER_HOUR" | "MAX_QUERIES_PER_HOUR" | "MAX_UPDATES_PER_HOUR"
+| "MAX_USER_CONNECTIONS" | "REPLICATION" | "CLIENT" | "SLAVE" | "RELOAD" | "TEMPORARY" | "ROUTINE" | "EVENT" | "ALGORITHM" | "DEFINER" | "INVOKER" | "MERGE" | "TEMPTABLE" | "UNDEFINED" | "SECURITY" | "CASCADED" | "RECOVER"
+
+
+ReservedKeyword:
+add | all | alter | analyze | and | as | asc | between | bigIntType | binaryType | blobType | both | by | cascade |
+caseKwd | change | character | charType | check | collate | column | constraint | convert | create | cross | cumeDist |
+currentDate | currentTime | currentTs | currentUser | database | databases | dayHour | dayMicrosecond | dayMinute |
+daySecond | decimalType | defaultKwd | delayed | deleteKwd | denseRank | desc | describe | distinct | distinctRow |
+div | doubleType | drop | dual | elseKwd | enclosed | escaped | exists | explain | falseKwd | firstValue | floatType |
+forKwd | force | foreign | from | fulltext | generated | grant | group | groups | having | highPriority | hourMicrosecond |
+hourMinute | hourSecond | ifKwd | ignore | in | index | infile | inner | integerType | interval | into | is | insert |
+intType | int1Type | int2Type | int3Type | int4Type | int8Type | join | key | keys | kill | lag | lastValue | lead |
+leading | left | like | limit | lines | load | localTime | localTs | lock | longblobType | longtextType | lowPriority |
+maxValue | mediumblobType | mediumIntType | mediumtextType | minuteMicrosecond | minuteSecond | mod | not | noWriteToBinLog |
+nthValue | ntile | null | numericType | nvarcharType | on | option | or | order | outer | over | packKeys | partition |
+percentRank | precisionType | primary | procedure | shardRowIDBits | rangeKwd | rank | read | realType | references |
+regexpKwd | rename | repeat | replace | restrict | revoke | right | rlike | row | rows | rowNumber | secondMicrosecond |
+selectKwd | set | show | smallIntType | sql | sqlCalcFoundRows | starting | straightJoin | tableKwd | stored | terminated |
+then | tinyblobType | tinyIntType | tinytextType | to | trailing | trigger | trueKwd | unique | union | unlock | unsigned |
+update | usage | use | using | utcDate | utcTimestamp | utcTime | values | long | varcharType | varbinaryType | virtual |
+when | where | write | window | with | xor | yearMonth | zerofill | natural
 
 
 /*******************************************************************
@@ -2951,7 +3115,7 @@ UnReservedKeyword:
 | "COLUMNS" | "COMMIT" | "COMPACT" | "COMPRESSED" | "CONSISTENT" | "CURRENT" | "DATA" | "DATE" %prec lowerThanStringLitToken| "DATETIME" | "DAY" | "DEALLOCATE" | "DO" | "DUPLICATE"
 | "DYNAMIC"| "END" | "ENGINE" | "ENGINES" | "ENUM" | "ERRORS" | "ESCAPE" | "EXECUTE" | "FIELDS" | "FIRST" | "FIXED" | "FLUSH" | "FOLLOWING" | "FORMAT" | "FULL" |"GLOBAL"
 | "HASH" | "HOUR" | "LESS" | "LOCAL" | "LAST" | "NAMES" | "OFFSET" | "PASSWORD" %prec lowerThanEq | "PREPARE" | "QUICK" | "REDUNDANT"
-| "ROLLBACK" | "SESSION" | "SIGNED" | "SNAPSHOT" | "START" | "STATUS" | "SUBPARTITIONS" | "SUBPARTITION" | "TABLES" | "TABLESPACE" | "TEXT" | "THAN" | "TIME" %prec lowerThanStringLitToken 
+| "ROLLBACK" | "SESSION" | "SIGNED" | "SNAPSHOT" | "START" | "STATUS" | "SUBPARTITIONS" | "SUBPARTITION" | "TABLES" | "TABLESPACE" | "TEXT" | "THAN" | "TIME" %prec lowerThanStringLitToken
 | "TIMESTAMP" %prec lowerThanStringLitToken | "TRACE" | "TRANSACTION" | "TRUNCATE" | "UNBOUNDED" | "UNKNOWN" | "VALUE" | "WARNINGS" | "YEAR" | "MODE"  | "WEEK"  | "ANY" | "SOME" | "USER" | "IDENTIFIED"
 | "COLLATION" | "COMMENT" | "AVG_ROW_LENGTH" | "CONNECTION" | "CHECKSUM" | "COMPRESSION" | "KEY_BLOCK_SIZE" | "MASTER" | "MAX_ROWS"
 | "MIN_ROWS" | "NATIONAL" | "ROW_FORMAT" | "QUARTER" | "GRANTS" | "TRIGGERS" | "DELAY_KEY_WRITE" | "ISOLATION" | "JSON"
@@ -6215,6 +6379,7 @@ Statement:
 |	DeleteFromStmt
 |	ExecuteStmt
 |	ExplainStmt
+|   CreateProcedureStmt
 |	CreateDatabaseStmt
 |	CreateIndexStmt
 |	CreateTableStmt
