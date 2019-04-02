@@ -611,13 +611,13 @@ import (
 	CreateProcedureStmt "create procedure statement"
 
 %type   <item>
-    AllSymbol           "for AllWords"
-    ProcBody         "procedure sql info"
-    ProcName        "procedure name"
-    IfNotInOut      "procedure param type"
-    ProcParamList   "procedure param"
-    ProcParams      "procedure param words"
-    ProcParam       "procedure param word"
+	AllSymbol           		"for AllWords"
+	ProcBody         		"procedure sql info"
+	ProcName        		"procedure name"
+	IfNotInOut      		"procedure param type"
+	ProcParamList   		"procedure param"
+	ProcParams      		"procedure param words"
+	ProcParam       		"procedure param word"
 	AdminShowSlow			"Admin Show Slow statement"
 	AlterTableOptionListOpt		"alter table option list opt"
 	AlterTableSpec			"Alter table specification"
@@ -918,12 +918,12 @@ import (
 	GetFormatSelector	"{DATE|DATETIME|TIME|TIMESTAMP}"
 
 %type	<ident>
-    UnReservedKeywordWithOutEnd "UnReservedKeyword with out end"
-    AllWords            "for procedure"
+	UnReservedKeywordWithOutEnd 	"UnReservedKeyword with out end"
+	AllWords            		"for procedure"
 	ODBCDateTimeType		"ODBC type keywords for date and time literals"
 	Identifier			"identifier or unreserved keyword"
 	NotKeywordToken			"Tokens not mysql keyword but treated specially"
-	ReservedKeyword         "MySQL reserved keywords"
+	ReservedKeyword         	"MySQL reserved keywords"
 	UnReservedKeyword		"MySQL unreserved keywords"
 	TiDBKeyword			"TiDB added keywords"
 	FunctionNameConflict		"Built-in function call names which are conflict with keywords"
@@ -1839,8 +1839,8 @@ IndexColNameList:
         $$ = &ast.CreateProcedureStmt{
             ProcName:       $3.(string),
             ProcParam:      $4.(string),
-            //ProcBody:     $6.(string),
-            ProcBody:       yyS[yypt-1].ident,
+            ProcBody:       $6.(string),
+//            ProcBody:       yyS[yypt-1].ident,
         }
     }
 
@@ -1903,7 +1903,7 @@ ProcBody:
         }
 
     }
-|   ProcBody AllWords
+|   	ProcBody AllWords
     {
         if $1 != "" {
             $$ = $1.(string) + " " + $2
@@ -1912,7 +1912,7 @@ ProcBody:
         }
 
     }
-|   ProcBody AllSymbol
+|   	ProcBody AllSymbol
     {
         if $1 != "" {
             $$ = $1.(string) + yyS[yypt].ident
@@ -1920,10 +1920,34 @@ ProcBody:
             $$ = yyS[yypt].ident
         }
     }
-|   ProcBody ';'
+|   	ProcBody ';'
     {
         if $1 != "" {
            $$ = $1.(string) + ";"
+        }else {
+            $$ = ""
+        }
+    }
+|   	ProcBody '('
+    {
+        if $1 != "" {
+           $$ = $1.(string) + "("
+        }else {
+            $$ = ""
+        }
+    }
+|   	ProcBody ')'
+    {
+        if $1 != "" {
+           $$ = $1.(string) + ")"
+        }else {
+            $$ = ""
+        }
+    }
+|   	ProcBody ','
+    {
+        if $1 != "" {
+           $$ = $1.(string) + ","
         }else {
             $$ = ""
         }
