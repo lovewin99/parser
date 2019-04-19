@@ -70,6 +70,7 @@ import (
 	odbcTimestampType		"ts"
 
 	/* The following tokens belong to ReservedKeyword. */
+	before			"BEFORE"
 	add			"ADD"
 	all 			"ALL"
 	alter			"ALTER"
@@ -268,6 +269,7 @@ import (
 
 	/* The following tokens belong to UnReservedKeyword. */
 	action		"ACTION"
+	each		"EACH"
 	after		"AFTER"
 	always		"ALWAYS"
 	algorithm	"ALGORITHM"
@@ -613,6 +615,7 @@ import (
 	UseStmt				"USE statement"
 	CreateProcedureStmt 		"create procedure statement"
 	CallProcedureStmt		"call procedure statement"
+	CreateTriggerStmt 		"Create Trigger statement"
 
 %type   <item>
 	AllSymbol           		"for AllWords"
@@ -891,6 +894,8 @@ import (
 	TableOptimizerHintList	"Table level optimizer hint list"
 
 %type	<ident>
+	TriggerTime		"trigger time"
+	TriggerEvent		"trigger event"
 	AsOpt			"AS or EmptyString"
 	KeyOrIndex		"{KEY|INDEX}"
 	ColumnKeywordOpt	"Column keyword or empty"
@@ -1829,6 +1834,35 @@ IndexColNameList:
 	{
 		$$ = append($1.([]*ast.IndexColName), $3.(*ast.IndexColName))
 	}
+
+/**************************************************
+ * Create Trigger statement
+ *
+ *************************************************/
+TriggerTime:
+    "BEFORE"
+|   "AFTER"
+
+TriggerEvent:
+    "INSERT"
+|   "UPDATE"
+|   "DELETE"
+
+CreateTriggerStmt:
+    "CREATE" "TRIGGER" ProcName TriggerTime TriggerEvent
+    "ON" ProcName "FOR" "EACH" "ROW"
+    "BEGIN" ProcBody "ENDS"
+     {
+	$$ = &ast.CreateTriggerStmt{
+		Name: $3.(string),
+		TriggerTime: $4,
+		TriggerEvent: $5,
+		TargetSchema: $7.(string),
+		TriggerStmt: $12.([]ast.StmtNode),
+	}
+    }
+
+
 
 /*******************************************************************
  *
@@ -6496,6 +6530,7 @@ Statement:
 |	CreateTableStmt
 |	CreateViewStmt
 |	CreateUserStmt
+|	CreateTriggerStmt
 |	DoStmt
 |	DropDatabaseStmt
 |	DropIndexStmt

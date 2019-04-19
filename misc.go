@@ -138,6 +138,8 @@ var tokenMap = map[string]int{
 	"ADDDATE":                  addDate,
 	"ADMIN":                    admin,
 	"AFTER":                    after,
+	"BEFORE":                   before,
+	"EACH":                     each,
 	"ALL":                      all,
 	"ALGORITHM":                algorithm,
 	"ALTER":                    alter,
