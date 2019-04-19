@@ -4,3 +4,5 @@ y.go
 .idea/
 go.mod
 go.sum
+.DS_Store
+.gitignore
