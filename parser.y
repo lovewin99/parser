@@ -1933,6 +1933,14 @@ CreateTableStmt:
 		stmt.Select = $10.(*ast.CreateTableStmt).Select
 		$$ = stmt
 	}
+|	"CREATE" "TABLE" IfNotExists TableName "LIKE" SelectStmt
+    {
+        $$ = &ast.CreateTableStmt{
+            Table:          $4.(*ast.TableName),
+            SelectStmt:	$6.(*ast.SelectStmt),
+            IfNotExists:    $3.(bool),
+        }
+    }
 |	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
 	{
 		$$ = &ast.CreateTableStmt{
