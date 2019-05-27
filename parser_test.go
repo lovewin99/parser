@@ -25,7 +25,6 @@ import (
 	"github.com/pingcap/parser/charset"
 	"github.com/pingcap/parser/mysql"
 	"github.com/pingcap/parser/terror"
-	_ "github.com/pingcap/tidb/types/parser_driver"
 )
 
 func TestT(t *testing.T) {
@@ -573,6 +572,9 @@ func (s *testParserSuite) TestDBAStmt(c *C) {
 		// for show stats_healthy.
 		{"show stats_healthy", true},
 		{"show stats_healthy where table_name = 't'", true},
+		// for show pump/drainer status.
+		{"show pump status", true},
+		{"show drainer status", true},
 
 		// for load stats
 		{"load stats '/tmp/stats.json'", true},
@@ -645,6 +647,12 @@ func (s *testParserSuite) TestDBAStmt(c *C) {
 		{"flush tables tbl1, tbl2, tbl3 with read lock", true},
 		{"flush privileges", true},
 		{"flush status", true},
+		{"flush tidb plugins plugin1", true},
+		{"flush tidb plugins plugin1, plugin2", true},
+
+		// for change pump/drainer status statement
+		{"change pump to node_state ='paused' for node_id '127.0.0.1:8250'", true},
+		{"change drainer to node_state ='paused' for node_id '127.0.0.1:8249'", true},
 	}
 	s.RunTest(c, table)
 }
@@ -1430,6 +1438,14 @@ func (s *testParserSuite) TestDDL(c *C) {
 		{"CREATE TABLE foo (a.b, b);", false},
 		{"CREATE TABLE foo (a, b.c);", false},
 		{"CREATE TABLE (name CHAR(50) BINARY)", false},
+		{"CREATE TABLE foo (name CHAR(50) CHARACTER SET utf8 COLLATE utf8_bin COLLATE ascii_bin)", true},
+		{"CREATE TABLE foo (name CHAR(50) COLLATE ascii_bin COLLATE latin1_bin)", true},
+		{"CREATE TABLE foo (name CHAR(50) COLLATE ascii_bin PRIMARY KEY COLLATE latin1_bin)", true},
+		// test use key word as column name
+		{"CREATE TABLE foo (pump varchar(50), b int);", true},
+		{"CREATE TABLE foo (drainer varchar(50), b int);", true},
+		{"CREATE TABLE foo (node_id varchar(50), b int);", true},
+		{"CREATE TABLE foo (node_state varchar(50), b int);", true},
 		// for table option
 		{"create table t (c int) avg_row_length = 3", true},
 		{"create table t (c int) avg_row_length 3", true},
@@ -1643,7 +1659,7 @@ func (s *testParserSuite) TestDDL(c *C) {
 		// For reference_definition in column_definition.
 		{"CREATE TABLE followers ( f1 int NOT NULL REFERENCES user_profiles (uid) );", true},
 
-		// for alter table
+		// for alter database/schema/table
 		{"ALTER TABLE t ADD COLUMN (a SMALLINT UNSIGNED)", true},
 		{"ALTER TABLE ADD COLUMN (a SMALLINT UNSIGNED)", false},
 		{"ALTER TABLE t ADD COLUMN (a SMALLINT UNSIGNED, b varchar(255))", true},
@@ -1654,6 +1670,26 @@ func (s *testParserSuite) TestDDL(c *C) {
 		{"ALTER TABLE employees ADD PARTITION", true},
 		{"ALTER TABLE employees ADD PARTITION ( PARTITION P1 VALUES LESS THAN (2010))", true},
 		{"ALTER TABLE employees ADD PARTITION ( PARTITION P2 VALUES LESS THAN MAXVALUE)", true},
+
+		{"ALTER DATABASE t CHARACTER SET = 'utf8'", true},
+		{"ALTER DATABASE CHARACTER SET = 'utf8'", true},
+		{"ALTER DATABASE t DEFAULT CHARACTER SET = 'utf8'", true},
+		{"ALTER SCHEMA t DEFAULT CHARACTER SET = 'utf8'", true},
+		{"ALTER SCHEMA DEFAULT CHARACTER SET = 'utf8'", true},
+		{"ALTER SCHEMA t DEFAULT CHARSET = 'UTF8'", true},
+
+		{"ALTER DATABASE t COLLATE = 'utf8_bin'", true},
+		{"ALTER DATABASE COLLATE = 'utf8_bin'", true},
+		{"ALTER DATABASE t DEFAULT COLLATE = 'utf8_bin'", true},
+		{"ALTER SCHEMA t DEFAULT COLLATE = 'UTF8_BiN'", true},
+		{"ALTER SCHEMA DEFAULT COLLATE = 'UTF8_BiN'", true},
+		{"ALTER SCHEMA `` DEFAULT COLLATE = 'UTF8_BiN'", true},
+
+		{"ALTER DATABASE t CHARSET = 'utf8mb4' COLLATE = 'utf8_bin'", true},
+		{"ALTER DATABASE t DEFAULT CHARSET = 'utf8mb4' DEFAULT COLLATE = 'utf8mb4_general_ci' CHARACTER SET = 'utf8' COLLATE = 'utf8mb4_bin'", true},
+		{"ALTER DATABASE DEFAULT CHARSET = 'utf8mb4' COLLATE = 'utf8_bin'", true},
+		{"ALTER DATABASE DEFAULT CHARSET = 'utf8mb4' DEFAULT COLLATE = 'utf8mb4_general_ci' CHARACTER SET = 'utf8' COLLATE = 'utf8mb4_bin'", true},
+
 		{`ALTER TABLE employees ADD PARTITION (
 				PARTITION P1 VALUES LESS THAN (2010),
 				PARTITION P2 VALUES LESS THAN (2015),
@@ -2360,6 +2396,37 @@ func (s *testParserSuite) TestDDLStatements(c *C) {
 		c.Assert(colDef.Tp.Collate, Equals, charset.CollationBin)
 		c.Assert(mysql.HasBinaryFlag(colDef.Tp.Flag), IsTrue)
 	}
+	// Test set collate for all column types
+	createTableStr = `CREATE TABLE t (
+		c_int int collate utf8_bin,
+		c_real real collate utf8_bin,
+		c_float float collate utf8_bin,
+		c_bool bool collate utf8_bin,
+		c_char char collate utf8_bin,
+		c_binary binary collate utf8_bin,
+		c_varchar varchar(2) collate utf8_bin,
+		c_year year collate utf8_bin,
+		c_date date collate utf8_bin,
+		c_time time collate utf8_bin,
+		c_datetime datetime collate utf8_bin,
+		c_timestamp timestamp collate utf8_bin,
+		c_tinyblob tinyblob collate utf8_bin,
+		c_blob blob collate utf8_bin,
+		c_mediumblob mediumblob collate utf8_bin,
+		c_longblob longblob collate utf8_bin,
+		c_bit bit collate utf8_bin,
+		c_long_varchar long varchar collate utf8_bin,
+		c_tinytext tinytext collate utf8_bin,
+		c_text text collate utf8_bin,
+		c_mediumtext mediumtext collate utf8_bin,
+		c_longtext longtext collate utf8_bin,
+		c_decimal decimal collate utf8_bin,
+		c_numeric numeric collate utf8_bin,
+		c_enum enum('1') collate utf8_bin,
+		c_set set('1') collate utf8_bin,
+		c_json json collate utf8_bin)`
+	stmts, _, err = parser.Parse(createTableStr, "", "")
+	c.Assert(err, IsNil)
 }
 
 func (s *testParserSuite) TestAnalyze(c *C) {

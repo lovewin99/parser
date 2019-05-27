@@ -64,7 +64,7 @@ import (
 	odbcTimeType			"t"
 	odbcTimestampType		"ts"
 
-	/* The following tokens belong to ReservedKeyword. */
+	/* The following tokens belong to ReservedKeyword. Notice: make sure these tokens are contained in ReservedKeyword. */
 	add			"ADD"
 	all 			"ALL"
 	alter			"ALTER"
@@ -261,7 +261,7 @@ import (
 	zerofill		"ZEROFILL"
 	natural			"NATURAL"
 
-	/* The following tokens belong to UnReservedKeyword. */
+	/* The following tokens belong to UnReservedKeyword. Notice: make sure these tokens are contained in UnReservedKeyword. */
 	action		"ACTION"
 	after		"AFTER"
 	always		"ALWAYS"
@@ -428,7 +428,7 @@ import (
 	week		"WEEK"
 	yearType	"YEAR"
 
-	/* The following tokens belong to NotKeywordToken. */
+	/* The following tokens belong to NotKeywordToken. Notice: make sure these tokens are contained in NotKeywordToken. */
 	addDate			"ADDDATE"
 	bitAnd			"BIT_AND"
 	bitOr			"BIT_OR"
@@ -463,13 +463,17 @@ import (
 	top			"TOP"
 	trim			"TRIM"
 
-	/* The following tokens belong to TiDBKeyword. */
+	/* The following tokens belong to TiDBKeyword. Notice: make sure these tokens are contained in TiDBKeyword. */
 	admin		"ADMIN"
 	buckets		"BUCKETS"
 	cancel		"CANCEL"
 	ddl		"DDL"
+	drainer         "DRAINER"
 	jobs		"JOBS"
 	job		    "JOB"
+	nodeID			"NODE_ID"
+	nodeState		"NODE_STATE"
+	pump            "PUMP"
 	stats		"STATS"
 	statsMeta       "STATS_META"
 	statsHistograms "STATS_HISTOGRAMS"
@@ -558,6 +562,7 @@ import (
 
 %type	<statement>
 	AdminStmt			"Check table statement or show ddl statement"
+	AlterDatabaseStmt		"Alter database statement"
 	AlterTableStmt			"Alter table statement"
 	AlterUserStmt			"Alter user statement"
 	AnalyzeTableStmt		"Analyze table statement"
@@ -596,6 +601,7 @@ import (
 	RevokeStmt			"Revoke statement"
 	RollbackStmt			"ROLLBACK statement"
 	SetStmt				"Set variable statement"
+	ChangeStmt				"Change statement"
 	ShowStmt			"Show engines/databases/tables/columns/warnings/status statement"
 	Statement			"statement"
 	TraceStmt			"TRACE statement"
@@ -620,6 +626,7 @@ import (
 	OptionalBraces			"optional braces"
 	CastType			"Cast function target type"
 	CharsetName			"Character set name"
+	CollationName			"Collation name"
 	ColumnDef			"table column definition"
 	ColumnDefList			"table column definition list"
 	ColumnName			"column name"
@@ -664,6 +671,7 @@ import (
 	FieldAsNameOpt			"Field alias name opt"
 	FieldList			"field expression list"
 	FlushOption			"Flush option"
+	PluginNameList			"Plugin Name List"
 	TableRefsClause			"Table references clause"
 	FuncDatetimePrec		"Function datetime precision"
 	GlobalScope			"The scope of variable"
@@ -931,6 +939,8 @@ import (
 %precedence insertValues
 %precedence lowerThanCreateTableSelect
 %precedence createTableSelect
+%precedence lowerThanCharsetKwd
+%precedence charsetKwd
 %precedence lowerThanKey
 %precedence key
 
@@ -1530,6 +1540,10 @@ ColumnOption:
 			Refer: $1.(*ast.ReferenceDef),
 		}
 	}
+|	"COLLATE" CollationName
+	{
+		$$ = &ast.ColumnOption{Tp: ast.ColumnOptionCollate, StrValue: $2.(string)}
+	}
 
 GeneratedAlways: | "GENERATED" "ALWAYS"
 
@@ -1808,6 +1822,35 @@ IndexColNameList:
 
 
 
+/**************************************AlterDatabaseStmt***************************************
+ * See https://dev.mysql.com/doc/refman/5.7/en/alter-database.html
+ * 'ALTER DATABASE ... UPGRADE DATA DIRECTORY NAME' is not supported yet.
+ *
+ *  ALTER {DATABASE | SCHEMA} [db_name]
+ *   alter_specification ...
+ *
+ *  alter_specification:
+ *   [DEFAULT] CHARACTER SET [=] charset_name
+ * | [DEFAULT] COLLATE [=] collation_name
+ *******************************************************************************************/
+ AlterDatabaseStmt:
+	"ALTER" DatabaseSym DBName DatabaseOptionList
+	{
+		$$ = &ast.AlterDatabaseStmt{
+			Name:			$3.(string),
+			AlterDefaultDatabase:	false,
+			Options:		$4.([]*ast.DatabaseOption),
+		}
+	}
+|	"ALTER" DatabaseSym DatabaseOptionList
+	{
+		$$ = &ast.AlterDatabaseStmt{
+			Name:			"",
+			AlterDefaultDatabase:	true,
+			Options:		$3.([]*ast.DatabaseOption),
+		}
+	}
+
 /*******************************************************************
  *
  *  Create Database Statement
@@ -1839,7 +1882,7 @@ DatabaseOption:
 	{
 		$$ = &ast.DatabaseOption{Tp: ast.DatabaseOptionCharset, Value: $4.(string)}
 	}
-|	DefaultKwdOpt "COLLATE" EqOpt StringName
+|	DefaultKwdOpt "COLLATE" EqOpt CollationName
 	{
 		$$ = &ast.DatabaseOption{Tp: ast.DatabaseOptionCollate, Value: $4.(string)}
 	}
@@ -1900,6 +1943,7 @@ CreateTableStmt:
 	}
 
 DefaultKwdOpt:
+	%prec lowerThanCharsetKwd
 	{}
 |	"DEFAULT"
 
@@ -2707,7 +2751,7 @@ PredicateExpr:
 	{
 		escape := $4.(string)
 		if len(escape) > 1 {
-			yylex.Errorf("Incorrect arguments %s to ESCAPE", escape)
+			yylex.AppendError(yylex.Errorf("Incorrect arguments %s to ESCAPE", escape))
 			return 1
 		} else if len(escape) == 0 {
 			escape = "\\"
@@ -2939,7 +2983,7 @@ Identifier:
 identifier | UnReservedKeyword | NotKeywordToken | TiDBKeyword
 
 UnReservedKeyword:
- "ACTION" | "ASCII" | "AUTO_INCREMENT" | "AFTER" | "ALWAYS" | "AVG" | "BEGIN" | "BIT" | "BOOL" | "BOOLEAN" | "BTREE" | "BYTE" | "CLEANUP" | "CHARSET"
+ "ACTION" | "ASCII" | "AUTO_INCREMENT" | "AFTER" | "ALWAYS" | "AVG" | "BEGIN" | "BIT" | "BOOL" | "BOOLEAN" | "BTREE" | "BYTE" | "CLEANUP" | "CHARSET" %prec charsetKwd
 | "COLUMNS" | "COMMIT" | "COMPACT" | "COMPRESSED" | "CONSISTENT" | "CURRENT" | "DATA" | "DATE" %prec lowerThanStringLitToken| "DATETIME" | "DAY" | "DEALLOCATE" | "DO" | "DUPLICATE"
 | "DYNAMIC"| "END" | "ENGINE" | "ENGINES" | "ENUM" | "ERRORS" | "ESCAPE" | "EXECUTE" | "FIELDS" | "FIRST" | "FIXED" | "FLUSH" | "FOLLOWING" | "FORMAT" | "FULL" |"GLOBAL"
 | "HASH" | "HOUR" | "LESS" | "LOCAL" | "LAST" | "NAMES" | "OFFSET" | "PASSWORD" %prec lowerThanEq | "PREPARE" | "QUICK" | "REDUNDANT"
@@ -2956,7 +3000,7 @@ UnReservedKeyword:
 
 
 TiDBKeyword:
-"ADMIN" | "BUCKETS" | "CANCEL" | "DDL" | "JOBS" | "JOB" | "STATS" | "STATS_META" | "STATS_HISTOGRAMS" | "STATS_BUCKETS" | "STATS_HEALTHY" | "TIDB" | "TIDB_HJ" | "TIDB_SMJ" | "TIDB_INLJ"
+ "ADMIN" | "BUCKETS" | "CANCEL" | "DDL" | "DRAINER" | "JOBS" | "JOB" | "NODE_ID" | "NODE_STATE" | "PUMP" | "STATS" | "STATS_META" | "STATS_HISTOGRAMS" | "STATS_BUCKETS" | "STATS_HEALTHY" | "TIDB" | "TIDB_HJ" | "TIDB_SMJ" | "TIDB_INLJ"
 
 NotKeywordToken:
  "ADDDATE" | "BIT_AND" | "BIT_OR" | "BIT_XOR" | "CAST" | "COPY" | "COUNT" | "CURTIME" | "DATE_ADD" | "DATE_SUB" | "EXTRACT" | "GET_FORMAT" | "GROUP_CONCAT"
@@ -3175,7 +3219,7 @@ Literal:
 		// See https://dev.mysql.com/doc/refman/5.7/en/charset-literal.html
 		co, err := charset.GetDefaultCollation($1)
 		if err != nil {
-			yylex.Errorf("Get collation error for charset: %s", $1)
+			yylex.AppendError(yylex.Errorf("Get collation error for charset: %s", $1))
 			return 1
 		}
 		expr := ast.NewValueExpr($2)
@@ -3499,7 +3543,7 @@ SimpleExpr:
 			FunctionType: ast.CastConvertFunction,
 		}
 	}
-|	"CONVERT" '(' Expression "USING" StringName ')'
+|	"CONVERT" '(' Expression "USING" CharsetName ')'
 	{
 		// See https://dev.mysql.com/doc/refman/5.7/en/cast-functions.html#function_convert
 		charset1 := ast.NewValueExpr($5)
@@ -3643,7 +3687,7 @@ FunctionCallKeyword:
 			Args: append(args, nilVal),
 		}
 	}
-|	"CHAR" '(' ExpressionList "USING" StringName ')'
+|	"CHAR" '(' ExpressionList "USING" CharsetName ')'
 	{
 		charset1 := ast.NewValueExpr($5)
 		args := $3.([]ast.ExprNode)
@@ -5390,6 +5434,24 @@ UnionSelect:
 UnionOpt:
 DefaultTrueDistinctOpt
 
+/********************Change Statement*******************************/
+ChangeStmt:
+	"CHANGE" "PUMP" "TO" "NODE_STATE" eq stringLit forKwd "NODE_ID" stringLit
+	{
+		$$ = &ast.ChangeStmt{
+			NodeType: ast.PumpType,
+			State: $6,
+			NodeID: $9,
+		}
+	}
+|	"CHANGE" "DRAINER" "TO" "NODE_STATE" eq stringLit forKwd "NODE_ID" stringLit
+	{
+		$$ = &ast.ChangeStmt{
+			NodeType: ast.DrainerType,
+			State: $6,
+			NodeID: $9,
+		}
+	}
 
 /********************Set Statement*******************************/
 SetStmt:
@@ -5574,11 +5636,30 @@ VariableAssignment:
 CharsetName:
 	StringName
 	{
-		$$ = $1
+		// Validate input charset name to keep the same behavior as parser of MySQL.
+		name, _, err := charset.GetCharsetInfo($1.(string))
+		if err != nil {
+			yylex.AppendError(ErrUnknownCharacterSet.GenWithStackByArgs($1))
+			return 1
+		}
+		// Use charset name returned from charset.GetCharsetInfo(),
+		// to keep lower case of input for generated column restore.
+		$$ = name
 	}
 |	binaryType
 	{
 		$$ = charset.CharsetBin
+	}
+
+CollationName:
+	StringName
+	{
+		info, err := charset.GetCollationByName($1.(string))
+		if err != nil {
+			yylex.AppendError(err)
+			return 1
+		}
+		$$ = info.Name
 	}
 
 VariableAssignmentList:
@@ -6056,6 +6137,18 @@ ShowTargetFilterable:
 			Tp: ast.ShowProcedureStatus,
 		}
 	}
+|	"PUMP" "STATUS"
+	{
+		$$ = &ast.ShowStmt {
+			Tp: ast.ShowPumpStatus,
+		}
+	}
+|	"DRAINER" "STATUS"
+	{
+		$$ = &ast.ShowStmt {
+			Tp: ast.ShowDrainerStatus,
+		}
+	}
 |	"FUNCTION" "STATUS"
 	{
 		// This statement is similar to SHOW PROCEDURE STATUS but for stored functions.
@@ -6140,6 +6233,16 @@ FlushStmt:
 		$$ = tmp
 	}
 
+PluginNameList:
+	Identifier
+	{
+		$$ = []string{$1}
+	}
+|	PluginNameList ',' Identifier
+	{
+		$$ = append($1.([]string), $3)
+	}
+
 FlushOption:
 	"PRIVILEGES"
 	{
@@ -6151,6 +6254,13 @@ FlushOption:
 	{
 		$$ = &ast.FlushStmt{
 			Tp: ast.FlushStatus,
+		}
+	}
+|	"TIDB" "PLUGINS" PluginNameList
+	{
+		$$ = &ast.FlushStmt{
+			Tp: ast.FlushTiDBPlugin,
+			Plugins: $3.([]string),
 		}
 	}
 |	TableOrTables TableNameListOpt WithReadLockOpt
@@ -6197,6 +6307,7 @@ WithReadLockOpt:
 Statement:
 	EmptyStmt
 |	AdminStmt
+|	AlterDatabaseStmt
 |	AlterTableStmt
 |	AlterUserStmt
 |	AnalyzeTableStmt
@@ -6207,6 +6318,7 @@ Statement:
 |	DeleteFromStmt
 |	ExecuteStmt
 |	ExplainStmt
+|	ChangeStmt
 |	CreateDatabaseStmt
 |	CreateIndexStmt
 |	CreateTableStmt
@@ -6371,7 +6483,7 @@ TableOption:
 	{
 		$$ = &ast.TableOption{Tp: ast.TableOptionCharset, StrValue: $4.(string)}
 	}
-|	DefaultKwdOpt "COLLATE" EqOpt StringName
+|	DefaultKwdOpt "COLLATE" EqOpt CollationName
 	{
 		$$ = &ast.TableOption{Tp: ast.TableOptionCollate, StrValue: $4.(string)}
 	}
@@ -6596,7 +6708,7 @@ NumericType:
 		if x.Flen == types.UnspecifiedLength || x.Flen == 0 {
 			x.Flen = 1
 		} else if x.Flen > 64 {
-			yylex.Errorf("invalid field length %d for bit type, must in [1, 64]", x.Flen)
+			yylex.AppendError(yylex.Errorf("invalid field length %d for bit type, must in [1, 64]", x.Flen))
 		}
 		$$ = x
 	}
@@ -6702,44 +6814,40 @@ BitValueType:
 	}
 
 StringType:
-	NationalOpt "CHAR" FieldLen OptBinary OptCollate
+	NationalOpt "CHAR" FieldLen OptBinary
 	{
 		x := types.NewFieldType(mysql.TypeString)
 		x.Flen = $3.(int)
 		x.Charset = $4.(*ast.OptBinary).Charset
-		x.Collate = $5.(string)
 		if $4.(*ast.OptBinary).IsBinary {
 			x.Flag |= mysql.BinaryFlag
 		}
 		$$ = x
 	}
-|	NationalOpt "CHAR" OptBinary OptCollate
+|	NationalOpt "CHAR" OptBinary
 	{
 		x := types.NewFieldType(mysql.TypeString)
 		x.Charset = $3.(*ast.OptBinary).Charset
-		x.Collate = $4.(string)
 		if $3.(*ast.OptBinary).IsBinary {
 			x.Flag |= mysql.BinaryFlag
 		}
 		$$ = x
 	}
-|	"NATIONAL" "CHARACTER" FieldLen OptBinary OptCollate
+|	"NATIONAL" "CHARACTER" FieldLen OptBinary
 	{
 		x := types.NewFieldType(mysql.TypeString)
 		x.Flen = $3.(int)
 		x.Charset = $4.(*ast.OptBinary).Charset
-		x.Collate = $5.(string)
 		if $4.(*ast.OptBinary).IsBinary {
 			x.Flag |= mysql.BinaryFlag
 		}
 		$$ = x
 	}
-|	Varchar FieldLen OptBinary OptCollate
+|	Varchar FieldLen OptBinary
 	{
 		x := types.NewFieldType(mysql.TypeVarchar)
 		x.Flen = $2.(int)
 		x.Charset = $3.(*ast.OptBinary).Charset
-		x.Collate = $4.(string)
 		if $3.(*ast.OptBinary).IsBinary {
 			x.Flag |= mysql.BinaryFlag
 		}
@@ -6771,30 +6879,27 @@ StringType:
 		x.Flag |= mysql.BinaryFlag
 		$$ = $1.(*types.FieldType)
 	}
-|	TextType OptBinary OptCollate
+|	TextType OptBinary
 	{
 		x := $1.(*types.FieldType)
 		x.Charset = $2.(*ast.OptBinary).Charset
-		x.Collate = $3.(string)
 		if $2.(*ast.OptBinary).IsBinary {
 			x.Flag |= mysql.BinaryFlag
 		}
 		$$ = x
 	}
-|	"ENUM" '(' StringList ')' OptCharset OptCollate
+|	"ENUM" '(' StringList ')' OptCharset
 	{
 		x := types.NewFieldType(mysql.TypeEnum)
 		x.Elems = $3.([]string)
 		x.Charset = $5.(string)
-		x.Collate = $6.(string)
 		$$ = x
 	}
-|	"SET" '(' StringList ')' OptCharset OptCollate
+|	"SET" '(' StringList ')' OptCharset
 	{
 		x := types.NewFieldType(mysql.TypeSet)
 		x.Elems = $3.([]string)
 		x.Charset = $5.(string)
-		x.Collate = $6.(string)
 		$$ = x
 	}
 |	"JSON"
@@ -6910,7 +7015,7 @@ DateAndTimeType:
 		x := types.NewFieldType(mysql.TypeYear)
 		x.Flen = $2.(int)
 		if x.Flen != types.UnspecifiedLength && x.Flen != 4 {
-			yylex.Errorf("Supports only YEAR or YEAR(4) column.")
+			yylex.AppendError(yylex.Errorf("Supports only YEAR or YEAR(4) column."))
 			return -1
 		}
 		$$ = x
@@ -7021,7 +7126,7 @@ OptCollate:
 	{
 		$$ = ""
 	}
-|	"COLLATE" StringName
+|	"COLLATE" CollationName
 	{
 		$$ = $2.(string)
 	}
@@ -7521,13 +7626,13 @@ Fields:
 	{
 		escape := $4.(string)
 		if escape != "\\" && len(escape) > 1 {
-			yylex.Errorf("Incorrect arguments %s to ESCAPE", escape)
+			yylex.AppendError(yylex.Errorf("Incorrect arguments %s to ESCAPE", escape))
 			return 1
 		}
 		var enclosed byte
 		str := $3.(string)
 		if len(str) > 1 {
-			yylex.Errorf("Incorrect arguments %s to ENCLOSED", escape)
+			yylex.AppendError(yylex.Errorf("Incorrect arguments %s to ENCLOSED", escape))
 			return 1
 		}else if len(str) != 0 {
 			enclosed = str[0]
