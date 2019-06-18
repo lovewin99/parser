@@ -4008,21 +4008,13 @@ SumExpr:
 			$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
 		}
 	}
-|	builtinStddevPop '(' BuggyDefaultFalseDistinctOpt Expression ')'  OptWindowingClause
+|	builtinStddevPop '(' Expression ')'  OptWindowingClause
 	{
-		if $6 != nil {
-			$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
-		} else {
-			$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
-		}
+		$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$3}}
 	}
-|	builtinStddevSamp '(' BuggyDefaultFalseDistinctOpt Expression ')'  OptWindowingClause
+|	builtinStddevSamp '(' Expression ')'  OptWindowingClause
 	{
-		if $6 != nil {
-			$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
-		} else {
-			$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
-		}
+		$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$3}}
 	}
 |	builtinVarPop '(' BuggyDefaultFalseDistinctOpt Expression ')'  OptWindowingClause
 	{
