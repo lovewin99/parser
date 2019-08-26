@@ -291,6 +291,8 @@ const (
 	ValidatePasswordStrength = "validate_password_strength"
 	FinupEncrypt             = "encrypt_string"
 	FinupDecrypt             = "decrypt_string"
+	Rate					 = "rate"
+	Pmt						 = "pmt"
 
 	// json functions
 	JSONType          = "json_type"
