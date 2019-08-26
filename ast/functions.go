@@ -30,6 +30,7 @@ var (
 
 // List scalar function names.
 const (
+	Rate       = "rate"
 	LogicAnd   = "and"
 	Cast       = "cast"
 	LeftShift  = "leftshift"
