@@ -43,6 +43,7 @@ const (
 	Mod
 	Xor
 	Div
+	REALDIV
 	Mul
 	Not
 	BitNeg
@@ -78,6 +79,7 @@ var Ops = map[Op]string{
 	Mod:        "mod",
 	Xor:        "bitxor",
 	Div:        "div",
+	REALDIV:    "realdiv",
 	Mul:        "mul",
 	Not:        "not",
 	BitNeg:     "bitneg",
@@ -121,6 +123,7 @@ var opsLiteral = map[Op]string{
 	Mod:        "%",
 	Xor:        "^",
 	Div:        "/",
+	REALDIV:    "REALDIV",
 	Mul:        "*",
 	Not:        "!",
 	BitNeg:     "~",

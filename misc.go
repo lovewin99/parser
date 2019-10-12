@@ -239,6 +239,7 @@ var tokenMap = map[string]int{
 	"DISTINCT":                 distinct,
 	"DISTINCTROW":              distinct,
 	"DIV":                      div,
+	"REALDIV":                  realdiv,
 	"DO":                       do,
 	"DOUBLE":                   doubleType,
 	"DRAINER":                  drainer,
