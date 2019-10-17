@@ -206,6 +206,7 @@ const (
 	Quote           = "quote"
 	Repeat          = "repeat"
 	Replace         = "replace"
+	RegexpReplace   = "regexp_replace"
 	Reverse         = "reverse"
 	Right           = "right"
 	RTrim           = "rtrim"

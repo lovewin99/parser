@@ -214,6 +214,7 @@ import (
 	rename         		"RENAME"
 	repeat			"REPEAT"
 	replace			"REPLACE"
+	RegexpReplace		"REGEXPREPLACE"
 	require			"REQUIRE"
 	restrict		"RESTRICT"
 	revoke			"REVOKE"
