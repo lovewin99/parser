@@ -10804,21 +10804,21 @@ yynewstate:
 		}
 	case 884:
 		{
-			//		if $6 != nil {
-			//			$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
-			//		} else {
-			//			$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
-			//		}
-			parser.yyVAL.expr = &ast.AggregateFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool)}
+			if yyS[yypt-0].item != nil {
+				parser.yyVAL.expr = &ast.WindowFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool), Spec: *(yyS[yypt-0].item.(*ast.WindowSpec))}
+			} else {
+				parser.yyVAL.expr = &ast.AggregateFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool)}
+			}
+			//		$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
 		}
 	case 885:
 		{
-			//		if $6 != nil {
-			//			$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
-			//		} else {
-			//			$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
-			//		}
-			parser.yyVAL.expr = &ast.AggregateFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool)}
+			if yyS[yypt-0].item != nil {
+				parser.yyVAL.expr = &ast.WindowFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool), Spec: *(yyS[yypt-0].item.(*ast.WindowSpec))}
+			} else {
+				parser.yyVAL.expr = &ast.AggregateFuncExpr{F: yyS[yypt-5].ident, Args: []ast.ExprNode{yyS[yypt-2].expr}, Distinct: yyS[yypt-3].item.(bool)}
+			}
+			//		$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
 		}
 	case 886:
 		{
