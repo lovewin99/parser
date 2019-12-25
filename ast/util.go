@@ -13,8 +13,6 @@
 
 package ast
 
-import "strings"
-
 // IsReadOnly checks whether the input ast is readOnly.
 func IsReadOnly(node Node) bool {
 	switch st := node.(type) {
@@ -60,16 +58,4 @@ func (checker *readOnlyChecker) Enter(in Node) (out Node, skipChildren bool) {
 // Leave implements Visitor interface.
 func (checker *readOnlyChecker) Leave(in Node) (out Node, ok bool) {
 	return in, checker.readOnly
-}
-
-// WriteName append escaped `name` with back quote to `sb`.
-func WriteName(sb *strings.Builder, name string) {
-	sb.WriteString("`")
-	sb.WriteString(EscapeName(name))
-	sb.WriteString("`")
-}
-
-// EscapeName escape the `name`
-func EscapeName(name string) string {
-	return strings.Replace(name, "`", "``", -1)
 }

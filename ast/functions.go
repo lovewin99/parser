@@ -19,6 +19,7 @@ import (
 	"strings"
 
 	"github.com/pingcap/errors"
+	. "github.com/pingcap/parser/format"
 	"github.com/pingcap/parser/model"
 	"github.com/pingcap/parser/types"
 )
@@ -50,6 +51,7 @@ const (
 	Mod        = "mod"
 	Xor        = "bitxor"
 	Div        = "div"
+	REALDIV    = "realdiv"
 	Mul        = "mul"
 	UnaryNot   = "not" // Avoid name conflict with Not in github/pingcap/check.
 	BitNeg     = "bitneg"
@@ -204,6 +206,7 @@ const (
 	Quote           = "quote"
 	Repeat          = "repeat"
 	Replace         = "replace"
+	RegexpReplace   = "regexp_replace"
 	Reverse         = "reverse"
 	Right           = "right"
 	RTrim           = "rtrim"
@@ -232,6 +235,7 @@ const (
 	Collation      = "collation"
 	ConnectionID   = "connection_id"
 	CurrentUser    = "current_user"
+	CurrentRole    = "current_role"
 	Database       = "database"
 	FoundRows      = "found_rows"
 	LastInsertId   = "last_insert_id"
@@ -292,6 +296,11 @@ const (
 	Uncompress               = "uncompress"
 	UncompressedLength       = "uncompressed_length"
 	ValidatePasswordStrength = "validate_password_strength"
+	FinupEncrypt             = "encrypt_string"
+	FinupDecrypt             = "decrypt_string"
+	Rate                     = "rate"
+	Pmt                      = "pmt"
+	Irr                      = "irr"
 
 	// json functions
 	JSONType          = "json_type"
@@ -329,9 +338,103 @@ type FuncCallExpr struct {
 	Args []ExprNode
 }
 
-// Restore implements Recoverable interface.
-func (n *FuncCallExpr) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *FuncCallExpr) Restore(ctx *RestoreCtx) error {
+	ctx.WriteKeyWord(n.FnName.O)
+	ctx.WritePlain("(")
+	switch n.FnName.L {
+	case "convert":
+		if err := n.Args[0].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCastExpr.Expr")
+		}
+		ctx.WriteKeyWord(" USING ")
+		ctx.WriteKeyWord(n.Args[1].GetType().Charset)
+	case "adddate", "subdate", "date_add", "date_sub":
+		if err := n.Args[0].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+		ctx.WritePlain(", ")
+		ctx.WriteKeyWord("INTERVAL ")
+		if err := n.Args[1].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+		ctx.WritePlain(" ")
+		ctx.WriteKeyWord(n.Args[2].(ValueExpr).GetString())
+	case "extract":
+		ctx.WriteKeyWord(n.Args[0].(ValueExpr).GetString())
+		ctx.WriteKeyWord(" FROM ")
+		if err := n.Args[1].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+	case "get_format":
+		ctx.WriteKeyWord(n.Args[0].(ValueExpr).GetString())
+		ctx.WritePlain(", ")
+		if err := n.Args[1].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+	case "position":
+		if err := n.Args[0].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+		ctx.WriteKeyWord(" IN ")
+		if err := n.Args[1].Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+		}
+	case "trim":
+		switch len(n.Args) {
+		case 1:
+			if err := n.Args[0].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+			}
+		case 2:
+			if err := n.Args[1].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+			}
+			ctx.WriteKeyWord(" FROM ")
+			if err := n.Args[0].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+			}
+		case 3:
+			switch fmt.Sprint(n.Args[2].(ValueExpr).GetValue()) {
+			case "3":
+				ctx.WriteKeyWord("TRAILING ")
+			case "2":
+				ctx.WriteKeyWord("LEADING ")
+			case "0", "1":
+				ctx.WriteKeyWord("BOTH ")
+			}
+			if n.Args[1].(ValueExpr).GetValue() != nil {
+				if err := n.Args[1].Restore(ctx); err != nil {
+					return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+				}
+				ctx.WritePlain(" ")
+			}
+			ctx.WriteKeyWord("FROM ")
+			if err := n.Args[0].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+			}
+		}
+	case "timestampdiff", "timestampadd":
+		ctx.WriteKeyWord(n.Args[0].(ValueExpr).GetString())
+		for i := 1; i < len(n.Args); {
+			ctx.WritePlain(", ")
+			if err := n.Args[i].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr")
+			}
+			i++
+		}
+	default:
+		for i, argv := range n.Args {
+			if i != 0 {
+				ctx.WritePlain(", ")
+			}
+			if err := argv.Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore FuncCallExpr.Args %d", i)
+			}
+		}
+	}
+	ctx.WritePlain(")")
+	return nil
 }
 
 // Format the ExprNode into a Writer.
@@ -406,9 +509,34 @@ type FuncCastExpr struct {
 	FunctionType CastFunctionType
 }
 
-// Restore implements Recoverable interface.
-func (n *FuncCastExpr) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *FuncCastExpr) Restore(ctx *RestoreCtx) error {
+	switch n.FunctionType {
+	case CastFunction:
+		ctx.WriteKeyWord("CAST")
+		ctx.WritePlain("(")
+		if err := n.Expr.Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCastExpr.Expr")
+		}
+		ctx.WriteKeyWord(" AS ")
+		n.Tp.RestoreAsCastType(ctx)
+		ctx.WritePlain(")")
+	case CastConvertFunction:
+		ctx.WriteKeyWord("CONVERT")
+		ctx.WritePlain("(")
+		if err := n.Expr.Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCastExpr.Expr")
+		}
+		ctx.WritePlain(", ")
+		n.Tp.RestoreAsCastType(ctx)
+		ctx.WritePlain(")")
+	case CastBinaryOperator:
+		ctx.WriteKeyWord("BINARY ")
+		if err := n.Expr.Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore FuncCastExpr.Expr")
+		}
+	}
+	return nil
 }
 
 // Format the ExprNode into a Writer.
@@ -504,6 +632,8 @@ const (
 	AggFuncStddevPop = "stddev_pop"
 	// AggFuncStddevSamp is the name of stddev_samp function
 	AggFuncStddevSamp = "stddev_samp"
+	// AggFuncIrr
+	AggFuncIrr = "irr"
 )
 
 // AggregateFuncExpr represents aggregate function expression.
@@ -519,9 +649,39 @@ type AggregateFuncExpr struct {
 	Distinct bool
 }
 
-// Restore implements Recoverable interface.
-func (n *AggregateFuncExpr) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *AggregateFuncExpr) Restore(ctx *RestoreCtx) error {
+	ctx.WriteKeyWord(n.F)
+	ctx.WritePlain("(")
+	if n.Distinct {
+		ctx.WriteKeyWord("DISTINCT ")
+	}
+	switch strings.ToLower(n.F) {
+	case "group_concat":
+		for i := 0; i < len(n.Args)-1; i++ {
+			if i != 0 {
+				ctx.WritePlain(", ")
+			}
+			if err := n.Args[i].Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore AggregateFuncExpr.Args[%d]", i)
+			}
+		}
+		ctx.WriteKeyWord(" SEPARATOR ")
+		if err := n.Args[len(n.Args)-1].Restore(ctx); err != nil {
+			return errors.Annotate(err, "An error occurred while restore AggregateFuncExpr.Args SEPARATOR")
+		}
+	default:
+		for i, argv := range n.Args {
+			if i != 0 {
+				ctx.WritePlain(", ")
+			}
+			if err := argv.Restore(ctx); err != nil {
+				return errors.Annotatef(err, "An error occurred while restore AggregateFuncExpr.Args[%d]", i)
+			}
+		}
+	}
+	ctx.WritePlain(")")
+	return nil
 }
 
 // Format the ExprNode into a Writer.
@@ -592,9 +752,33 @@ type WindowFuncExpr struct {
 	Spec WindowSpec
 }
 
-// Restore implements Recoverable interface.
-func (n *WindowFuncExpr) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *WindowFuncExpr) Restore(ctx *RestoreCtx) error {
+	ctx.WriteKeyWord(n.F)
+	ctx.WritePlain("(")
+	for i, v := range n.Args {
+		if i != 0 {
+			ctx.WritePlain(", ")
+		} else if n.Distinct {
+			ctx.WriteKeyWord("DISTINCT ")
+		}
+		if err := v.Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore WindowFuncExpr.Args[%d]", i)
+		}
+	}
+	ctx.WritePlain(")")
+	if n.FromLast {
+		ctx.WriteKeyWord(" FROM LAST")
+	}
+	if n.IgnoreNull {
+		ctx.WriteKeyWord(" IGNORE NULLS")
+	}
+	ctx.WriteKeyWord(" OVER ")
+	if err := n.Spec.Restore(ctx); err != nil {
+		return errors.Annotate(err, "An error occurred while restore WindowFuncExpr.Spec")
+	}
+
+	return nil
 }
 
 // Format formats the window function expression into a Writer.

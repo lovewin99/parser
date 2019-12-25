@@ -14,9 +14,8 @@
 package ast
 
 import (
-	"strings"
-
 	"github.com/pingcap/errors"
+	. "github.com/pingcap/parser/format"
 	"github.com/pingcap/parser/model"
 )
 
@@ -36,12 +35,51 @@ type AnalyzeTableStmt struct {
 	MaxNumBuckets  uint64
 
 	// IndexFlag is true when we only analyze indices for a table.
-	IndexFlag bool
+	IndexFlag   bool
+	Incremental bool
 }
 
-// Restore implements Recoverable interface.
-func (n *AnalyzeTableStmt) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *AnalyzeTableStmt) Restore(ctx *RestoreCtx) error {
+	if n.Incremental {
+		ctx.WriteKeyWord("ANALYZE INCREMENTAL TABLE ")
+	} else {
+		ctx.WriteKeyWord("ANALYZE TABLE ")
+	}
+	for i, table := range n.TableNames {
+		if i != 0 {
+			ctx.WritePlain(",")
+		}
+		if err := table.Restore(ctx); err != nil {
+			return errors.Annotatef(err, "An error occurred while restore AnalyzeTableStmt.TableNames[%d]", i)
+		}
+	}
+	if len(n.PartitionNames) != 0 {
+		ctx.WriteKeyWord(" PARTITION ")
+	}
+	for i, partition := range n.PartitionNames {
+		if i != 0 {
+			ctx.WritePlain(",")
+		}
+		ctx.WriteName(partition.O)
+	}
+	if n.IndexFlag {
+		ctx.WriteKeyWord(" INDEX")
+	}
+	for i, index := range n.IndexNames {
+		if i != 0 {
+			ctx.WritePlain(",")
+		} else {
+			ctx.WritePlain(" ")
+		}
+		ctx.WriteName(index.O)
+	}
+	if n.MaxNumBuckets != 0 {
+		ctx.WriteKeyWord(" WITH ")
+		ctx.WritePlainf("%d", n.MaxNumBuckets)
+		ctx.WriteKeyWord(" BUCKETS")
+	}
+	return nil
 }
 
 // Accept implements Node Accept interface.
@@ -68,9 +106,14 @@ type DropStatsStmt struct {
 	Table *TableName
 }
 
-// Restore implements Recoverable interface.
-func (n *DropStatsStmt) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *DropStatsStmt) Restore(ctx *RestoreCtx) error {
+	ctx.WriteKeyWord("DROP STATS ")
+	if err := n.Table.Restore(ctx); err != nil {
+		return errors.Annotate(err, "An error occurred while add table")
+	}
+
+	return nil
 }
 
 // Accept implements Node Accept interface.
@@ -95,9 +138,11 @@ type LoadStatsStmt struct {
 	Path string
 }
 
-// Restore implements Recoverable interface.
-func (n *LoadStatsStmt) Restore(sb *strings.Builder) error {
-	return errors.New("Not implemented")
+// Restore implements Node interface.
+func (n *LoadStatsStmt) Restore(ctx *RestoreCtx) error {
+	ctx.WriteKeyWord("LOAD STATS ")
+	ctx.WriteString(n.Path)
+	return nil
 }
 
 // Accept implements Node Accept interface.

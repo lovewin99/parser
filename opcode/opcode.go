@@ -16,6 +16,9 @@ package opcode
 import (
 	"fmt"
 	"io"
+
+	"github.com/pingcap/errors"
+	. "github.com/pingcap/parser/format"
 )
 
 // Op is opcode type.
@@ -40,6 +43,7 @@ const (
 	Mod
 	Xor
 	Div
+	REALDIV
 	Mul
 	Not
 	BitNeg
@@ -75,6 +79,7 @@ var Ops = map[Op]string{
 	Mod:        "mod",
 	Xor:        "bitxor",
 	Div:        "div",
+	REALDIV:    "realdiv",
 	Mul:        "mul",
 	Not:        "not",
 	BitNeg:     "bitneg",
@@ -100,14 +105,14 @@ func (o Op) String() string {
 }
 
 var opsLiteral = map[Op]string{
-	LogicAnd:   "&&",
-	LogicOr:    "||",
-	LogicXor:   "^",
+	LogicAnd:   " AND ",
+	LogicOr:    " OR ",
+	LogicXor:   " XOR ",
 	LeftShift:  "<<",
 	RightShift: ">>",
 	GE:         ">=",
 	LE:         "<=",
-	EQ:         "==",
+	EQ:         "=",
 	NE:         "!=",
 	LT:         "<",
 	GT:         ">",
@@ -118,6 +123,7 @@ var opsLiteral = map[Op]string{
 	Mod:        "%",
 	Xor:        "^",
 	Div:        "/",
+	REALDIV:    "REALDIV",
 	Mul:        "*",
 	Not:        "!",
 	BitNeg:     "~",
@@ -135,4 +141,13 @@ var opsLiteral = map[Op]string{
 // Format the ExprNode into a Writer.
 func (o Op) Format(w io.Writer) {
 	fmt.Fprintf(w, "%s", opsLiteral[o])
+}
+
+// Restore the Op into a Writer
+func (o Op) Restore(ctx *RestoreCtx) error {
+	if v, ok := opsLiteral[o]; ok {
+		ctx.WriteKeyWord(v)
+		return nil
+	}
+	return errors.Errorf("Invalid opcode type %d during restoring AST to SQL text", o)
 }

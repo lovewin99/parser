@@ -2,5 +2,7 @@ bin/
 y.go
 *.output
 .idea/
-go.mod
 go.sum
+coverage.txt
+.DS_Store
+.gitignore
