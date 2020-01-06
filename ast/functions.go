@@ -300,6 +300,7 @@ const (
 	FinupDecrypt             = "decrypt_string"
 	Rate                     = "rate"
 	Pmt                      = "pmt"
+	Irr                      = "irr"
 
 	// json functions
 	JSONType          = "json_type"
@@ -631,6 +632,8 @@ const (
 	AggFuncStddevPop = "stddev_pop"
 	// AggFuncStddevSamp is the name of stddev_samp function
 	AggFuncStddevSamp = "stddev_samp"
+	// AggFuncIrr
+	AggFuncIrr = "irr"
 )
 
 // AggregateFuncExpr represents aggregate function expression.
