@@ -676,6 +676,7 @@ import (
 	SetDefaultRoleStmt			"Set default statement for some user"
 	ShowStmt			"Show engines/databases/tables/user/columns/warnings/status statement"
 	Statement			"statement"
+	Statements			"statements"
 	TraceStmt			"TRACE statement"
 	TraceableStmt			"traceable statement"
 	TruncateTableStmt		"TRUNCATE TABLE statement"
@@ -2230,23 +2231,27 @@ CreateTableStmt:
 		}
 		stmt.OnDuplicate = $8.(ast.OnDuplicateKeyHandlingType)
 		stmt.Select = $10.(*ast.CreateTableStmt).Select
-		$$ = stmt
+		$$ = []ast.StmtNode{stmt}
 	}
 	|	"CREATE" "TABLE" IfNotExists TableName "LIKE" SelectStmt
              {
-                 $$ = &ast.CreateTableStmt{
-                     Table:          $4.(*ast.TableName),
-                     SelectStmt:	$6.(*ast.SelectStmt),
-                     IfNotExists:    $3.(bool),
-                 }
+		x := &ast.CreateTableStmt{
+			Table:		$4.(*ast.TableName),
+			SelectStmt:	$6.(*ast.SelectStmt),
+			IfNotExists:    $3.(bool),
+		}
+		y := &ast.InsertStmt{Select: $6.(*ast.SelectStmt)}
+		ts := &ast.TableSource{Source: $4.(*ast.TableName)}
+		y.Table = &ast.TableRefsClause{TableRefs: &ast.Join{Left: ts}}
+		$$ = []ast.StmtNode{x, y}
              }
 |	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
 	{
-		$$ = &ast.CreateTableStmt{
+		$$ = []ast.StmtNode{&ast.CreateTableStmt{
 			Table:          $4.(*ast.TableName),
 			ReferTable:	$5.(*ast.TableName),
 			IfNotExists:    $3.(bool),
-		}
+		}}
 	}
 
 DefaultKwdOpt:
@@ -7182,6 +7187,9 @@ WithReadLockOpt:
 		$$ = true
 	}
 
+Statements:
+	CreateTableStmt
+
 Statement:
 	EmptyStmt
 |	AdminStmt
@@ -7199,7 +7207,6 @@ Statement:
 |	ChangeStmt
 |	CreateDatabaseStmt
 |	CreateIndexStmt
-|	CreateTableStmt
 |	CreateViewStmt
 |	CreateUserStmt
 |	CreateRoleStmt
@@ -7282,6 +7289,28 @@ StatementList:
 				s.SetText(lexer.stmtText())
 			}
 			parser.result = append(parser.result, s)
+		}
+	}
+|	Statements
+	{
+		if $1 != nil {
+			for _, s := range $1 {
+				if lexer, ok := yylex.(stmtTexter); ok {
+					s.SetText(lexer.stmtText())
+				}
+				parser.result = append(parser.result, s)
+			}
+		}
+	}
+|	StatementList ';' Statements
+	{
+		if $3 != nil {
+			for _, s := range $3 {
+				if lexer, ok := yylex.(stmtTexter); ok {
+					s.SetText(lexer.stmtText())
+				}
+				parser.result = append(parser.result, s)
+			}
 		}
 	}
 
