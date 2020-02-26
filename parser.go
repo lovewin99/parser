@@ -8914,7 +8914,10 @@ yynewstate:
 			if lexer, ok := yylex.(stmtTexter); ok {
 				x.SetText(lexer.stmtText())
 			}
-			parser.result = append(parser.result, x)
+			y := &ast.InsertStmt{Select: yyS[yypt-0].statement.(*ast.SelectStmt)}
+			ts := &ast.TableSource{Source: yyS[yypt-2].item.(*ast.TableName)}
+			y.Table = &ast.TableRefsClause{TableRefs: &ast.Join{Left: ts}}
+			parser.result = append(parser.result, y)
 		}
 	case 188:
 		{
