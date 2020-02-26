@@ -2261,6 +2261,7 @@ CreateTableStmt:
 		 y := &ast.InsertStmt{Select: $6.(*ast.SelectStmt)}
 		 ts := &ast.TableSource{Source: $4.(*ast.TableName)}
 		 y.Table = &ast.TableRefsClause{TableRefs: &ast.Join{Left: ts}}
+		 parser.result = append(parser.result, x)
                  parser.result = append(parser.result, y)
 	     }
 
