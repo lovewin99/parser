@@ -8911,7 +8911,9 @@ yynewstate:
 				SelectStmt:  yyS[yypt-0].statement.(*ast.SelectStmt),
 				IfNotExists: yyS[yypt-3].item.(bool),
 			}
-			x.SetText(lexer.stmtText())
+			if lexer, ok := yylex.(stmtTexter); ok {
+				x.SetText(lexer.stmtText())
+			}
 			parser.result = append(parser.result, x)
 		}
 	case 188:

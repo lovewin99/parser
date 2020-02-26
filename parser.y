@@ -2255,7 +2255,9 @@ CreateTableStmt:
                      SelectStmt:	$6.(*ast.SelectStmt),
                      IfNotExists:    $3.(bool),
                  }
-                 x.SetText(lexer.stmtText())
+		 if lexer, ok := yylex.(stmtTexter); ok {
+			  x.SetText(lexer.stmtText())
+		 }
                  parser.result = append(parser.result, x)
 	     }
 
