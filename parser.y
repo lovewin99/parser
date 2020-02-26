@@ -2219,7 +2219,7 @@ DatabaseOptionList:
  *******************************************************************/
 
 CreateTableStmt:
-	"CREATE" "TABLE" IfNotExists TableName TableElementListOpt CreateTableOptionListOpt PartitionOpt DuplicateOpt AsOpt CreateTableSelectOpt
+	"CREATE" "TABLE" IfNotExists TableName TableElementListOpt CreateTableOptionListOpt PartitionOpt DuplicateOpt
 	{
 		stmt := $5.(*ast.CreateTableStmt)
 		stmt.Table = $4.(*ast.TableName)
@@ -2229,7 +2229,7 @@ CreateTableStmt:
 			stmt.Partition = $7.(*ast.PartitionOptions)
 		}
 		stmt.OnDuplicate = $8.(ast.OnDuplicateKeyHandlingType)
-		stmt.Select = $10.(*ast.CreateTableStmt).Select
+//		stmt.Select = $10.(*ast.CreateTableStmt).Select
 		$$ = stmt
 	}
 	|	"CREATE" "TABLE" IfNotExists TableName "LIKE" SelectStmt
@@ -2240,14 +2240,24 @@ CreateTableStmt:
                      IfNotExists:    $3.(bool),
                  }
              }
-|	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
-	{
-		$$ = &ast.CreateTableStmt{
-			Table:          $4.(*ast.TableName),
-			ReferTable:	$5.(*ast.TableName),
-			IfNotExists:    $3.(bool),
+	|	"CREATE" "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
+		{
+			$$ = &ast.CreateTableStmt{
+				Table:          $4.(*ast.TableName),
+				ReferTable:	$5.(*ast.TableName),
+				IfNotExists:    $3.(bool),
+			}
 		}
-	}
+	|	"CREATE" "TABLE" IfNotExists TableName AsOpt SelectStmt
+	     {
+                 x := &ast.CreateTableStmt{
+                     Table:          $4.(*ast.TableName),
+                     SelectStmt:	$6.(*ast.SelectStmt),
+                     IfNotExists:    $3.(bool),
+                 }
+                 x.SetText(lexer.stmtText())
+                 parser.result = append(parser.result, x)
+	     }
 
 DefaultKwdOpt:
 	%prec lowerThanCharsetKwd
