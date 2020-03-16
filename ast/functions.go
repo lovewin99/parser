@@ -19,7 +19,6 @@ import (
 	"strings"
 
 	"github.com/pingcap/errors"
-	. "github.com/pingcap/parser/format"
 	"github.com/pingcap/parser/model"
 	"github.com/pingcap/parser/types"
 )
@@ -301,9 +300,10 @@ const (
 	Rate                     = "rate"
 	Pmt                      = "pmt"
 	Irr                      = "irr"
-	IdParse					 = "f_idparse"
-	PhoneParse				 = "f_phoneparse"
-	FixedParse				 = "f_fixedparse"
+	IdParse                  = "f_idparse"
+	PhoneParse               = "f_phoneparse"
+	FixedParse               = "f_fixedparse"
+	CityLable                = "f_citylabel"
 
 	// json functions
 	JSONType          = "json_type"
