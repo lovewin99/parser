@@ -300,6 +300,8 @@ const (
 	Uncompress               = "uncompress"
 	UncompressedLength       = "uncompressed_length"
 	ValidatePasswordStrength = "validate_password_strength"
+	FinupEncrypt             = "encrypt_string"
+	FinupDecrypt             = "decrypt_string"
 
 	// json functions
 	JSONType          = "json_type"
