@@ -306,6 +306,9 @@ const (
 	FinupDecrypt             = "decrypt_string"
 	Rate                     = "rate"
 	Pmt                      = "pmt"
+	IdParse                  = "f_idparse"
+	PhoneParse               = "f_phoneparse"
+	FixedParse               = "f_fixedparse"
 
 	// json functions
 	JSONType          = "json_type"
