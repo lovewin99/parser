@@ -52,6 +52,7 @@ const (
 	Mod        = "mod"
 	Xor        = "bitxor"
 	Div        = "div"
+	REALDIV    = "realdiv"
 	Mul        = "mul"
 	UnaryNot   = "not" // Avoid name conflict with Not in github/pingcap/check.
 	BitNeg     = "bitneg"
@@ -302,6 +303,8 @@ const (
 	ValidatePasswordStrength = "validate_password_strength"
 	FinupEncrypt             = "encrypt_string"
 	FinupDecrypt             = "decrypt_string"
+	Rate                     = "rate"
+	Pmt                      = "pmt"
 
 	// json functions
 	JSONType          = "json_type"
