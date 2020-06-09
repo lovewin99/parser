@@ -41,6 +41,7 @@ const (
 	Mod
 	Xor
 	Div
+	REALDIV
 	Mul
 	Not
 	BitNeg
@@ -147,6 +148,11 @@ var ops = [...]struct {
 		isKeyword: false,
 	},
 	Div: {
+		name:      "realdiv",
+		literal:   "REALDIV",
+		isKeyword: true,
+	},
+	REALDIV: {
 		name:      "div",
 		literal:   "/",
 		isKeyword: false,

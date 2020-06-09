@@ -118,6 +118,7 @@ import (
 	distinct          "DISTINCT"
 	distinctRow       "DISTINCTROW"
 	div               "DIV"
+	realdiv			  "REALDIV"
 	doubleType        "DOUBLE"
 	drop              "DROP"
 	dual              "DUAL"
@@ -1281,7 +1282,7 @@ import (
 %left '&'
 %left rsh lsh
 %left '-' '+'
-%left '*' '/' '%' div mod
+%left '*' '/' '%' div mod realdiv
 %left '^'
 %left '~' neg
 %precedence lowerThanNot
@@ -5708,6 +5709,10 @@ BitExpr:
 	{
 		$$ = &ast.BinaryOperationExpr{Op: opcode.Div, L: $1, R: $3}
 	}
+|	BitExpr "REALDIV" BitExpr %prec realdiv
+ 	{
+ 		$$ = &ast.BinaryOperationExpr{Op: opcode.REALDIV, L: $1, R: $3}
+ 	}
 |	BitExpr '%' BitExpr %prec '%'
 	{
 		$$ = &ast.BinaryOperationExpr{Op: opcode.Mod, L: $1, R: $3}
