@@ -3255,6 +3255,15 @@ CreateTableStmt:
 			IsTemporary: $2.(bool),
 		}
 	}
+|	"CREATE" OptTemporary "TABLE" IfNotExists TableName "LIKE" SelectStmt
+		  {
+			  $$ = &ast.CreateTableStmt{
+				  Table:          $5.(*ast.TableName),
+				  SelectStmt:	  $7.(*ast.SelectStmt),
+				  IfNotExists:    $4.(bool),
+				  IsTemporary:	  $2.(bool),
+			  }
+		  }
 
 DefaultKwdOpt:
 	%prec lowerThanCharsetKwd
