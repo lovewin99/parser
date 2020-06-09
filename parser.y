@@ -3234,7 +3234,7 @@ DatabaseOptionList:
  *      )
  *******************************************************************/
 CreateTableStmt:
-	"CREATE" OptTemporary "TABLE" IfNotExists TableName TableElementListOpt CreateTableOptionListOpt PartitionOpt DuplicateOpt AsOpt CreateTableSelectOpt
+	"CREATE" OptTemporary "TABLE" IfNotExists TableName TableElementListOpt CreateTableOptionListOpt PartitionOpt DuplicateOpt
 	{
 		stmt := $6.(*ast.CreateTableStmt)
 		stmt.Table = $5.(*ast.TableName)
@@ -3245,7 +3245,7 @@ CreateTableStmt:
 			stmt.Partition = $8.(*ast.PartitionOptions)
 		}
 		stmt.OnDuplicate = $9.(ast.OnDuplicateKeyHandlingType)
-		stmt.Select = $11.(*ast.CreateTableStmt).Select
+		//		stmt.Select = $11.(*ast.CreateTableStmt).Select
 		$$ = stmt
 	}
 |	"CREATE" OptTemporary "TABLE" IfNotExists TableName LikeTableWithOrWithoutParen
@@ -3265,6 +3265,22 @@ CreateTableStmt:
 			IfNotExists: $4.(bool),
 			IsTemporary: $2.(bool),
 		}
+	}
+|	"CREATE" OptTemporary "TABLE" IfNotExists TableName AsOpt SelectStmt
+	{
+		x := &ast.CreateTableStmt{
+			Table:       $5.(*ast.TableName),
+			SelectStmt:  $7.(*ast.SelectStmt),
+			IfNotExists: $4.(bool),
+		}
+		if lexer, ok := yylex.(stmtTexter); ok {
+			x.SetText(lexer.stmtText())
+		}
+		y := &ast.InsertStmt{Select: $7.(*ast.SelectStmt)}
+		ts := &ast.TableSource{Source: $5.(*ast.TableName)}
+		y.Table = &ast.TableRefsClause{TableRefs: &ast.Join{Left: ts}}
+		parser.result = append(parser.result, x)
+		parser.result = append(parser.result, y)
 	}
 
 DefaultKwdOpt:
