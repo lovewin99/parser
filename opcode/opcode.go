@@ -147,15 +147,15 @@ var ops = [...]struct {
 		literal:   "^",
 		isKeyword: false,
 	},
-	Div: {
-		name:      "realdiv",
-		literal:   "REALDIV",
-		isKeyword: true,
-	},
-	REALDIV: {
+	DIV: {
 		name:      "div",
 		literal:   "/",
 		isKeyword: false,
+	},
+	REALDIV: {
+		name:      "realdiv",
+		literal:   "REALDIV",
+		isKeyword: true,
 	},
 	Mul: {
 		name:      "mul",
