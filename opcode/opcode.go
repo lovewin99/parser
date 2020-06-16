@@ -147,7 +147,7 @@ var ops = [...]struct {
 		literal:   "^",
 		isKeyword: false,
 	},
-	DIV: {
+	Div: {
 		name:      "div",
 		literal:   "/",
 		isKeyword: false,
