@@ -1032,6 +1032,13 @@ func (n *CreateTableStmt) Accept(v Visitor) (Node, bool) {
 		}
 		n.Partition = node.(*PartitionOptions)
 	}
+	if n.SelectStmt != nil {
+		node, ok := n.SelectStmt.Accept(v)
+		if !ok {
+			return n, false
+		}
+		n.SelectStmt = node.(*SelectStmt)
+	}
 
 	return v.Leave(n)
 }
