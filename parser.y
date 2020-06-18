@@ -118,7 +118,7 @@ import (
 	distinct          "DISTINCT"
 	distinctRow       "DISTINCTROW"
 	div               "DIV"
-	realdiv			  "REALDIV"
+	realdiv           "REALDIV"
 	doubleType        "DOUBLE"
 	drop              "DROP"
 	dual              "DUAL"
@@ -227,7 +227,7 @@ import (
 	rename            "RENAME"
 	repeat            "REPEAT"
 	replace           "REPLACE"
-	RegexpReplace	  "REGEXPREPLACE"
+	RegexpReplace     "REGEXPREPLACE"
 	require           "REQUIRE"
 	restrict          "RESTRICT"
 	revoke            "REVOKE"
@@ -5711,9 +5711,9 @@ BitExpr:
 		$$ = &ast.BinaryOperationExpr{Op: opcode.Div, L: $1, R: $3}
 	}
 |	BitExpr "REALDIV" BitExpr %prec realdiv
- 	{
- 		$$ = &ast.BinaryOperationExpr{Op: opcode.REALDIV, L: $1, R: $3}
- 	}
+	{
+		$$ = &ast.BinaryOperationExpr{Op: opcode.REALDIV, L: $1, R: $3}
+	}
 |	BitExpr '%' BitExpr %prec '%'
 	{
 		$$ = &ast.BinaryOperationExpr{Op: opcode.Mod, L: $1, R: $3}
