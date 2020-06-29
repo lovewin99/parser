@@ -309,6 +309,7 @@ const (
 	IdParse                  = "f_idparse"
 	PhoneParse               = "f_phoneparse"
 	FixedParse               = "f_fixedparse"
+	CityLable                = "f_citylabel"
 
 	// json functions
 	JSONType          = "json_type"
