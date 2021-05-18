@@ -816,6 +816,7 @@ type CreateTableStmt struct {
 	Partition   *PartitionOptions
 	OnDuplicate OnDuplicateKeyHandlingType
 	Select      ResultSetNode
+	SelectStmt  *SelectStmt
 }
 
 // Restore implements Node interface.
