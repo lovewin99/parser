@@ -55,567 +55,568 @@ type yyXError struct {
 }
 
 const (
-	yyDefault                  = 57904
+	yyDefault                  = 57905
 	yyEOFCode                  = 57344
-	account                    = 57561
-	action                     = 57562
+	RegexpReplace              = 57505
+	account                    = 57562
+	action                     = 57563
 	add                        = 57359
-	addDate                    = 57769
-	admin                      = 57817
-	after                      = 57563
-	algorithm                  = 57565
+	addDate                    = 57770
+	admin                      = 57818
+	after                      = 57564
+	algorithm                  = 57566
 	all                        = 57360
 	alter                      = 57361
-	always                     = 57564
+	always                     = 57565
 	analyze                    = 57362
 	and                        = 57363
 	andand                     = 57354
-	andnot                     = 57872
-	any                        = 57566
+	andnot                     = 57873
+	any                        = 57567
 	as                         = 57364
 	asc                        = 57365
-	ascii                      = 57567
-	assignmentEq               = 57873
-	autoIdCache                = 57568
-	autoIncrement              = 57569
-	avg                        = 57571
-	avgRowLength               = 57570
-	begin                      = 57572
+	ascii                      = 57568
+	assignmentEq               = 57874
+	autoIdCache                = 57569
+	autoIncrement              = 57570
+	avg                        = 57572
+	avgRowLength               = 57571
+	begin                      = 57573
 	between                    = 57366
 	bigIntType                 = 57367
 	binaryType                 = 57368
-	binding                    = 57759
-	bindings                   = 57760
-	binlog                     = 57573
-	bitAnd                     = 57770
-	bitLit                     = 57871
-	bitOr                      = 57771
-	bitType                    = 57574
-	bitXor                     = 57772
+	binding                    = 57760
+	bindings                   = 57761
+	binlog                     = 57574
+	bitAnd                     = 57771
+	bitLit                     = 57872
+	bitOr                      = 57772
+	bitType                    = 57575
+	bitXor                     = 57773
 	blobType                   = 57369
-	block                      = 57575
-	boolType                   = 57577
-	booleanType                = 57576
+	block                      = 57576
+	boolType                   = 57578
+	booleanType                = 57577
 	both                       = 57370
-	btree                      = 57578
-	buckets                    = 57818
-	builtinAddDate             = 57841
-	builtinBitAnd              = 57842
-	builtinBitOr               = 57843
-	builtinBitXor              = 57844
-	builtinCast                = 57845
-	builtinCount               = 57846
-	builtinCurDate             = 57847
-	builtinCurTime             = 57848
-	builtinDateAdd             = 57849
-	builtinDateSub             = 57850
-	builtinExtract             = 57851
-	builtinGroupConcat         = 57852
-	builtinMax                 = 57853
-	builtinMin                 = 57854
-	builtinNow                 = 57855
-	builtinPosition            = 57856
-	builtinStddevPop           = 57861
-	builtinStddevSamp          = 57862
-	builtinSubDate             = 57857
-	builtinSubstring           = 57858
-	builtinSum                 = 57859
-	builtinSysDate             = 57860
-	builtinTrim                = 57863
-	builtinUser                = 57864
-	builtinVarPop              = 57865
-	builtinVarSamp             = 57866
+	btree                      = 57579
+	buckets                    = 57819
+	builtinAddDate             = 57842
+	builtinBitAnd              = 57843
+	builtinBitOr               = 57844
+	builtinBitXor              = 57845
+	builtinCast                = 57846
+	builtinCount               = 57847
+	builtinCurDate             = 57848
+	builtinCurTime             = 57849
+	builtinDateAdd             = 57850
+	builtinDateSub             = 57851
+	builtinExtract             = 57852
+	builtinGroupConcat         = 57853
+	builtinMax                 = 57854
+	builtinMin                 = 57855
+	builtinNow                 = 57856
+	builtinPosition            = 57857
+	builtinStddevPop           = 57862
+	builtinStddevSamp          = 57863
+	builtinSubDate             = 57858
+	builtinSubstring           = 57859
+	builtinSum                 = 57860
+	builtinSysDate             = 57861
+	builtinTrim                = 57864
+	builtinUser                = 57865
+	builtinVarPop              = 57866
+	builtinVarSamp             = 57867
 	by                         = 57371
-	byteType                   = 57579
-	cancel                     = 57819
+	byteType                   = 57580
+	cancel                     = 57820
 	cascade                    = 57372
-	cascaded                   = 57580
+	cascaded                   = 57581
 	caseKwd                    = 57373
-	cast                       = 57773
+	cast                       = 57774
 	change                     = 57374
 	charType                   = 57376
 	character                  = 57375
-	charsetKwd                 = 57581
+	charsetKwd                 = 57582
 	check                      = 57377
-	checksum                   = 57582
-	cipher                     = 57583
-	cleanup                    = 57584
-	client                     = 57585
-	coalesce                   = 57586
+	checksum                   = 57583
+	cipher                     = 57584
+	cleanup                    = 57585
+	client                     = 57586
+	coalesce                   = 57587
 	collate                    = 57378
-	collation                  = 57587
+	collation                  = 57588
 	column                     = 57379
-	columns                    = 57588
-	comment                    = 57589
-	commit                     = 57590
-	committed                  = 57591
-	compact                    = 57592
-	compressed                 = 57593
-	compression                = 57594
-	connection                 = 57595
-	consistent                 = 57596
+	columns                    = 57589
+	comment                    = 57590
+	commit                     = 57591
+	committed                  = 57592
+	compact                    = 57593
+	compressed                 = 57594
+	compression                = 57595
+	connection                 = 57596
+	consistent                 = 57597
 	constraint                 = 57380
-	context                    = 57597
+	context                    = 57598
 	convert                    = 57381
-	copyKwd                    = 57774
-	count                      = 57775
-	cpu                        = 57598
+	copyKwd                    = 57775
+	count                      = 57776
+	cpu                        = 57599
 	create                     = 57382
-	createTableSelect          = 57893
+	createTableSelect          = 57894
 	cross                      = 57383
 	cumeDist                   = 57384
-	curTime                    = 57776
-	current                    = 57599
+	curTime                    = 57777
+	current                    = 57600
 	currentDate                = 57385
 	currentRole                = 57389
 	currentTime                = 57386
 	currentTs                  = 57387
 	currentUser                = 57388
-	data                       = 57601
+	data                       = 57602
 	database                   = 57390
 	databases                  = 57391
-	dateAdd                    = 57777
-	dateSub                    = 57778
-	dateType                   = 57602
-	datetimeType               = 57603
-	day                        = 57600
+	dateAdd                    = 57778
+	dateSub                    = 57779
+	dateType                   = 57603
+	datetimeType               = 57604
+	day                        = 57601
 	dayHour                    = 57392
 	dayMicrosecond             = 57393
 	dayMinute                  = 57394
 	daySecond                  = 57395
-	ddl                        = 57820
-	deallocate                 = 57604
-	decLit                     = 57868
+	ddl                        = 57821
+	deallocate                 = 57605
+	decLit                     = 57869
 	decimalType                = 57396
 	defaultKwd                 = 57397
-	definer                    = 57605
-	delayKeyWrite              = 57606
+	definer                    = 57606
+	delayKeyWrite              = 57607
 	delayed                    = 57398
 	deleteKwd                  = 57399
 	denseRank                  = 57400
 	desc                       = 57401
 	describe                   = 57402
-	directory                  = 57607
-	disable                    = 57608
+	directory                  = 57608
+	disable                    = 57609
 	distinct                   = 57403
 	distinctRow                = 57404
 	div                        = 57405
-	do                         = 57609
+	do                         = 57610
 	doubleAtIdentifier         = 57350
 	doubleType                 = 57407
-	drainer                    = 57821
+	drainer                    = 57822
 	drop                       = 57408
 	dual                       = 57409
-	duplicate                  = 57610
-	dynamic                    = 57611
+	duplicate                  = 57611
+	dynamic                    = 57612
 	elseKwd                    = 57410
-	empty                      = 57886
-	enable                     = 57612
+	empty                      = 57887
+	enable                     = 57613
 	enclosed                   = 57411
-	end                        = 57613
-	enforced                   = 57767
-	engine                     = 57614
-	engines                    = 57615
-	enum                       = 57616
-	eq                         = 57874
+	end                        = 57614
+	enforced                   = 57768
+	engine                     = 57615
+	engines                    = 57616
+	enum                       = 57617
+	eq                         = 57875
 	yyErrCode                  = 57345
-	errorKwd                   = 57617
-	escape                     = 57620
+	errorKwd                   = 57618
+	escape                     = 57621
 	escaped                    = 57412
-	event                      = 57618
-	events                     = 57619
+	event                      = 57619
+	events                     = 57620
 	except                     = 57415
-	exclusive                  = 57621
-	execute                    = 57622
+	exclusive                  = 57622
+	execute                    = 57623
 	exists                     = 57413
-	expire                     = 57623
+	expire                     = 57624
 	explain                    = 57414
-	exprPushdownBlacklist      = 57814
-	extract                    = 57779
+	exprPushdownBlacklist      = 57815
+	extract                    = 57780
 	falseKwd                   = 57416
-	faultsSym                  = 57624
-	fields                     = 57625
-	first                      = 57626
+	faultsSym                  = 57625
+	fields                     = 57626
+	first                      = 57627
 	firstValue                 = 57417
-	fixed                      = 57627
-	floatLit                   = 57867
+	fixed                      = 57628
+	floatLit                   = 57868
 	floatType                  = 57418
-	flush                      = 57628
-	following                  = 57629
+	flush                      = 57629
+	following                  = 57630
 	forKwd                     = 57419
 	force                      = 57420
 	foreign                    = 57421
-	format                     = 57630
+	format                     = 57631
 	from                       = 57422
-	full                       = 57631
+	full                       = 57632
 	fulltext                   = 57423
-	function                   = 57632
-	ge                         = 57875
+	function                   = 57633
+	ge                         = 57876
 	generated                  = 57424
-	getFormat                  = 57780
-	global                     = 57737
+	getFormat                  = 57781
+	global                     = 57738
 	grant                      = 57425
-	grants                     = 57633
+	grants                     = 57634
 	group                      = 57426
-	groupConcat                = 57781
+	groupConcat                = 57782
 	groups                     = 57427
-	hash                       = 57634
+	hash                       = 57635
 	having                     = 57428
-	hexLit                     = 57870
+	hexLit                     = 57871
 	highPriority               = 57429
-	higherThanComma            = 57903
+	higherThanComma            = 57904
 	hintBegin                  = 57352
 	hintEnd                    = 57353
-	history                    = 57635
-	hour                       = 57636
+	history                    = 57636
+	hour                       = 57637
 	hourMicrosecond            = 57430
 	hourMinute                 = 57431
 	hourSecond                 = 57432
-	identSQLErrors             = 57762
-	identified                 = 57637
+	identSQLErrors             = 57763
+	identified                 = 57638
 	identifier                 = 57346
 	ifKwd                      = 57433
 	ignore                     = 57434
 	in                         = 57435
-	incremental                = 57640
+	incremental                = 57641
 	index                      = 57436
-	indexes                    = 57641
+	indexes                    = 57642
 	infile                     = 57437
 	inner                      = 57438
-	inplace                    = 57783
+	inplace                    = 57784
 	insert                     = 57443
-	insertValues               = 57891
-	instance                   = 57768
-	instant                    = 57784
+	insertValues               = 57892
+	instance                   = 57769
+	instant                    = 57785
 	int1Type                   = 57445
 	int2Type                   = 57446
 	int3Type                   = 57447
 	int4Type                   = 57448
 	int8Type                   = 57449
-	intLit                     = 57869
+	intLit                     = 57870
 	intType                    = 57444
 	integerType                = 57439
-	internal                   = 57785
+	internal                   = 57786
 	interval                   = 57440
 	into                       = 57441
 	invalid                    = 57351
-	invoker                    = 57642
-	io                         = 57643
-	ipc                        = 57644
+	invoker                    = 57643
+	io                         = 57644
+	ipc                        = 57645
 	is                         = 57442
-	isolation                  = 57638
-	issuer                     = 57639
-	job                        = 57823
-	jobs                       = 57822
+	isolation                  = 57639
+	issuer                     = 57640
+	job                        = 57824
+	jobs                       = 57823
 	join                       = 57450
-	jsonType                   = 57645
-	jss                        = 57877
-	juss                       = 57878
+	jsonType                   = 57646
+	jss                        = 57878
+	juss                       = 57879
 	key                        = 57451
-	keyBlockSize               = 57646
+	keyBlockSize               = 57647
 	keys                       = 57452
 	kill                       = 57453
 	lag                        = 57454
-	last                       = 57648
+	last                       = 57649
 	lastValue                  = 57455
-	le                         = 57876
+	le                         = 57877
 	lead                       = 57456
 	leading                    = 57457
 	left                       = 57458
-	less                       = 57649
-	level                      = 57650
+	less                       = 57650
+	level                      = 57651
 	like                       = 57459
 	limit                      = 57460
 	linear                     = 57462
 	lines                      = 57461
-	list                       = 57651
+	list                       = 57652
 	load                       = 57463
-	local                      = 57647
+	local                      = 57648
 	localTime                  = 57464
 	localTs                    = 57465
 	lock                       = 57466
-	long                       = 57548
+	long                       = 57549
 	longblobType               = 57467
 	longtextType               = 57468
 	lowPriority                = 57469
-	lowerThanCharsetKwd        = 57894
-	lowerThanComma             = 57902
-	lowerThanCreateTableSelect = 57892
-	lowerThanEq                = 57898
-	lowerThanInsertValues      = 57890
-	lowerThanIntervalKeyword   = 57887
-	lowerThanKey               = 57895
-	lowerThanNot               = 57900
-	lowerThanOn                = 57897
-	lowerThanSetKeyword        = 57889
-	lowerThanStringLitToken    = 57888
-	lsh                        = 57879
-	master                     = 57652
+	lowerThanCharsetKwd        = 57895
+	lowerThanComma             = 57903
+	lowerThanCreateTableSelect = 57893
+	lowerThanEq                = 57899
+	lowerThanInsertValues      = 57891
+	lowerThanIntervalKeyword   = 57888
+	lowerThanKey               = 57896
+	lowerThanNot               = 57901
+	lowerThanOn                = 57898
+	lowerThanSetKeyword        = 57890
+	lowerThanStringLitToken    = 57889
+	lsh                        = 57880
+	master                     = 57653
 	match                      = 57470
-	max                        = 57787
-	maxConnectionsPerHour      = 57659
-	maxExecutionTime           = 57788
-	maxQueriesPerHour          = 57660
-	maxRows                    = 57658
-	maxUpdatesPerHour          = 57661
-	maxUserConnections         = 57662
+	max                        = 57788
+	maxConnectionsPerHour      = 57660
+	maxExecutionTime           = 57789
+	maxQueriesPerHour          = 57661
+	maxRows                    = 57659
+	maxUpdatesPerHour          = 57662
+	maxUserConnections         = 57663
 	maxValue                   = 57471
 	mediumIntType              = 57473
 	mediumblobType             = 57472
 	mediumtextType             = 57474
-	memory                     = 57663
-	merge                      = 57664
-	microsecond                = 57653
-	min                        = 57786
-	minRows                    = 57665
-	minute                     = 57654
+	memory                     = 57664
+	merge                      = 57665
+	microsecond                = 57654
+	min                        = 57787
+	minRows                    = 57666
+	minute                     = 57655
 	minuteMicrosecond          = 57475
 	minuteSecond               = 57476
 	mod                        = 57477
-	mode                       = 57655
-	modify                     = 57656
-	month                      = 57657
-	names                      = 57666
-	national                   = 57667
-	natural                    = 57560
-	neg                        = 57899
-	neq                        = 57880
-	neqSynonym                 = 57881
-	never                      = 57668
-	next_row_id                = 57782
-	no                         = 57669
+	mode                       = 57656
+	modify                     = 57657
+	month                      = 57658
+	names                      = 57667
+	national                   = 57668
+	natural                    = 57561
+	neg                        = 57900
+	neq                        = 57881
+	neqSynonym                 = 57882
+	never                      = 57669
+	next_row_id                = 57783
+	no                         = 57670
 	noWriteToBinLog            = 57479
-	nodeID                     = 57824
-	nodeState                  = 57825
-	nodegroup                  = 57670
-	none                       = 57671
+	nodeID                     = 57825
+	nodeState                  = 57826
+	nodegroup                  = 57671
+	none                       = 57672
 	not                        = 57478
-	not2                       = 57885
-	now                        = 57789
-	nowait                     = 57766
+	not2                       = 57886
+	now                        = 57790
+	nowait                     = 57767
 	nthValue                   = 57480
 	ntile                      = 57481
 	null                       = 57482
-	nulleq                     = 57882
-	nulls                      = 57672
+	nulleq                     = 57883
+	nulls                      = 57673
 	numericType                = 57483
-	nvarcharType               = 57673
+	nvarcharType               = 57674
 	odbcDateType               = 57356
 	odbcTimeType               = 57357
 	odbcTimestampType          = 57358
-	offset                     = 57674
+	offset                     = 57675
 	on                         = 57484
-	only                       = 57675
-	open                       = 57730
-	optRuleBlacklist           = 57815
-	optimistic                 = 57826
+	only                       = 57676
+	open                       = 57731
+	optRuleBlacklist           = 57816
+	optimistic                 = 57827
 	option                     = 57485
 	optionally                 = 57486
 	or                         = 57487
 	order                      = 57488
 	outer                      = 57489
 	over                       = 57490
-	packKeys                   = 57676
-	pageSym                    = 57677
-	paramMarker                = 57883
-	partial                    = 57679
+	packKeys                   = 57677
+	pageSym                    = 57678
+	paramMarker                = 57884
+	partial                    = 57680
 	partition                  = 57491
-	partitions                 = 57680
-	password                   = 57678
+	partitions                 = 57681
+	password                   = 57679
 	percentRank                = 57492
-	pessimistic                = 57827
+	pessimistic                = 57828
 	pipes                      = 57355
-	pipesAsOr                  = 57681
-	plugins                    = 57682
-	position                   = 57790
-	preSplitRegions            = 57683
-	preceding                  = 57684
+	pipesAsOr                  = 57682
+	plugins                    = 57683
+	position                   = 57791
+	preSplitRegions            = 57684
+	preceding                  = 57685
 	precisionType              = 57493
-	prepare                    = 57685
+	prepare                    = 57686
 	primary                    = 57494
-	privileges                 = 57686
+	privileges                 = 57687
 	procedure                  = 57495
-	process                    = 57687
-	processlist                = 57688
-	profile                    = 57689
-	profiles                   = 57690
-	pump                       = 57828
-	quarter                    = 57691
-	queries                    = 57693
-	query                      = 57692
-	quick                      = 57694
+	process                    = 57688
+	processlist                = 57689
+	profile                    = 57690
+	profiles                   = 57691
+	pump                       = 57829
+	quarter                    = 57692
+	queries                    = 57694
+	query                      = 57693
+	quick                      = 57695
 	rangeKwd                   = 57496
 	rank                       = 57497
 	read                       = 57498
 	realType                   = 57499
 	realdiv                    = 57406
-	recent                     = 57791
-	recover                    = 57695
-	redundant                  = 57696
+	recent                     = 57792
+	recover                    = 57696
+	redundant                  = 57697
 	references                 = 57500
 	regexpKwd                  = 57501
-	region                     = 57840
-	regions                    = 57839
-	reload                     = 57697
+	region                     = 57841
+	regions                    = 57840
+	reload                     = 57698
 	rename                     = 57502
 	repeat                     = 57503
-	repeatable                 = 57698
+	repeatable                 = 57699
 	replace                    = 57504
-	replication                = 57700
-	require                    = 57505
-	respect                    = 57699
-	restrict                   = 57506
-	reverse                    = 57701
-	revoke                     = 57507
-	right                      = 57508
-	rlike                      = 57509
-	role                       = 57702
-	rollback                   = 57703
-	routine                    = 57704
-	row                        = 57510
-	rowCount                   = 57705
-	rowFormat                  = 57706
-	rowNumber                  = 57512
-	rows                       = 57511
-	rsh                        = 57884
-	second                     = 57707
-	secondMicrosecond          = 57513
-	security                   = 57708
-	selectKwd                  = 57514
-	separator                  = 57709
-	serializable               = 57710
-	session                    = 57711
-	set                        = 57515
-	shardRowIDBits             = 57712
-	share                      = 57713
-	shared                     = 57714
-	show                       = 57516
-	shutdown                   = 57715
-	signed                     = 57716
-	simple                     = 57717
+	replication                = 57701
+	require                    = 57506
+	respect                    = 57700
+	restrict                   = 57507
+	reverse                    = 57702
+	revoke                     = 57508
+	right                      = 57509
+	rlike                      = 57510
+	role                       = 57703
+	rollback                   = 57704
+	routine                    = 57705
+	row                        = 57511
+	rowCount                   = 57706
+	rowFormat                  = 57707
+	rowNumber                  = 57513
+	rows                       = 57512
+	rsh                        = 57885
+	second                     = 57708
+	secondMicrosecond          = 57514
+	security                   = 57709
+	selectKwd                  = 57515
+	separator                  = 57710
+	serializable               = 57711
+	session                    = 57712
+	set                        = 57516
+	shardRowIDBits             = 57713
+	share                      = 57714
+	shared                     = 57715
+	show                       = 57517
+	shutdown                   = 57716
+	signed                     = 57717
+	simple                     = 57718
 	singleAtIdentifier         = 57349
-	slave                      = 57718
-	slow                       = 57719
-	smallIntType               = 57517
-	snapshot                   = 57720
-	some                       = 57736
-	source                     = 57731
-	split                      = 57838
-	splitOptionPriv            = 57901
-	sql                        = 57518
-	sqlBigResult               = 57519
-	sqlBufferResult            = 57721
-	sqlCache                   = 57722
-	sqlCalcFoundRows           = 57520
-	sqlNoCache                 = 57723
-	sqlSmallResult             = 57521
-	ssl                        = 57522
-	start                      = 57724
-	starting                   = 57523
-	stats                      = 57829
-	statsBuckets               = 57832
-	statsHealthy               = 57833
-	statsHistograms            = 57831
-	statsMeta                  = 57830
-	statsPersistent            = 57725
-	status                     = 57726
-	std                        = 57792
-	stddev                     = 57793
-	stddevPop                  = 57794
-	stddevSamp                 = 57795
-	stored                     = 57526
-	straightJoin               = 57524
+	slave                      = 57719
+	slow                       = 57720
+	smallIntType               = 57518
+	snapshot                   = 57721
+	some                       = 57737
+	source                     = 57732
+	split                      = 57839
+	splitOptionPriv            = 57902
+	sql                        = 57519
+	sqlBigResult               = 57520
+	sqlBufferResult            = 57722
+	sqlCache                   = 57723
+	sqlCalcFoundRows           = 57521
+	sqlNoCache                 = 57724
+	sqlSmallResult             = 57522
+	ssl                        = 57523
+	start                      = 57725
+	starting                   = 57524
+	stats                      = 57830
+	statsBuckets               = 57833
+	statsHealthy               = 57834
+	statsHistograms            = 57832
+	statsMeta                  = 57831
+	statsPersistent            = 57726
+	status                     = 57727
+	std                        = 57793
+	stddev                     = 57794
+	stddevPop                  = 57795
+	stddevSamp                 = 57796
+	stored                     = 57527
+	straightJoin               = 57525
 	stringLit                  = 57348
-	subDate                    = 57796
-	subject                    = 57732
-	subpartition               = 57733
-	subpartitions              = 57734
-	substring                  = 57798
-	sum                        = 57797
-	super                      = 57735
-	swaps                      = 57727
-	switchesSym                = 57728
-	systemTime                 = 57729
-	tableKwd                   = 57525
-	tableRefPriority           = 57896
-	tables                     = 57738
-	tablespace                 = 57739
-	temporary                  = 57740
-	temptable                  = 57741
-	terminated                 = 57527
-	textType                   = 57742
-	than                       = 57743
-	then                       = 57528
-	tidb                       = 57834
-	tidbHJ                     = 57835
-	tidbINLJ                   = 57837
-	tidbSMJ                    = 57836
-	timeType                   = 57744
-	timestampAdd               = 57799
-	timestampDiff              = 57800
-	timestampType              = 57745
-	tinyIntType                = 57530
-	tinyblobType               = 57529
-	tinytextType               = 57531
-	tls                        = 57816
-	to                         = 57532
-	tokudbDefault              = 57801
-	tokudbFast                 = 57802
-	tokudbLzma                 = 57803
-	tokudbQuickLZ              = 57804
-	tokudbSmall                = 57806
-	tokudbSnappy               = 57805
-	tokudbUncompressed         = 57807
-	tokudbZlib                 = 57808
-	top                        = 57809
-	trace                      = 57746
-	traditional                = 57747
-	trailing                   = 57533
-	transaction                = 57748
-	trigger                    = 57534
-	triggers                   = 57749
-	trim                       = 57810
-	trueKwd                    = 57535
-	truncate                   = 57750
-	unbounded                  = 57751
-	uncommitted                = 57752
-	undefined                  = 57755
+	subDate                    = 57797
+	subject                    = 57733
+	subpartition               = 57734
+	subpartitions              = 57735
+	substring                  = 57799
+	sum                        = 57798
+	super                      = 57736
+	swaps                      = 57728
+	switchesSym                = 57729
+	systemTime                 = 57730
+	tableKwd                   = 57526
+	tableRefPriority           = 57897
+	tables                     = 57739
+	tablespace                 = 57740
+	temporary                  = 57741
+	temptable                  = 57742
+	terminated                 = 57528
+	textType                   = 57743
+	than                       = 57744
+	then                       = 57529
+	tidb                       = 57835
+	tidbHJ                     = 57836
+	tidbINLJ                   = 57838
+	tidbSMJ                    = 57837
+	timeType                   = 57745
+	timestampAdd               = 57800
+	timestampDiff              = 57801
+	timestampType              = 57746
+	tinyIntType                = 57531
+	tinyblobType               = 57530
+	tinytextType               = 57532
+	tls                        = 57817
+	to                         = 57533
+	tokudbDefault              = 57802
+	tokudbFast                 = 57803
+	tokudbLzma                 = 57804
+	tokudbQuickLZ              = 57805
+	tokudbSmall                = 57807
+	tokudbSnappy               = 57806
+	tokudbUncompressed         = 57808
+	tokudbZlib                 = 57809
+	top                        = 57810
+	trace                      = 57747
+	traditional                = 57748
+	trailing                   = 57534
+	transaction                = 57749
+	trigger                    = 57535
+	triggers                   = 57750
+	trim                       = 57811
+	trueKwd                    = 57536
+	truncate                   = 57751
+	unbounded                  = 57752
+	uncommitted                = 57753
+	undefined                  = 57756
 	underscoreCS               = 57347
-	union                      = 57537
-	unique                     = 57536
-	unknown                    = 57753
-	unlock                     = 57538
-	unsigned                   = 57539
-	update                     = 57540
-	usage                      = 57541
-	use                        = 57542
-	user                       = 57754
-	using                      = 57543
-	utcDate                    = 57544
-	utcTime                    = 57546
-	utcTimestamp               = 57545
-	value                      = 57756
-	values                     = 57547
-	varPop                     = 57812
-	varSamp                    = 57813
-	varbinaryType              = 57550
-	varcharType                = 57549
-	variables                  = 57757
-	variance                   = 57811
-	view                       = 57758
-	virtual                    = 57551
-	warnings                   = 57761
-	week                       = 57763
-	when                       = 57552
-	where                      = 57553
-	window                     = 57555
-	with                       = 57556
-	write                      = 57554
-	x509                       = 57765
-	xor                        = 57557
-	yearMonth                  = 57558
-	yearType                   = 57764
-	zerofill                   = 57559
+	union                      = 57538
+	unique                     = 57537
+	unknown                    = 57754
+	unlock                     = 57539
+	unsigned                   = 57540
+	update                     = 57541
+	usage                      = 57542
+	use                        = 57543
+	user                       = 57755
+	using                      = 57544
+	utcDate                    = 57545
+	utcTime                    = 57547
+	utcTimestamp               = 57546
+	value                      = 57757
+	values                     = 57548
+	varPop                     = 57813
+	varSamp                    = 57814
+	varbinaryType              = 57551
+	varcharType                = 57550
+	variables                  = 57758
+	variance                   = 57812
+	view                       = 57759
+	virtual                    = 57552
+	warnings                   = 57762
+	week                       = 57764
+	when                       = 57553
+	where                      = 57554
+	window                     = 57556
+	with                       = 57557
+	write                      = 57555
+	x509                       = 57766
+	xor                        = 57558
+	yearMonth                  = 57559
+	yearType                   = 57765
+	zerofill                   = 57560
 
 	yyMaxDepth = 200
 	yyTabOfs   = -1720
@@ -625,334 +626,334 @@ var (
 	yyXLAT = map[int]int{
 		57344: 0,    // $end (1475x)
 		59:    1,    // ';' (1474x)
-		57589: 2,    // comment (1276x)
-		57569: 3,    // autoIncrement (1248x)
+		57590: 2,    // comment (1276x)
+		57570: 3,    // autoIncrement (1248x)
 		44:    4,    // ',' (1212x)
-		57626: 5,    // first (1199x)
-		57563: 6,    // after (1198x)
-		57678: 7,    // password (1154x)
-		57581: 8,    // charsetKwd (1132x)
-		57646: 9,    // keyBlockSize (1115x)
-		57601: 10,   // data (1112x)
-		57614: 11,   // engine (1111x)
-		57658: 12,   // maxRows (1111x)
-		57665: 13,   // minRows (1111x)
-		57670: 14,   // nodegroup (1111x)
-		57739: 15,   // tablespace (1111x)
-		57595: 16,   // connection (1105x)
-		57582: 17,   // checksum (1100x)
-		57568: 18,   // autoIdCache (1099x)
-		57570: 19,   // avgRowLength (1099x)
-		57594: 20,   // compression (1099x)
-		57606: 21,   // delayKeyWrite (1099x)
-		57676: 22,   // packKeys (1099x)
-		57683: 23,   // preSplitRegions (1099x)
-		57706: 24,   // rowFormat (1099x)
-		57712: 25,   // shardRowIDBits (1099x)
-		57725: 26,   // statsPersistent (1099x)
-		57561: 27,   // account (1095x)
-		57716: 28,   // signed (1086x)
+		57627: 5,    // first (1199x)
+		57564: 6,    // after (1198x)
+		57679: 7,    // password (1154x)
+		57582: 8,    // charsetKwd (1132x)
+		57647: 9,    // keyBlockSize (1115x)
+		57602: 10,   // data (1112x)
+		57615: 11,   // engine (1111x)
+		57659: 12,   // maxRows (1111x)
+		57666: 13,   // minRows (1111x)
+		57671: 14,   // nodegroup (1111x)
+		57740: 15,   // tablespace (1111x)
+		57596: 16,   // connection (1105x)
+		57583: 17,   // checksum (1100x)
+		57569: 18,   // autoIdCache (1099x)
+		57571: 19,   // avgRowLength (1099x)
+		57595: 20,   // compression (1099x)
+		57607: 21,   // delayKeyWrite (1099x)
+		57677: 22,   // packKeys (1099x)
+		57684: 23,   // preSplitRegions (1099x)
+		57707: 24,   // rowFormat (1099x)
+		57713: 25,   // shardRowIDBits (1099x)
+		57726: 26,   // statsPersistent (1099x)
+		57562: 27,   // account (1095x)
+		57717: 28,   // signed (1086x)
 		41:    29,   // ')' (1081x)
-		57758: 30,   // view (1063x)
-		57733: 31,   // subpartition (1059x)
-		57680: 32,   // partitions (1056x)
-		57726: 33,   // status (1056x)
-		57738: 34,   // tables (1055x)
-		57600: 35,   // day (1054x)
-		57709: 36,   // separator (1054x)
-		57684: 37,   // preceding (1053x)
-		57764: 38,   // yearType (1053x)
-		57588: 39,   // columns (1052x)
-		57636: 40,   // hour (1052x)
-		57659: 41,   // maxConnectionsPerHour (1052x)
-		57660: 42,   // maxQueriesPerHour (1052x)
-		57661: 43,   // maxUpdatesPerHour (1052x)
-		57662: 44,   // maxUserConnections (1052x)
-		57653: 45,   // microsecond (1052x)
-		57654: 46,   // minute (1052x)
-		57657: 47,   // month (1052x)
-		57691: 48,   // quarter (1052x)
-		57707: 49,   // second (1052x)
-		57763: 50,   // week (1052x)
-		57583: 51,   // cipher (1051x)
-		57639: 52,   // issuer (1051x)
-		57732: 53,   // subject (1051x)
-		57605: 54,   // definer (1050x)
-		57625: 55,   // fields (1050x)
-		57637: 56,   // identified (1050x)
-		57788: 57,   // maxExecutionTime (1050x)
-		57699: 58,   // respect (1050x)
-		57835: 59,   // tidbHJ (1050x)
-		57837: 60,   // tidbINLJ (1050x)
-		57836: 61,   // tidbSMJ (1050x)
-		57599: 62,   // current (1049x)
-		57629: 63,   // following (1049x)
-		57565: 64,   // algorithm (1048x)
-		57759: 65,   // binding (1048x)
-		57613: 66,   // end (1048x)
-		57686: 67,   // privileges (1048x)
-		57751: 68,   // unbounded (1048x)
-		57634: 69,   // hash (1047x)
-		57647: 70,   // local (1047x)
-		57674: 71,   // offset (1047x)
-		57685: 72,   // prepare (1047x)
-		57839: 73,   // regions (1047x)
-		57702: 74,   // role (1047x)
-		57834: 75,   // tidb (1047x)
-		57754: 76,   // user (1047x)
-		57760: 77,   // bindings (1046x)
-		57603: 78,   // datetimeType (1046x)
-		57602: 79,   // dateType (1046x)
-		57767: 80,   // enforced (1046x)
+		57759: 30,   // view (1063x)
+		57734: 31,   // subpartition (1059x)
+		57681: 32,   // partitions (1056x)
+		57727: 33,   // status (1056x)
+		57739: 34,   // tables (1055x)
+		57601: 35,   // day (1054x)
+		57710: 36,   // separator (1054x)
+		57685: 37,   // preceding (1053x)
+		57765: 38,   // yearType (1053x)
+		57589: 39,   // columns (1052x)
+		57637: 40,   // hour (1052x)
+		57660: 41,   // maxConnectionsPerHour (1052x)
+		57661: 42,   // maxQueriesPerHour (1052x)
+		57662: 43,   // maxUpdatesPerHour (1052x)
+		57663: 44,   // maxUserConnections (1052x)
+		57654: 45,   // microsecond (1052x)
+		57655: 46,   // minute (1052x)
+		57658: 47,   // month (1052x)
+		57692: 48,   // quarter (1052x)
+		57708: 49,   // second (1052x)
+		57764: 50,   // week (1052x)
+		57584: 51,   // cipher (1051x)
+		57640: 52,   // issuer (1051x)
+		57733: 53,   // subject (1051x)
+		57606: 54,   // definer (1050x)
+		57626: 55,   // fields (1050x)
+		57638: 56,   // identified (1050x)
+		57789: 57,   // maxExecutionTime (1050x)
+		57700: 58,   // respect (1050x)
+		57836: 59,   // tidbHJ (1050x)
+		57838: 60,   // tidbINLJ (1050x)
+		57837: 61,   // tidbSMJ (1050x)
+		57600: 62,   // current (1049x)
+		57630: 63,   // following (1049x)
+		57566: 64,   // algorithm (1048x)
+		57760: 65,   // binding (1048x)
+		57614: 66,   // end (1048x)
+		57687: 67,   // privileges (1048x)
+		57752: 68,   // unbounded (1048x)
+		57635: 69,   // hash (1047x)
+		57648: 70,   // local (1047x)
+		57675: 71,   // offset (1047x)
+		57686: 72,   // prepare (1047x)
+		57840: 73,   // regions (1047x)
+		57703: 74,   // role (1047x)
+		57835: 75,   // tidb (1047x)
+		57755: 76,   // user (1047x)
+		57761: 77,   // bindings (1046x)
+		57604: 78,   // datetimeType (1046x)
+		57603: 79,   // dateType (1046x)
+		57768: 80,   // enforced (1046x)
 		57346: 81,   // identifier (1046x)
-		57638: 82,   // isolation (1046x)
-		57645: 83,   // jsonType (1046x)
-		57692: 84,   // query (1046x)
-		57744: 85,   // timeType (1046x)
-		57750: 86,   // truncate (1046x)
-		57757: 87,   // variables (1046x)
-		57608: 88,   // disable (1045x)
-		57612: 89,   // enable (1045x)
-		57622: 90,   // execute (1045x)
-		57737: 91,   // global (1045x)
-		57668: 92,   // never (1045x)
-		57782: 93,   // next_row_id (1045x)
-		57669: 94,   // no (1045x)
-		57671: 95,   // none (1045x)
-		57682: 96,   // plugins (1045x)
-		57688: 97,   // processlist (1045x)
-		57695: 98,   // recover (1045x)
-		57697: 99,   // reload (1045x)
-		57703: 100,  // rollback (1045x)
-		57711: 101,  // session (1045x)
-		57715: 102,  // shutdown (1045x)
-		57734: 103,  // subpartitions (1045x)
-		57753: 104,  // unknown (1045x)
-		57756: 105,  // value (1045x)
-		57817: 106,  // admin (1044x)
-		57572: 107,  // begin (1044x)
-		57573: 108,  // binlog (1044x)
-		57575: 109,  // block (1044x)
-		57818: 110,  // buckets (1044x)
-		57585: 111,  // client (1044x)
-		57586: 112,  // coalesce (1044x)
-		57590: 113,  // commit (1044x)
-		57592: 114,  // compact (1044x)
-		57593: 115,  // compressed (1044x)
-		57597: 116,  // context (1044x)
-		57774: 117,  // copyKwd (1044x)
-		57598: 118,  // cpu (1044x)
-		57604: 119,  // deallocate (1044x)
-		57607: 120,  // directory (1044x)
-		57609: 121,  // do (1044x)
-		57821: 122,  // drainer (1044x)
-		57611: 123,  // dynamic (1044x)
-		57621: 124,  // exclusive (1044x)
-		57627: 125,  // fixed (1044x)
-		57628: 126,  // flush (1044x)
-		57631: 127,  // full (1044x)
-		57783: 128,  // inplace (1044x)
-		57784: 129,  // instant (1044x)
-		57644: 130,  // ipc (1044x)
-		57823: 131,  // job (1044x)
-		57822: 132,  // jobs (1044x)
-		57663: 133,  // memory (1044x)
-		57656: 134,  // modify (1044x)
-		57824: 135,  // nodeID (1044x)
-		57825: 136,  // nodeState (1044x)
-		57672: 137,  // nulls (1044x)
-		57677: 138,  // pageSym (1044x)
-		57828: 139,  // pump (1044x)
-		57696: 140,  // redundant (1044x)
-		57704: 141,  // routine (1044x)
-		57714: 142,  // shared (1044x)
-		57718: 143,  // slave (1044x)
-		57731: 144,  // source (1044x)
-		57838: 145,  // split (1044x)
-		57724: 146,  // start (1044x)
-		57829: 147,  // stats (1044x)
-		57727: 148,  // swaps (1044x)
-		57745: 149,  // timestampType (1044x)
-		57801: 150,  // tokudbDefault (1044x)
-		57802: 151,  // tokudbFast (1044x)
-		57803: 152,  // tokudbLzma (1044x)
-		57804: 153,  // tokudbQuickLZ (1044x)
-		57806: 154,  // tokudbSmall (1044x)
-		57805: 155,  // tokudbSnappy (1044x)
-		57807: 156,  // tokudbUncompressed (1044x)
-		57808: 157,  // tokudbZlib (1044x)
-		57746: 158,  // trace (1044x)
-		57562: 159,  // action (1043x)
-		57564: 160,  // always (1043x)
-		57574: 161,  // bitType (1043x)
-		57576: 162,  // booleanType (1043x)
-		57577: 163,  // boolType (1043x)
-		57578: 164,  // btree (1043x)
-		57819: 165,  // cancel (1043x)
-		57580: 166,  // cascaded (1043x)
-		57584: 167,  // cleanup (1043x)
-		57587: 168,  // collation (1043x)
-		57591: 169,  // committed (1043x)
-		57596: 170,  // consistent (1043x)
-		57820: 171,  // ddl (1043x)
-		57610: 172,  // duplicate (1043x)
-		57615: 173,  // engines (1043x)
-		57616: 174,  // enum (1043x)
-		57617: 175,  // errorKwd (1043x)
-		57618: 176,  // event (1043x)
-		57619: 177,  // events (1043x)
-		57623: 178,  // expire (1043x)
-		57814: 179,  // exprPushdownBlacklist (1043x)
-		57624: 180,  // faultsSym (1043x)
-		57630: 181,  // format (1043x)
-		57632: 182,  // function (1043x)
-		57633: 183,  // grants (1043x)
-		57635: 184,  // history (1043x)
-		57762: 185,  // identSQLErrors (1043x)
-		57640: 186,  // incremental (1043x)
-		57641: 187,  // indexes (1043x)
-		57768: 188,  // instance (1043x)
-		57785: 189,  // internal (1043x)
-		57642: 190,  // invoker (1043x)
-		57643: 191,  // io (1043x)
-		57648: 192,  // last (1043x)
-		57649: 193,  // less (1043x)
-		57650: 194,  // level (1043x)
-		57651: 195,  // list (1043x)
-		57652: 196,  // master (1043x)
-		57664: 197,  // merge (1043x)
-		57655: 198,  // mode (1043x)
-		57667: 199,  // national (1043x)
-		57766: 200,  // nowait (1043x)
-		57673: 201,  // nvarcharType (1043x)
-		57675: 202,  // only (1043x)
-		57730: 203,  // open (1043x)
-		57826: 204,  // optimistic (1043x)
-		57815: 205,  // optRuleBlacklist (1043x)
-		57679: 206,  // partial (1043x)
-		57827: 207,  // pessimistic (1043x)
-		57687: 208,  // process (1043x)
-		57689: 209,  // profile (1043x)
-		57690: 210,  // profiles (1043x)
-		57693: 211,  // queries (1043x)
-		57791: 212,  // recent (1043x)
-		57840: 213,  // region (1043x)
-		57698: 214,  // repeatable (1043x)
-		57700: 215,  // replication (1043x)
-		57708: 216,  // security (1043x)
-		57710: 217,  // serializable (1043x)
-		57713: 218,  // share (1043x)
-		57717: 219,  // simple (1043x)
-		57720: 220,  // snapshot (1043x)
-		57832: 221,  // statsBuckets (1043x)
-		57833: 222,  // statsHealthy (1043x)
-		57831: 223,  // statsHistograms (1043x)
-		57830: 224,  // statsMeta (1043x)
-		57735: 225,  // super (1043x)
-		57728: 226,  // switchesSym (1043x)
-		57729: 227,  // systemTime (1043x)
-		57740: 228,  // temporary (1043x)
-		57741: 229,  // temptable (1043x)
-		57742: 230,  // textType (1043x)
-		57743: 231,  // than (1043x)
-		57816: 232,  // tls (1043x)
-		57809: 233,  // top (1043x)
-		57747: 234,  // traditional (1043x)
-		57748: 235,  // transaction (1043x)
-		57749: 236,  // triggers (1043x)
-		57752: 237,  // uncommitted (1043x)
-		57755: 238,  // undefined (1043x)
-		57761: 239,  // warnings (1043x)
-		57765: 240,  // x509 (1043x)
-		57769: 241,  // addDate (1042x)
-		57566: 242,  // any (1042x)
-		57567: 243,  // ascii (1042x)
-		57571: 244,  // avg (1042x)
-		57770: 245,  // bitAnd (1042x)
-		57771: 246,  // bitOr (1042x)
-		57772: 247,  // bitXor (1042x)
-		57579: 248,  // byteType (1042x)
-		57773: 249,  // cast (1042x)
-		57775: 250,  // count (1042x)
-		57776: 251,  // curTime (1042x)
-		57777: 252,  // dateAdd (1042x)
-		57778: 253,  // dateSub (1042x)
-		57620: 254,  // escape (1042x)
-		57779: 255,  // extract (1042x)
-		57780: 256,  // getFormat (1042x)
-		57781: 257,  // groupConcat (1042x)
-		57787: 258,  // max (1042x)
-		57786: 259,  // min (1042x)
-		57666: 260,  // names (1042x)
-		57789: 261,  // now (1042x)
-		57790: 262,  // position (1042x)
-		57694: 263,  // quick (1042x)
-		57701: 264,  // reverse (1042x)
-		57705: 265,  // rowCount (1042x)
-		57719: 266,  // slow (1042x)
-		57736: 267,  // some (1042x)
-		57721: 268,  // sqlBufferResult (1042x)
-		57722: 269,  // sqlCache (1042x)
-		57723: 270,  // sqlNoCache (1042x)
-		57792: 271,  // std (1042x)
-		57793: 272,  // stddev (1042x)
-		57794: 273,  // stddevPop (1042x)
-		57795: 274,  // stddevSamp (1042x)
-		57796: 275,  // subDate (1042x)
-		57798: 276,  // substring (1042x)
-		57797: 277,  // sum (1042x)
-		57799: 278,  // timestampAdd (1042x)
-		57800: 279,  // timestampDiff (1042x)
-		57810: 280,  // trim (1042x)
-		57811: 281,  // variance (1042x)
-		57812: 282,  // varPop (1042x)
-		57813: 283,  // varSamp (1042x)
+		57639: 82,   // isolation (1046x)
+		57646: 83,   // jsonType (1046x)
+		57693: 84,   // query (1046x)
+		57745: 85,   // timeType (1046x)
+		57751: 86,   // truncate (1046x)
+		57758: 87,   // variables (1046x)
+		57609: 88,   // disable (1045x)
+		57613: 89,   // enable (1045x)
+		57623: 90,   // execute (1045x)
+		57738: 91,   // global (1045x)
+		57669: 92,   // never (1045x)
+		57783: 93,   // next_row_id (1045x)
+		57670: 94,   // no (1045x)
+		57672: 95,   // none (1045x)
+		57683: 96,   // plugins (1045x)
+		57689: 97,   // processlist (1045x)
+		57696: 98,   // recover (1045x)
+		57698: 99,   // reload (1045x)
+		57704: 100,  // rollback (1045x)
+		57712: 101,  // session (1045x)
+		57716: 102,  // shutdown (1045x)
+		57735: 103,  // subpartitions (1045x)
+		57754: 104,  // unknown (1045x)
+		57757: 105,  // value (1045x)
+		57818: 106,  // admin (1044x)
+		57573: 107,  // begin (1044x)
+		57574: 108,  // binlog (1044x)
+		57576: 109,  // block (1044x)
+		57819: 110,  // buckets (1044x)
+		57586: 111,  // client (1044x)
+		57587: 112,  // coalesce (1044x)
+		57591: 113,  // commit (1044x)
+		57593: 114,  // compact (1044x)
+		57594: 115,  // compressed (1044x)
+		57598: 116,  // context (1044x)
+		57775: 117,  // copyKwd (1044x)
+		57599: 118,  // cpu (1044x)
+		57605: 119,  // deallocate (1044x)
+		57608: 120,  // directory (1044x)
+		57610: 121,  // do (1044x)
+		57822: 122,  // drainer (1044x)
+		57612: 123,  // dynamic (1044x)
+		57622: 124,  // exclusive (1044x)
+		57628: 125,  // fixed (1044x)
+		57629: 126,  // flush (1044x)
+		57632: 127,  // full (1044x)
+		57784: 128,  // inplace (1044x)
+		57785: 129,  // instant (1044x)
+		57645: 130,  // ipc (1044x)
+		57824: 131,  // job (1044x)
+		57823: 132,  // jobs (1044x)
+		57664: 133,  // memory (1044x)
+		57657: 134,  // modify (1044x)
+		57825: 135,  // nodeID (1044x)
+		57826: 136,  // nodeState (1044x)
+		57673: 137,  // nulls (1044x)
+		57678: 138,  // pageSym (1044x)
+		57829: 139,  // pump (1044x)
+		57697: 140,  // redundant (1044x)
+		57705: 141,  // routine (1044x)
+		57715: 142,  // shared (1044x)
+		57719: 143,  // slave (1044x)
+		57732: 144,  // source (1044x)
+		57839: 145,  // split (1044x)
+		57725: 146,  // start (1044x)
+		57830: 147,  // stats (1044x)
+		57728: 148,  // swaps (1044x)
+		57746: 149,  // timestampType (1044x)
+		57802: 150,  // tokudbDefault (1044x)
+		57803: 151,  // tokudbFast (1044x)
+		57804: 152,  // tokudbLzma (1044x)
+		57805: 153,  // tokudbQuickLZ (1044x)
+		57807: 154,  // tokudbSmall (1044x)
+		57806: 155,  // tokudbSnappy (1044x)
+		57808: 156,  // tokudbUncompressed (1044x)
+		57809: 157,  // tokudbZlib (1044x)
+		57747: 158,  // trace (1044x)
+		57563: 159,  // action (1043x)
+		57565: 160,  // always (1043x)
+		57575: 161,  // bitType (1043x)
+		57577: 162,  // booleanType (1043x)
+		57578: 163,  // boolType (1043x)
+		57579: 164,  // btree (1043x)
+		57820: 165,  // cancel (1043x)
+		57581: 166,  // cascaded (1043x)
+		57585: 167,  // cleanup (1043x)
+		57588: 168,  // collation (1043x)
+		57592: 169,  // committed (1043x)
+		57597: 170,  // consistent (1043x)
+		57821: 171,  // ddl (1043x)
+		57611: 172,  // duplicate (1043x)
+		57616: 173,  // engines (1043x)
+		57617: 174,  // enum (1043x)
+		57618: 175,  // errorKwd (1043x)
+		57619: 176,  // event (1043x)
+		57620: 177,  // events (1043x)
+		57624: 178,  // expire (1043x)
+		57815: 179,  // exprPushdownBlacklist (1043x)
+		57625: 180,  // faultsSym (1043x)
+		57631: 181,  // format (1043x)
+		57633: 182,  // function (1043x)
+		57634: 183,  // grants (1043x)
+		57636: 184,  // history (1043x)
+		57763: 185,  // identSQLErrors (1043x)
+		57641: 186,  // incremental (1043x)
+		57642: 187,  // indexes (1043x)
+		57769: 188,  // instance (1043x)
+		57786: 189,  // internal (1043x)
+		57643: 190,  // invoker (1043x)
+		57644: 191,  // io (1043x)
+		57649: 192,  // last (1043x)
+		57650: 193,  // less (1043x)
+		57651: 194,  // level (1043x)
+		57652: 195,  // list (1043x)
+		57653: 196,  // master (1043x)
+		57665: 197,  // merge (1043x)
+		57656: 198,  // mode (1043x)
+		57668: 199,  // national (1043x)
+		57767: 200,  // nowait (1043x)
+		57674: 201,  // nvarcharType (1043x)
+		57676: 202,  // only (1043x)
+		57731: 203,  // open (1043x)
+		57827: 204,  // optimistic (1043x)
+		57816: 205,  // optRuleBlacklist (1043x)
+		57680: 206,  // partial (1043x)
+		57828: 207,  // pessimistic (1043x)
+		57688: 208,  // process (1043x)
+		57690: 209,  // profile (1043x)
+		57691: 210,  // profiles (1043x)
+		57694: 211,  // queries (1043x)
+		57792: 212,  // recent (1043x)
+		57841: 213,  // region (1043x)
+		57699: 214,  // repeatable (1043x)
+		57701: 215,  // replication (1043x)
+		57709: 216,  // security (1043x)
+		57711: 217,  // serializable (1043x)
+		57714: 218,  // share (1043x)
+		57718: 219,  // simple (1043x)
+		57721: 220,  // snapshot (1043x)
+		57833: 221,  // statsBuckets (1043x)
+		57834: 222,  // statsHealthy (1043x)
+		57832: 223,  // statsHistograms (1043x)
+		57831: 224,  // statsMeta (1043x)
+		57736: 225,  // super (1043x)
+		57729: 226,  // switchesSym (1043x)
+		57730: 227,  // systemTime (1043x)
+		57741: 228,  // temporary (1043x)
+		57742: 229,  // temptable (1043x)
+		57743: 230,  // textType (1043x)
+		57744: 231,  // than (1043x)
+		57817: 232,  // tls (1043x)
+		57810: 233,  // top (1043x)
+		57748: 234,  // traditional (1043x)
+		57749: 235,  // transaction (1043x)
+		57750: 236,  // triggers (1043x)
+		57753: 237,  // uncommitted (1043x)
+		57756: 238,  // undefined (1043x)
+		57762: 239,  // warnings (1043x)
+		57766: 240,  // x509 (1043x)
+		57770: 241,  // addDate (1042x)
+		57567: 242,  // any (1042x)
+		57568: 243,  // ascii (1042x)
+		57572: 244,  // avg (1042x)
+		57771: 245,  // bitAnd (1042x)
+		57772: 246,  // bitOr (1042x)
+		57773: 247,  // bitXor (1042x)
+		57580: 248,  // byteType (1042x)
+		57774: 249,  // cast (1042x)
+		57776: 250,  // count (1042x)
+		57777: 251,  // curTime (1042x)
+		57778: 252,  // dateAdd (1042x)
+		57779: 253,  // dateSub (1042x)
+		57621: 254,  // escape (1042x)
+		57780: 255,  // extract (1042x)
+		57781: 256,  // getFormat (1042x)
+		57782: 257,  // groupConcat (1042x)
+		57788: 258,  // max (1042x)
+		57787: 259,  // min (1042x)
+		57667: 260,  // names (1042x)
+		57790: 261,  // now (1042x)
+		57791: 262,  // position (1042x)
+		57695: 263,  // quick (1042x)
+		57702: 264,  // reverse (1042x)
+		57706: 265,  // rowCount (1042x)
+		57720: 266,  // slow (1042x)
+		57737: 267,  // some (1042x)
+		57722: 268,  // sqlBufferResult (1042x)
+		57723: 269,  // sqlCache (1042x)
+		57724: 270,  // sqlNoCache (1042x)
+		57793: 271,  // std (1042x)
+		57794: 272,  // stddev (1042x)
+		57795: 273,  // stddevPop (1042x)
+		57796: 274,  // stddevSamp (1042x)
+		57797: 275,  // subDate (1042x)
+		57799: 276,  // substring (1042x)
+		57798: 277,  // sum (1042x)
+		57800: 278,  // timestampAdd (1042x)
+		57801: 279,  // timestampDiff (1042x)
+		57811: 280,  // trim (1042x)
+		57812: 281,  // variance (1042x)
+		57813: 282,  // varPop (1042x)
+		57814: 283,  // varSamp (1042x)
 		40:    284,  // '(' (934x)
 		57484: 285,  // on (871x)
 		57348: 286,  // stringLit (855x)
 		57478: 287,  // not (824x)
 		57364: 288,  // as (777x)
 		57458: 289,  // left (769x)
-		57508: 290,  // right (769x)
+		57509: 290,  // right (769x)
 		57397: 291,  // defaultKwd (746x)
 		43:    292,  // '+' (723x)
 		45:    293,  // '-' (723x)
 		57477: 294,  // mod (721x)
-		57556: 295,  // with (709x)
+		57557: 295,  // with (709x)
 		57378: 296,  // collate (705x)
-		57543: 297,  // using (671x)
+		57544: 297,  // using (671x)
 		57419: 298,  // forKwd (666x)
 		57482: 299,  // null (664x)
-		57537: 300,  // union (662x)
+		57538: 300,  // union (662x)
 		57460: 301,  // limit (649x)
 		57466: 302,  // lock (648x)
 		57363: 303,  // and (632x)
 		57488: 304,  // order (629x)
-		57553: 305,  // where (620x)
+		57554: 305,  // where (620x)
 		57487: 306,  // or (612x)
 		57354: 307,  // andand (611x)
-		57681: 308,  // pipesAsOr (611x)
-		57557: 309,  // xor (611x)
+		57682: 308,  // pipesAsOr (611x)
+		57558: 309,  // xor (611x)
 		57422: 310,  // from (605x)
 		57504: 311,  // replace (604x)
 		57491: 312,  // partition (600x)
-		57515: 313,  // set (599x)
-		57874: 314,  // eq (590x)
-		57524: 315,  // straightJoin (586x)
-		57869: 316,  // intLit (584x)
-		57555: 317,  // window (577x)
+		57516: 313,  // set (599x)
+		57875: 314,  // eq (590x)
+		57525: 315,  // straightJoin (586x)
+		57870: 316,  // intLit (584x)
+		57556: 317,  // window (577x)
 		57428: 318,  // having (575x)
 		57450: 319,  // join (572x)
 		57426: 320,  // group (567x)
 		57383: 321,  // cross (561x)
 		57438: 322,  // inner (561x)
-		57560: 323,  // natural (561x)
+		57561: 323,  // natural (561x)
 		125:   324,  // '}' (560x)
 		57459: 325,  // like (558x)
 		42:    326,  // '*' (554x)
 		57496: 327,  // rangeKwd (542x)
 		57427: 328,  // groups (541x)
-		57511: 329,  // rows (541x)
+		57512: 329,  // rows (541x)
 		46:    330,  // '.' (538x)
 		57401: 331,  // desc (538x)
 		57365: 332,  // asc (536x)
@@ -965,21 +966,21 @@ var (
 		57432: 339,  // hourSecond (536x)
 		57475: 340,  // minuteMicrosecond (536x)
 		57476: 341,  // minuteSecond (536x)
-		57513: 342,  // secondMicrosecond (536x)
-		57558: 343,  // yearMonth (536x)
-		57552: 344,  // when (535x)
+		57514: 342,  // secondMicrosecond (536x)
+		57559: 343,  // yearMonth (536x)
+		57553: 344,  // when (535x)
 		57368: 345,  // binaryType (532x)
 		57410: 346,  // elseKwd (532x)
 		57435: 347,  // in (532x)
-		57528: 348,  // then (529x)
+		57529: 348,  // then (529x)
 		60:    349,  // '<' (523x)
 		62:    350,  // '>' (523x)
-		57875: 351,  // ge (523x)
+		57876: 351,  // ge (523x)
 		57442: 352,  // is (523x)
-		57876: 353,  // le (523x)
-		57880: 354,  // neq (523x)
-		57881: 355,  // neqSynonym (523x)
-		57882: 356,  // nulleq (523x)
+		57877: 353,  // le (523x)
+		57881: 354,  // neq (523x)
+		57882: 355,  // neqSynonym (523x)
+		57883: 356,  // nulleq (523x)
 		57366: 357,  // between (522x)
 		37:    358,  // '%' (514x)
 		38:    359,  // '&' (514x)
@@ -987,63 +988,63 @@ var (
 		94:    361,  // '^' (514x)
 		124:   362,  // '|' (514x)
 		57405: 363,  // div (514x)
-		57879: 364,  // lsh (514x)
+		57880: 364,  // lsh (514x)
 		57406: 365,  // realdiv (514x)
-		57884: 366,  // rsh (514x)
+		57885: 366,  // rsh (514x)
 		57349: 367,  // singleAtIdentifier (512x)
 		57501: 368,  // regexpKwd (511x)
-		57509: 369,  // rlike (511x)
+		57510: 369,  // rlike (511x)
 		57388: 370,  // currentUser (509x)
 		57443: 371,  // insert (506x)
 		57433: 372,  // ifKwd (505x)
 		123:   373,  // '{' (501x)
-		57868: 374,  // decLit (501x)
-		57867: 375,  // floatLit (501x)
+		57869: 374,  // decLit (501x)
+		57868: 375,  // floatLit (501x)
 		57440: 376,  // interval (501x)
-		57883: 377,  // paramMarker (501x)
+		57884: 377,  // paramMarker (501x)
 		57376: 378,  // charType (498x)
-		57547: 379,  // values (497x)
+		57548: 379,  // values (497x)
 		57413: 380,  // exists (496x)
 		57381: 381,  // convert (495x)
 		57416: 382,  // falseKwd (495x)
-		57535: 383,  // trueKwd (495x)
+		57536: 383,  // trueKwd (495x)
 		57390: 384,  // database (494x)
-		57871: 385,  // bitLit (492x)
-		57855: 386,  // builtinNow (492x)
+		57872: 385,  // bitLit (492x)
+		57856: 386,  // builtinNow (492x)
 		57387: 387,  // currentTs (492x)
 		57350: 388,  // doubleAtIdentifier (492x)
-		57870: 389,  // hexLit (492x)
+		57871: 389,  // hexLit (492x)
 		57464: 390,  // localTime (492x)
 		57465: 391,  // localTs (492x)
 		57347: 392,  // underscoreCS (492x)
-		57510: 393,  // row (491x)
+		57511: 393,  // row (491x)
 		33:    394,  // '!' (490x)
 		126:   395,  // '~' (490x)
-		57841: 396,  // builtinAddDate (490x)
-		57842: 397,  // builtinBitAnd (490x)
-		57843: 398,  // builtinBitOr (490x)
-		57844: 399,  // builtinBitXor (490x)
-		57845: 400,  // builtinCast (490x)
-		57846: 401,  // builtinCount (490x)
-		57847: 402,  // builtinCurDate (490x)
-		57848: 403,  // builtinCurTime (490x)
-		57849: 404,  // builtinDateAdd (490x)
-		57850: 405,  // builtinDateSub (490x)
-		57851: 406,  // builtinExtract (490x)
-		57852: 407,  // builtinGroupConcat (490x)
-		57853: 408,  // builtinMax (490x)
-		57854: 409,  // builtinMin (490x)
-		57856: 410,  // builtinPosition (490x)
-		57861: 411,  // builtinStddevPop (490x)
-		57862: 412,  // builtinStddevSamp (490x)
-		57857: 413,  // builtinSubDate (490x)
-		57858: 414,  // builtinSubstring (490x)
-		57859: 415,  // builtinSum (490x)
-		57860: 416,  // builtinSysDate (490x)
-		57863: 417,  // builtinTrim (490x)
-		57864: 418,  // builtinUser (490x)
-		57865: 419,  // builtinVarPop (490x)
-		57866: 420,  // builtinVarSamp (490x)
+		57842: 396,  // builtinAddDate (490x)
+		57843: 397,  // builtinBitAnd (490x)
+		57844: 398,  // builtinBitOr (490x)
+		57845: 399,  // builtinBitXor (490x)
+		57846: 400,  // builtinCast (490x)
+		57847: 401,  // builtinCount (490x)
+		57848: 402,  // builtinCurDate (490x)
+		57849: 403,  // builtinCurTime (490x)
+		57850: 404,  // builtinDateAdd (490x)
+		57851: 405,  // builtinDateSub (490x)
+		57852: 406,  // builtinExtract (490x)
+		57853: 407,  // builtinGroupConcat (490x)
+		57854: 408,  // builtinMax (490x)
+		57855: 409,  // builtinMin (490x)
+		57857: 410,  // builtinPosition (490x)
+		57862: 411,  // builtinStddevPop (490x)
+		57863: 412,  // builtinStddevSamp (490x)
+		57858: 413,  // builtinSubDate (490x)
+		57859: 414,  // builtinSubstring (490x)
+		57860: 415,  // builtinSum (490x)
+		57861: 416,  // builtinSysDate (490x)
+		57864: 417,  // builtinTrim (490x)
+		57865: 418,  // builtinUser (490x)
+		57866: 419,  // builtinVarPop (490x)
+		57867: 420,  // builtinVarSamp (490x)
 		57373: 421,  // caseKwd (490x)
 		57384: 422,  // cumeDist (490x)
 		57385: 423,  // currentDate (490x)
@@ -1054,44 +1055,44 @@ var (
 		57454: 428,  // lag (490x)
 		57455: 429,  // lastValue (490x)
 		57456: 430,  // lead (490x)
-		57885: 431,  // not2 (490x)
+		57886: 431,  // not2 (490x)
 		57480: 432,  // nthValue (490x)
 		57481: 433,  // ntile (490x)
 		57492: 434,  // percentRank (490x)
 		57497: 435,  // rank (490x)
 		57503: 436,  // repeat (490x)
-		57512: 437,  // rowNumber (490x)
-		57544: 438,  // utcDate (490x)
-		57546: 439,  // utcTime (490x)
-		57545: 440,  // utcTimestamp (490x)
+		57513: 437,  // rowNumber (490x)
+		57545: 438,  // utcDate (490x)
+		57547: 439,  // utcTime (490x)
+		57546: 440,  // utcTimestamp (490x)
 		57355: 441,  // pipes (479x)
 		57451: 442,  // key (474x)
 		57494: 443,  // primary (463x)
 		57377: 444,  // check (459x)
-		57536: 445,  // unique (457x)
+		57537: 445,  // unique (457x)
 		57500: 446,  // references (453x)
 		57424: 447,  // generated (449x)
 		57434: 448,  // ignore (436x)
-		57514: 449,  // selectKwd (431x)
+		57515: 449,  // selectKwd (431x)
 		57436: 450,  // index (394x)
 		57375: 451,  // character (384x)
-		58062: 452,  // Identifier (375x)
-		58122: 453,  // NotKeywordToken (375x)
-		58291: 454,  // TiDBKeyword (375x)
-		58301: 455,  // UnReservedKeyword (375x)
-		57877: 456,  // jss (319x)
-		57878: 457,  // juss (319x)
-		57532: 458,  // to (312x)
+		58063: 452,  // Identifier (375x)
+		58123: 453,  // NotKeywordToken (375x)
+		58292: 454,  // TiDBKeyword (375x)
+		58302: 455,  // UnReservedKeyword (375x)
+		57878: 456,  // jss (319x)
+		57879: 457,  // juss (319x)
+		57533: 458,  // to (312x)
 		57371: 459,  // by (310x)
-		57505: 460,  // require (306x)
-		57873: 461,  // assignmentEq (303x)
+		57506: 460,  // require (306x)
+		57874: 461,  // assignmentEq (303x)
 		57461: 462,  // lines (303x)
 		57420: 463,  // force (300x)
-		57518: 464,  // sql (300x)
-		57542: 465,  // use (300x)
+		57519: 464,  // sql (300x)
+		57543: 465,  // use (300x)
 		64:    466,  // '@' (298x)
 		57372: 467,  // cascade (298x)
-		57506: 468,  // restrict (298x)
+		57507: 468,  // restrict (298x)
 		57408: 469,  // drop (297x)
 		57362: 470,  // analyze (294x)
 		57498: 471,  // read (294x)
@@ -1103,9 +1104,9 @@ var (
 		57396: 477,  // decimalType (289x)
 		57439: 478,  // integerType (289x)
 		57444: 479,  // intType (289x)
-		57549: 480,  // varcharType (289x)
+		57550: 480,  // varcharType (289x)
 		57359: 481,  // add (288x)
-		57554: 482,  // write (288x)
+		57555: 482,  // write (288x)
 		57367: 483,  // bigIntType (287x)
 		57369: 484,  // blobType (287x)
 		57407: 485,  // doubleType (287x)
@@ -1115,7 +1116,7 @@ var (
 		57447: 489,  // int3Type (287x)
 		57448: 490,  // int4Type (287x)
 		57449: 491,  // int8Type (287x)
-		57548: 492,  // long (287x)
+		57549: 492,  // long (287x)
 		57467: 493,  // longblobType (287x)
 		57468: 494,  // longtextType (287x)
 		57472: 495,  // mediumblobType (287x)
@@ -1123,536 +1124,537 @@ var (
 		57474: 497,  // mediumtextType (287x)
 		57483: 498,  // numericType (287x)
 		57499: 499,  // realType (287x)
-		57517: 500,  // smallIntType (287x)
-		57529: 501,  // tinyblobType (287x)
-		57530: 502,  // tinyIntType (287x)
-		57531: 503,  // tinytextType (287x)
-		57550: 504,  // varbinaryType (287x)
-		58263: 505,  // SubSelect (149x)
-		58311: 506,  // UserVariable (148x)
-		58244: 507,  // SimpleIdent (147x)
-		58103: 508,  // Literal (145x)
-		58254: 509,  // StringLiteral (145x)
-		58043: 510,  // FunctionCallGeneric (143x)
-		58044: 511,  // FunctionCallKeyword (143x)
-		58045: 512,  // FunctionCallNonKeyword (143x)
-		58046: 513,  // FunctionNameConflict (143x)
-		58047: 514,  // FunctionNameDateArith (143x)
-		58048: 515,  // FunctionNameDateArithMultiForms (143x)
-		58049: 516,  // FunctionNameDatetimePrecision (143x)
-		58050: 517,  // FunctionNameOptionalBraces (143x)
-		58243: 518,  // SimpleExpr (143x)
-		58264: 519,  // SumExpr (143x)
-		58266: 520,  // SystemVariable (143x)
-		58321: 521,  // Variable (143x)
-		58343: 522,  // WindowFuncCall (143x)
-		57926: 523,  // BitExpr (131x)
-		58178: 524,  // PredicateExpr (114x)
-		57929: 525,  // BoolPri (111x)
-		58018: 526,  // Expression (111x)
-		58351: 527,  // logAnd (85x)
-		58352: 528,  // logOr (85x)
-		58119: 529,  // NUM (60x)
-		58275: 530,  // TableName (59x)
-		58255: 531,  // StringName (46x)
-		57539: 532,  // unsigned (44x)
-		57559: 533,  // zerofill (42x)
+		57518: 500,  // smallIntType (287x)
+		57530: 501,  // tinyblobType (287x)
+		57531: 502,  // tinyIntType (287x)
+		57532: 503,  // tinytextType (287x)
+		57551: 504,  // varbinaryType (287x)
+		58264: 505,  // SubSelect (149x)
+		58312: 506,  // UserVariable (148x)
+		58245: 507,  // SimpleIdent (147x)
+		58104: 508,  // Literal (145x)
+		58255: 509,  // StringLiteral (145x)
+		58044: 510,  // FunctionCallGeneric (143x)
+		58045: 511,  // FunctionCallKeyword (143x)
+		58046: 512,  // FunctionCallNonKeyword (143x)
+		58047: 513,  // FunctionNameConflict (143x)
+		58048: 514,  // FunctionNameDateArith (143x)
+		58049: 515,  // FunctionNameDateArithMultiForms (143x)
+		58050: 516,  // FunctionNameDatetimePrecision (143x)
+		58051: 517,  // FunctionNameOptionalBraces (143x)
+		58244: 518,  // SimpleExpr (143x)
+		58265: 519,  // SumExpr (143x)
+		58267: 520,  // SystemVariable (143x)
+		58322: 521,  // Variable (143x)
+		58344: 522,  // WindowFuncCall (143x)
+		57927: 523,  // BitExpr (131x)
+		58179: 524,  // PredicateExpr (114x)
+		57930: 525,  // BoolPri (111x)
+		58019: 526,  // Expression (111x)
+		58352: 527,  // logAnd (85x)
+		58353: 528,  // logOr (85x)
+		58120: 529,  // NUM (60x)
+		58276: 530,  // TableName (59x)
+		58256: 531,  // StringName (46x)
+		57540: 532,  // unsigned (44x)
+		57560: 533,  // zerofill (42x)
 		57490: 534,  // over (39x)
 		57360: 535,  // all (38x)
-		57945: 536,  // ColumnName (36x)
-		58211: 537,  // SelectStmt (30x)
-		58212: 538,  // SelectStmtBasic (30x)
-		58215: 539,  // SelectStmtFromDualTable (30x)
-		58216: 540,  // SelectStmtFromTable (30x)
-		58009: 541,  // EqOpt (29x)
-		57525: 542,  // tableKwd (29x)
-		58348: 543,  // WindowingClause (29x)
-		58094: 544,  // LengthNum (24x)
-		57520: 545,  // sqlCalcFoundRows (23x)
-		58304: 546,  // UnionSelect (22x)
-		58027: 547,  // FieldLen (21x)
-		58302: 548,  // UnionClauseList (21x)
-		58305: 549,  // UnionStmt (21x)
-		57540: 550,  // update (21x)
+		57946: 536,  // ColumnName (36x)
+		58212: 537,  // SelectStmt (30x)
+		58213: 538,  // SelectStmtBasic (30x)
+		58216: 539,  // SelectStmtFromDualTable (30x)
+		58217: 540,  // SelectStmtFromTable (30x)
+		58010: 541,  // EqOpt (29x)
+		57526: 542,  // tableKwd (29x)
+		58349: 543,  // WindowingClause (29x)
+		58095: 544,  // LengthNum (24x)
+		57521: 545,  // sqlCalcFoundRows (23x)
+		58305: 546,  // UnionSelect (22x)
+		58028: 547,  // FieldLen (21x)
+		58303: 548,  // UnionClauseList (21x)
+		58306: 549,  // UnionStmt (21x)
+		57541: 550,  // update (21x)
 		57399: 551,  // deleteKwd (18x)
-		58152: 552,  // OptWindowingClause (18x)
+		58153: 552,  // OptWindowingClause (18x)
 		57398: 553,  // delayed (16x)
 		57429: 554,  // highPriority (16x)
 		57469: 555,  // lowPriority (16x)
-		57519: 556,  // sqlBigResult (16x)
-		57936: 557,  // CharsetKw (15x)
+		57520: 556,  // sqlBigResult (16x)
+		57937: 557,  // CharsetKw (15x)
 		57403: 558,  // distinct (15x)
 		57404: 559,  // distinctRow (15x)
-		58313: 560,  // Username (15x)
-		58019: 561,  // ExpressionList (14x)
-		58140: 562,  // OptFieldLen (14x)
-		57521: 563,  // sqlSmallResult (14x)
+		58314: 560,  // Username (15x)
+		58020: 561,  // ExpressionList (14x)
+		58141: 562,  // OptFieldLen (14x)
+		57522: 563,  // sqlSmallResult (14x)
 		57441: 564,  // into (13x)
-		58088: 565,  // JoinTable (13x)
-		58272: 566,  // TableFactor (13x)
-		58284: 567,  // TableRef (13x)
-		57527: 568,  // terminated (13x)
-		57988: 569,  // DefaultKwdOpt (12x)
-		57992: 570,  // DistinctKwd (12x)
-		57993: 571,  // DistinctOpt (11x)
+		58089: 565,  // JoinTable (13x)
+		58273: 566,  // TableFactor (13x)
+		58285: 567,  // TableRef (13x)
+		57528: 568,  // terminated (13x)
+		57989: 569,  // DefaultKwdOpt (12x)
+		57993: 570,  // DistinctKwd (12x)
+		57994: 571,  // DistinctOpt (11x)
 		57411: 572,  // enclosed (11x)
-		58039: 573,  // FromOrIn (11x)
-		58205: 574,  // Rolename (11x)
-		58202: 575,  // RoleNameString (11x)
-		58276: 576,  // TableNameList (11x)
-		57937: 577,  // CharsetName (10x)
-		57987: 578,  // DefaultFalseDistinctOpt (10x)
+		58040: 573,  // FromOrIn (11x)
+		58206: 574,  // Rolename (11x)
+		58203: 575,  // RoleNameString (11x)
+		58277: 576,  // TableNameList (11x)
+		57938: 577,  // CharsetName (10x)
+		57988: 578,  // DefaultFalseDistinctOpt (10x)
 		57412: 579,  // escaped (10x)
 		57486: 580,  // optionally (10x)
-		58156: 581,  // OrderBy (10x)
-		58157: 582,  // OrderByOptional (10x)
-		57931: 583,  // BuggyDefaultFalseDistinctOpt (9x)
-		58017: 584,  // ExprOrDefault (9x)
-		58079: 585,  // IndexType (9x)
-		58089: 586,  // JoinType (9x)
-		58333: 587,  // WhereClause (9x)
-		58334: 588,  // WhereClauseOptional (9x)
-		57978: 589,  // CrossOpt (8x)
-		57991: 590,  // DeleteFromStmt (8x)
+		58157: 581,  // OrderBy (10x)
+		58158: 582,  // OrderByOptional (10x)
+		57932: 583,  // BuggyDefaultFalseDistinctOpt (9x)
+		58018: 584,  // ExprOrDefault (9x)
+		58080: 585,  // IndexType (9x)
+		58090: 586,  // JoinType (9x)
+		58334: 587,  // WhereClause (9x)
+		58335: 588,  // WhereClauseOptional (9x)
+		57979: 589,  // CrossOpt (8x)
+		57992: 590,  // DeleteFromStmt (8x)
 		57353: 591,  // hintEnd (8x)
-		58068: 592,  // IndexColName (8x)
-		58081: 593,  // InsertIntoStmt (8x)
-		58090: 594,  // KeyOrIndex (8x)
-		58116: 595,  // MaxNumBuckets (8x)
-		58159: 596,  // PartDefOption (8x)
-		58194: 597,  // ReplaceIntoStmt (8x)
-		58206: 598,  // RolenameList (8x)
-		58218: 599,  // SelectStmtLimit (8x)
-		58292: 600,  // TimeUnit (8x)
-		58307: 601,  // UpdateStmt (8x)
-		57941: 602,  // ColumnDef (7x)
-		57946: 603,  // ColumnNameList (7x)
-		58011: 604,  // EscapedTableRef (7x)
-		58069: 605,  // IndexColNameList (7x)
-		58231: 606,  // ShowDatabaseNameOpt (7x)
+		58069: 592,  // IndexColName (8x)
+		58082: 593,  // InsertIntoStmt (8x)
+		58091: 594,  // KeyOrIndex (8x)
+		58117: 595,  // MaxNumBuckets (8x)
+		58160: 596,  // PartDefOption (8x)
+		58195: 597,  // ReplaceIntoStmt (8x)
+		58207: 598,  // RolenameList (8x)
+		58219: 599,  // SelectStmtLimit (8x)
+		58293: 600,  // TimeUnit (8x)
+		58308: 601,  // UpdateStmt (8x)
+		57942: 602,  // ColumnDef (7x)
+		57947: 603,  // ColumnNameList (7x)
+		58012: 604,  // EscapedTableRef (7x)
+		58070: 605,  // IndexColNameList (7x)
+		58232: 606,  // ShowDatabaseNameOpt (7x)
 		57382: 607,  // create (6x)
-		57980: 608,  // DatabaseOption (6x)
-		57979: 609,  // DBName (6x)
-		58010: 610,  // EqOrAssignmentEq (6x)
+		57981: 608,  // DatabaseOption (6x)
+		57980: 609,  // DBName (6x)
+		58011: 610,  // EqOrAssignmentEq (6x)
 		57425: 611,  // grant (6x)
-		58076: 612,  // IndexNameList (6x)
-		58127: 613,  // NumLiteral (6x)
-		58136: 614,  // OptBinary (6x)
-		58167: 615,  // PartitionNameList (6x)
-		58208: 616,  // RowFormat (6x)
-		58209: 617,  // RowValue (6x)
-		58210: 618,  // SelectLockOpt (6x)
-		57516: 619,  // show (6x)
-		58233: 620,  // ShowLikeOrWhereOpt (6x)
-		58281: 621,  // TableOption (6x)
-		58285: 622,  // TableRefs (6x)
-		57932: 623,  // ByItem (5x)
+		58077: 612,  // IndexNameList (6x)
+		58128: 613,  // NumLiteral (6x)
+		58137: 614,  // OptBinary (6x)
+		58168: 615,  // PartitionNameList (6x)
+		58209: 616,  // RowFormat (6x)
+		58210: 617,  // RowValue (6x)
+		58211: 618,  // SelectLockOpt (6x)
+		57517: 619,  // show (6x)
+		58234: 620,  // ShowLikeOrWhereOpt (6x)
+		58282: 621,  // TableOption (6x)
+		58286: 622,  // TableRefs (6x)
+		57933: 623,  // ByItem (5x)
 		57379: 624,  // column (5x)
-		57943: 625,  // ColumnKeywordOpt (5x)
-		58020: 626,  // ExpressionListOpt (5x)
-		58029: 627,  // FieldOpt (5x)
-		58030: 628,  // FieldOpts (5x)
-		58064: 629,  // IfNotExists (5x)
-		58075: 630,  // IndexName (5x)
-		58077: 631,  // IndexOption (5x)
-		58078: 632,  // IndexOptionList (5x)
-		58147: 633,  // OptNullTreatment (5x)
-		58182: 634,  // PriorityOpt (5x)
-		58199: 635,  // RestrictOrCascadeOpt (5x)
-		58314: 636,  // UsernameList (5x)
-		58309: 637,  // UserSpec (5x)
-		57918: 638,  // Assignment (4x)
-		57922: 639,  // AuthString (4x)
-		57933: 640,  // ByList (4x)
-		57940: 641,  // CollationName (4x)
-		58016: 642,  // ExplainableStmt (4x)
-		58066: 643,  // IgnoreOptional (4x)
-		58080: 644,  // IndexTypeOpt (4x)
-		58099: 645,  // LimitOption (4x)
+		57944: 625,  // ColumnKeywordOpt (5x)
+		58021: 626,  // ExpressionListOpt (5x)
+		58030: 627,  // FieldOpt (5x)
+		58031: 628,  // FieldOpts (5x)
+		58065: 629,  // IfNotExists (5x)
+		58076: 630,  // IndexName (5x)
+		58078: 631,  // IndexOption (5x)
+		58079: 632,  // IndexOptionList (5x)
+		58148: 633,  // OptNullTreatment (5x)
+		58183: 634,  // PriorityOpt (5x)
+		58200: 635,  // RestrictOrCascadeOpt (5x)
+		58315: 636,  // UsernameList (5x)
+		58310: 637,  // UserSpec (5x)
+		57919: 638,  // Assignment (4x)
+		57923: 639,  // AuthString (4x)
+		57934: 640,  // ByList (4x)
+		57941: 641,  // CollationName (4x)
+		58017: 642,  // ExplainableStmt (4x)
+		58067: 643,  // IgnoreOptional (4x)
+		58081: 644,  // IndexTypeOpt (4x)
+		58100: 645,  // LimitOption (4x)
 		57485: 646,  // option (4x)
 		57489: 647,  // outer (4x)
-		58227: 648,  // SetExpr (4x)
-		58267: 649,  // TableAsName (4x)
-		58296: 650,  // TransactionChar (4x)
-		58310: 651,  // UserSpecList (4x)
-		58344: 652,  // WindowName (4x)
-		57919: 653,  // AssignmentList (3x)
-		57955: 654,  // ColumnPosition (3x)
-		57964: 655,  // Constraint (3x)
+		58228: 648,  // SetExpr (4x)
+		58268: 649,  // TableAsName (4x)
+		58297: 650,  // TransactionChar (4x)
+		58311: 651,  // UserSpecList (4x)
+		58345: 652,  // WindowName (4x)
+		57920: 653,  // AssignmentList (3x)
+		57956: 654,  // ColumnPosition (3x)
+		57965: 655,  // Constraint (3x)
 		57380: 656,  // constraint (3x)
-		57966: 657,  // ConstraintKeywordOpt (3x)
-		57981: 658,  // DatabaseOptionList (3x)
-		57983: 659,  // DatabaseSym (3x)
-		58034: 660,  // FloatOpt (3x)
-		58053: 661,  // GlobalScope (3x)
+		57967: 657,  // ConstraintKeywordOpt (3x)
+		57982: 658,  // DatabaseOptionList (3x)
+		57984: 659,  // DatabaseSym (3x)
+		58035: 660,  // FloatOpt (3x)
+		58054: 661,  // GlobalScope (3x)
 		57352: 662,  // hintBegin (3x)
-		58061: 663,  // HintTableList (3x)
-		58063: 664,  // IfExists (3x)
-		58070: 665,  // IndexHint (3x)
-		58074: 666,  // IndexHintType (3x)
+		58062: 663,  // HintTableList (3x)
+		58064: 664,  // IfExists (3x)
+		58071: 665,  // IndexHint (3x)
+		58075: 666,  // IndexHintType (3x)
 		57437: 667,  // infile (3x)
 		57452: 668,  // keys (3x)
-		58110: 669,  // LockClause (3x)
+		58111: 669,  // LockClause (3x)
 		57471: 670,  // maxValue (3x)
-		58137: 671,  // OptCharset (3x)
-		58171: 672,  // PasswordExpire (3x)
-		58173: 673,  // PasswordOrLockOption (3x)
-		58176: 674,  // PluginNameList (3x)
-		58177: 675,  // Precision (3x)
-		58183: 676,  // PrivElem (3x)
-		58186: 677,  // PrivType (3x)
-		58189: 678,  // ReferDef (3x)
-		58195: 679,  // RequireClause (3x)
-		58196: 680,  // RequireClauseOpt (3x)
-		58198: 681,  // RequireListElement (3x)
-		58280: 682,  // TableOptimizerHints (3x)
-		58282: 683,  // TableOptionList (3x)
-		58297: 684,  // TransactionChars (3x)
-		57534: 685,  // trigger (3x)
-		57538: 686,  // unlock (3x)
-		57541: 687,  // usage (3x)
-		58318: 688,  // ValuesList (3x)
-		58316: 689,  // ValueSym (3x)
-		58341: 690,  // WindowFrameStart (3x)
-		57906: 691,  // AdminStmt (2x)
-		57908: 692,  // AlterDatabaseStmt (2x)
-		57909: 693,  // AlterInstanceStmt (2x)
-		57910: 694,  // AlterTableSpec (2x)
-		57913: 695,  // AlterTableStmt (2x)
-		57914: 696,  // AlterUserStmt (2x)
-		57915: 697,  // AnalyzeTableStmt (2x)
-		57923: 698,  // BeginTransactionStmt (2x)
-		57925: 699,  // BinlogStmt (2x)
-		57934: 700,  // CastType (2x)
-		57935: 701,  // ChangeStmt (2x)
-		57947: 702,  // ColumnNameListOpt (2x)
-		57950: 703,  // ColumnNameOrUserVariable (2x)
-		57952: 704,  // ColumnOption (2x)
-		57956: 705,  // ColumnSetValue (2x)
-		57959: 706,  // CommitStmt (2x)
-		57961: 707,  // ConnectionOption (2x)
-		57963: 708,  // ConnectionOptions (2x)
-		57967: 709,  // CreateBindingStmt (2x)
-		57968: 710,  // CreateDatabaseStmt (2x)
-		57969: 711,  // CreateIndexStmt (2x)
-		57971: 712,  // CreateRoleStmt (2x)
-		57974: 713,  // CreateTableStmt (2x)
-		57975: 714,  // CreateUserStmt (2x)
-		57977: 715,  // CreateViewStmt (2x)
+		58138: 671,  // OptCharset (3x)
+		58172: 672,  // PasswordExpire (3x)
+		58174: 673,  // PasswordOrLockOption (3x)
+		58177: 674,  // PluginNameList (3x)
+		58178: 675,  // Precision (3x)
+		58184: 676,  // PrivElem (3x)
+		58187: 677,  // PrivType (3x)
+		58190: 678,  // ReferDef (3x)
+		58196: 679,  // RequireClause (3x)
+		58197: 680,  // RequireClauseOpt (3x)
+		58199: 681,  // RequireListElement (3x)
+		58281: 682,  // TableOptimizerHints (3x)
+		58283: 683,  // TableOptionList (3x)
+		58298: 684,  // TransactionChars (3x)
+		57535: 685,  // trigger (3x)
+		57539: 686,  // unlock (3x)
+		57542: 687,  // usage (3x)
+		58319: 688,  // ValuesList (3x)
+		58317: 689,  // ValueSym (3x)
+		58342: 690,  // WindowFrameStart (3x)
+		57907: 691,  // AdminStmt (2x)
+		57909: 692,  // AlterDatabaseStmt (2x)
+		57910: 693,  // AlterInstanceStmt (2x)
+		57911: 694,  // AlterTableSpec (2x)
+		57914: 695,  // AlterTableStmt (2x)
+		57915: 696,  // AlterUserStmt (2x)
+		57916: 697,  // AnalyzeTableStmt (2x)
+		57924: 698,  // BeginTransactionStmt (2x)
+		57926: 699,  // BinlogStmt (2x)
+		57935: 700,  // CastType (2x)
+		57936: 701,  // ChangeStmt (2x)
+		57948: 702,  // ColumnNameListOpt (2x)
+		57951: 703,  // ColumnNameOrUserVariable (2x)
+		57953: 704,  // ColumnOption (2x)
+		57957: 705,  // ColumnSetValue (2x)
+		57960: 706,  // CommitStmt (2x)
+		57962: 707,  // ConnectionOption (2x)
+		57964: 708,  // ConnectionOptions (2x)
+		57968: 709,  // CreateBindingStmt (2x)
+		57969: 710,  // CreateDatabaseStmt (2x)
+		57970: 711,  // CreateIndexStmt (2x)
+		57972: 712,  // CreateRoleStmt (2x)
+		57975: 713,  // CreateTableStmt (2x)
+		57976: 714,  // CreateUserStmt (2x)
+		57978: 715,  // CreateViewStmt (2x)
 		57391: 716,  // databases (2x)
-		57985: 717,  // DeallocateStmt (2x)
-		57986: 718,  // DeallocateSym (2x)
+		57986: 717,  // DeallocateStmt (2x)
+		57987: 718,  // DeallocateSym (2x)
 		57402: 719,  // describe (2x)
-		57994: 720,  // DoStmt (2x)
-		57995: 721,  // DropBindingStmt (2x)
-		57996: 722,  // DropDatabaseStmt (2x)
-		57997: 723,  // DropIndexStmt (2x)
-		57998: 724,  // DropRoleStmt (2x)
-		57999: 725,  // DropStatsStmt (2x)
-		58000: 726,  // DropTableStmt (2x)
-		58001: 727,  // DropUserStmt (2x)
-		58002: 728,  // DropViewStmt (2x)
-		58003: 729,  // DuplicateOpt (2x)
-		58005: 730,  // EmptyStmt (2x)
-		58006: 731,  // EnforcedOrNot (2x)
-		58007: 732,  // EnforcedOrNotOpt (2x)
-		58012: 733,  // ExecuteStmt (2x)
+		57995: 720,  // DoStmt (2x)
+		57996: 721,  // DropBindingStmt (2x)
+		57997: 722,  // DropDatabaseStmt (2x)
+		57998: 723,  // DropIndexStmt (2x)
+		57999: 724,  // DropRoleStmt (2x)
+		58000: 725,  // DropStatsStmt (2x)
+		58001: 726,  // DropTableStmt (2x)
+		58002: 727,  // DropUserStmt (2x)
+		58003: 728,  // DropViewStmt (2x)
+		58004: 729,  // DuplicateOpt (2x)
+		58006: 730,  // EmptyStmt (2x)
+		58007: 731,  // EnforcedOrNot (2x)
+		58008: 732,  // EnforcedOrNotOpt (2x)
+		58013: 733,  // ExecuteStmt (2x)
 		57414: 734,  // explain (2x)
-		58014: 735,  // ExplainStmt (2x)
-		58015: 736,  // ExplainSym (2x)
-		58022: 737,  // Field (2x)
-		58023: 738,  // FieldAsName (2x)
-		58024: 739,  // FieldAsNameOpt (2x)
-		58025: 740,  // FieldItem (2x)
-		58037: 741,  // FlushStmt (2x)
-		58038: 742,  // FromDual (2x)
-		58041: 743,  // FuncDatetimePrecList (2x)
-		58042: 744,  // FuncDatetimePrecListOpt (2x)
-		58051: 745,  // GeneratedAlways (2x)
-		58054: 746,  // GrantRoleStmt (2x)
-		58055: 747,  // GrantStmt (2x)
-		58057: 748,  // HandleRange (2x)
-		58059: 749,  // HashString (2x)
-		58071: 750,  // IndexHintList (2x)
-		58072: 751,  // IndexHintListOpt (2x)
-		58082: 752,  // InsertValues (2x)
-		58085: 753,  // IntoOpt (2x)
-		58091: 754,  // KeyOrIndexOpt (2x)
+		58015: 735,  // ExplainStmt (2x)
+		58016: 736,  // ExplainSym (2x)
+		58023: 737,  // Field (2x)
+		58024: 738,  // FieldAsName (2x)
+		58025: 739,  // FieldAsNameOpt (2x)
+		58026: 740,  // FieldItem (2x)
+		58038: 741,  // FlushStmt (2x)
+		58039: 742,  // FromDual (2x)
+		58042: 743,  // FuncDatetimePrecList (2x)
+		58043: 744,  // FuncDatetimePrecListOpt (2x)
+		58052: 745,  // GeneratedAlways (2x)
+		58055: 746,  // GrantRoleStmt (2x)
+		58056: 747,  // GrantStmt (2x)
+		58058: 748,  // HandleRange (2x)
+		58060: 749,  // HashString (2x)
+		58072: 750,  // IndexHintList (2x)
+		58073: 751,  // IndexHintListOpt (2x)
+		58083: 752,  // InsertValues (2x)
+		58086: 753,  // IntoOpt (2x)
+		58092: 754,  // KeyOrIndexOpt (2x)
 		57453: 755,  // kill (2x)
-		58092: 756,  // KillOrKillTiDB (2x)
-		58093: 757,  // KillStmt (2x)
-		58098: 758,  // LimitClause (2x)
+		58093: 756,  // KillOrKillTiDB (2x)
+		58094: 757,  // KillStmt (2x)
+		58099: 758,  // LimitClause (2x)
 		57462: 759,  // linear (2x)
-		58100: 760,  // LinearOpt (2x)
+		58101: 760,  // LinearOpt (2x)
 		57463: 761,  // load (2x)
-		58104: 762,  // LoadDataSetItem (2x)
-		58107: 763,  // LoadDataStmt (2x)
-		58108: 764,  // LoadStatsStmt (2x)
-		58112: 765,  // LockTablesStmt (2x)
-		58117: 766,  // MaxValueOrExpression (2x)
-		58123: 767,  // NowSym (2x)
-		58124: 768,  // NowSymFunc (2x)
-		58125: 769,  // NowSymOptionFraction (2x)
-		58126: 770,  // NumList (2x)
-		58130: 771,  // ObjectType (2x)
-		58129: 772,  // ODBCDateTimeType (2x)
+		58105: 762,  // LoadDataSetItem (2x)
+		58108: 763,  // LoadDataStmt (2x)
+		58109: 764,  // LoadStatsStmt (2x)
+		58113: 765,  // LockTablesStmt (2x)
+		58118: 766,  // MaxValueOrExpression (2x)
+		58124: 767,  // NowSym (2x)
+		58125: 768,  // NowSymFunc (2x)
+		58126: 769,  // NowSymOptionFraction (2x)
+		58127: 770,  // NumList (2x)
+		58131: 771,  // ObjectType (2x)
+		58130: 772,  // ODBCDateTimeType (2x)
 		57356: 773,  // odbcDateType (2x)
 		57358: 774,  // odbcTimestampType (2x)
 		57357: 775,  // odbcTimeType (2x)
-		58131: 776,  // OnDelete (2x)
-		58134: 777,  // OnUpdate (2x)
-		58144: 778,  // OptInteger (2x)
-		58153: 779,  // OptionalBraces (2x)
-		58146: 780,  // OptLeadLagInfo (2x)
-		58145: 781,  // OptLLDefault (2x)
-		58155: 782,  // Order (2x)
-		58158: 783,  // OuterOpt (2x)
-		58160: 784,  // PartDefOptionList (2x)
-		58162: 785,  // PartitionDefinition (2x)
-		58164: 786,  // PartitionDefinitionListOpt (2x)
-		58168: 787,  // PartitionNameListOpt (2x)
-		58170: 788,  // PartitionOpt (2x)
-		58172: 789,  // PasswordOpt (2x)
-		58174: 790,  // PasswordOrLockOptionList (2x)
-		58175: 791,  // PasswordOrLockOptions (2x)
-		58180: 792,  // PreparedStmt (2x)
-		58181: 793,  // PrimaryOpt (2x)
-		58184: 794,  // PrivElemList (2x)
-		58185: 795,  // PrivLevel (2x)
-		58188: 796,  // RecoverTableStmt (2x)
-		58190: 797,  // ReferOpt (2x)
-		58192: 798,  // RegexpSym (2x)
-		58193: 799,  // RenameTableStmt (2x)
-		57507: 800,  // revoke (2x)
-		58200: 801,  // RevokeRoleStmt (2x)
-		58201: 802,  // RevokeStmt (2x)
-		58203: 803,  // RoleSpec (2x)
-		58207: 804,  // RollbackStmt (2x)
-		58225: 805,  // SetDefaultRoleOpt (2x)
-		58226: 806,  // SetDefaultRoleStmt (2x)
-		58229: 807,  // SetRoleStmt (2x)
-		58230: 808,  // SetStmt (2x)
-		58235: 809,  // ShowProfileType (2x)
-		58238: 810,  // ShowStmt (2x)
-		58239: 811,  // ShowTableAliasOpt (2x)
-		58241: 812,  // ShutdownStmt (2x)
-		58242: 813,  // SignedLiteral (2x)
-		58245: 814,  // SplitOption (2x)
-		58246: 815,  // SplitRegionStmt (2x)
-		58250: 816,  // Statement (2x)
-		58252: 817,  // StatsPersistentVal (2x)
-		58253: 818,  // StringList (2x)
-		58257: 819,  // SubPartDefinition (2x)
-		58260: 820,  // SubPartitionMethod (2x)
-		58265: 821,  // Symbol (2x)
-		58269: 822,  // TableElement (2x)
-		58273: 823,  // TableLock (2x)
-		58279: 824,  // TableOptimizerHintOpt (2x)
-		58283: 825,  // TableOrTables (2x)
-		58289: 826,  // TablesTerminalSym (2x)
-		58287: 827,  // TableToTable (2x)
-		58293: 828,  // TimestampUnit (2x)
-		58295: 829,  // TraceableStmt (2x)
-		58294: 830,  // TraceStmt (2x)
-		58299: 831,  // TruncateTableStmt (2x)
-		58306: 832,  // UnlockTablesStmt (2x)
-		58308: 833,  // UseStmt (2x)
-		58322: 834,  // VariableAssignment (2x)
-		58331: 835,  // WhenClause (2x)
-		58336: 836,  // WindowDefinition (2x)
-		58339: 837,  // WindowFrameBound (2x)
-		58346: 838,  // WindowSpec (2x)
+		58132: 776,  // OnDelete (2x)
+		58135: 777,  // OnUpdate (2x)
+		58145: 778,  // OptInteger (2x)
+		58154: 779,  // OptionalBraces (2x)
+		58147: 780,  // OptLeadLagInfo (2x)
+		58146: 781,  // OptLLDefault (2x)
+		58156: 782,  // Order (2x)
+		58159: 783,  // OuterOpt (2x)
+		58161: 784,  // PartDefOptionList (2x)
+		58163: 785,  // PartitionDefinition (2x)
+		58165: 786,  // PartitionDefinitionListOpt (2x)
+		58169: 787,  // PartitionNameListOpt (2x)
+		58171: 788,  // PartitionOpt (2x)
+		58173: 789,  // PasswordOpt (2x)
+		58175: 790,  // PasswordOrLockOptionList (2x)
+		58176: 791,  // PasswordOrLockOptions (2x)
+		58181: 792,  // PreparedStmt (2x)
+		58182: 793,  // PrimaryOpt (2x)
+		58185: 794,  // PrivElemList (2x)
+		58186: 795,  // PrivLevel (2x)
+		58189: 796,  // RecoverTableStmt (2x)
+		58191: 797,  // ReferOpt (2x)
+		58193: 798,  // RegexpSym (2x)
+		58194: 799,  // RenameTableStmt (2x)
+		57508: 800,  // revoke (2x)
+		58201: 801,  // RevokeRoleStmt (2x)
+		58202: 802,  // RevokeStmt (2x)
+		58204: 803,  // RoleSpec (2x)
+		58208: 804,  // RollbackStmt (2x)
+		58226: 805,  // SetDefaultRoleOpt (2x)
+		58227: 806,  // SetDefaultRoleStmt (2x)
+		58230: 807,  // SetRoleStmt (2x)
+		58231: 808,  // SetStmt (2x)
+		58236: 809,  // ShowProfileType (2x)
+		58239: 810,  // ShowStmt (2x)
+		58240: 811,  // ShowTableAliasOpt (2x)
+		58242: 812,  // ShutdownStmt (2x)
+		58243: 813,  // SignedLiteral (2x)
+		58246: 814,  // SplitOption (2x)
+		58247: 815,  // SplitRegionStmt (2x)
+		58251: 816,  // Statement (2x)
+		58253: 817,  // StatsPersistentVal (2x)
+		58254: 818,  // StringList (2x)
+		58258: 819,  // SubPartDefinition (2x)
+		58261: 820,  // SubPartitionMethod (2x)
+		58266: 821,  // Symbol (2x)
+		58270: 822,  // TableElement (2x)
+		58274: 823,  // TableLock (2x)
+		58280: 824,  // TableOptimizerHintOpt (2x)
+		58284: 825,  // TableOrTables (2x)
+		58290: 826,  // TablesTerminalSym (2x)
+		58288: 827,  // TableToTable (2x)
+		58294: 828,  // TimestampUnit (2x)
+		58296: 829,  // TraceableStmt (2x)
+		58295: 830,  // TraceStmt (2x)
+		58300: 831,  // TruncateTableStmt (2x)
+		58307: 832,  // UnlockTablesStmt (2x)
+		58309: 833,  // UseStmt (2x)
+		58323: 834,  // VariableAssignment (2x)
+		58332: 835,  // WhenClause (2x)
+		58337: 836,  // WindowDefinition (2x)
+		58340: 837,  // WindowFrameBound (2x)
+		58347: 838,  // WindowSpec (2x)
 		61:    839,  // '=' (1x)
-		57905: 840,  // AdminShowSlow (1x)
-		57907: 841,  // AlterAlgorithm (1x)
-		57911: 842,  // AlterTableSpecList (1x)
-		57912: 843,  // AlterTableSpecListOpt (1x)
-		57916: 844,  // AnyOrAll (1x)
-		57917: 845,  // AsOpt (1x)
-		57921: 846,  // AuthOption (1x)
-		57924: 847,  // BetweenOrNotOp (1x)
-		57927: 848,  // BitValueType (1x)
-		57928: 849,  // BlobType (1x)
-		57930: 850,  // BooleanType (1x)
+		57906: 840,  // AdminShowSlow (1x)
+		57908: 841,  // AlterAlgorithm (1x)
+		57912: 842,  // AlterTableSpecList (1x)
+		57913: 843,  // AlterTableSpecListOpt (1x)
+		57917: 844,  // AnyOrAll (1x)
+		57918: 845,  // AsOpt (1x)
+		57922: 846,  // AuthOption (1x)
+		57925: 847,  // BetweenOrNotOp (1x)
+		57928: 848,  // BitValueType (1x)
+		57929: 849,  // BlobType (1x)
+		57931: 850,  // BooleanType (1x)
 		57370: 851,  // both (1x)
-		57938: 852,  // CharsetOpt (1x)
-		57939: 853,  // ClearPasswordExpireOptions (1x)
-		57942: 854,  // ColumnDefList (1x)
-		57944: 855,  // ColumnList (1x)
-		57951: 856,  // ColumnNameOrUserVariableList (1x)
-		57948: 857,  // ColumnNameOrUserVarListOpt (1x)
-		57949: 858,  // ColumnNameOrUserVarListOptWithBrackets (1x)
-		57953: 859,  // ColumnOptionList (1x)
-		57954: 860,  // ColumnOptionListOpt (1x)
-		57957: 861,  // ColumnSetValueList (1x)
-		57960: 862,  // CompareOp (1x)
-		57962: 863,  // ConnectionOptionList (1x)
-		57965: 864,  // ConstraintElem (1x)
-		57970: 865,  // CreateIndexStmtUnique (1x)
-		57972: 866,  // CreateTableOptionListOpt (1x)
-		57973: 867,  // CreateTableSelectOpt (1x)
-		57976: 868,  // CreateViewSelectOpt (1x)
-		57982: 869,  // DatabaseOptionListOpt (1x)
-		57984: 870,  // DateAndTimeType (1x)
-		57989: 871,  // DefaultTrueDistinctOpt (1x)
-		57990: 872,  // DefaultValueExpr (1x)
+		57939: 852,  // CharsetOpt (1x)
+		57940: 853,  // ClearPasswordExpireOptions (1x)
+		57943: 854,  // ColumnDefList (1x)
+		57945: 855,  // ColumnList (1x)
+		57952: 856,  // ColumnNameOrUserVariableList (1x)
+		57949: 857,  // ColumnNameOrUserVarListOpt (1x)
+		57950: 858,  // ColumnNameOrUserVarListOptWithBrackets (1x)
+		57954: 859,  // ColumnOptionList (1x)
+		57955: 860,  // ColumnOptionListOpt (1x)
+		57958: 861,  // ColumnSetValueList (1x)
+		57961: 862,  // CompareOp (1x)
+		57963: 863,  // ConnectionOptionList (1x)
+		57966: 864,  // ConstraintElem (1x)
+		57971: 865,  // CreateIndexStmtUnique (1x)
+		57973: 866,  // CreateTableOptionListOpt (1x)
+		57974: 867,  // CreateTableSelectOpt (1x)
+		57977: 868,  // CreateViewSelectOpt (1x)
+		57983: 869,  // DatabaseOptionListOpt (1x)
+		57985: 870,  // DateAndTimeType (1x)
+		57990: 871,  // DefaultTrueDistinctOpt (1x)
+		57991: 872,  // DefaultValueExpr (1x)
 		57409: 873,  // dual (1x)
-		58004: 874,  // ElseOpt (1x)
-		58008: 875,  // EnforcedOrNotOrNotNullOpt (1x)
+		58005: 874,  // ElseOpt (1x)
+		58009: 875,  // EnforcedOrNotOrNotNullOpt (1x)
 		57345: 876,  // error (1x)
 		57415: 877,  // except (1x)
-		58013: 878,  // ExplainFormatType (1x)
-		58021: 879,  // ExpressionOpt (1x)
-		58026: 880,  // FieldItemList (1x)
-		58028: 881,  // FieldList (1x)
-		58031: 882,  // Fields (1x)
-		58032: 883,  // FieldsOrColumns (1x)
-		58033: 884,  // FixedPointType (1x)
-		58035: 885,  // FloatingPointType (1x)
-		58036: 886,  // FlushOption (1x)
-		58040: 887,  // FuncDatetimePrec (1x)
-		58052: 888,  // GetFormatSelector (1x)
-		58056: 889,  // GroupByClause (1x)
-		58058: 890,  // HandleRangeList (1x)
-		58060: 891,  // HavingClause (1x)
-		58065: 892,  // IgnoreLines (1x)
-		58073: 893,  // IndexHintScope (1x)
-		58067: 894,  // InOrNotOp (1x)
-		58083: 895,  // InstanceOption (1x)
-		58084: 896,  // IntegerType (1x)
-		58087: 897,  // IsolationLevel (1x)
-		58086: 898,  // IsOrNotOp (1x)
+		58014: 878,  // ExplainFormatType (1x)
+		58022: 879,  // ExpressionOpt (1x)
+		58027: 880,  // FieldItemList (1x)
+		58029: 881,  // FieldList (1x)
+		58032: 882,  // Fields (1x)
+		58033: 883,  // FieldsOrColumns (1x)
+		58034: 884,  // FixedPointType (1x)
+		58036: 885,  // FloatingPointType (1x)
+		58037: 886,  // FlushOption (1x)
+		58041: 887,  // FuncDatetimePrec (1x)
+		58053: 888,  // GetFormatSelector (1x)
+		58057: 889,  // GroupByClause (1x)
+		58059: 890,  // HandleRangeList (1x)
+		58061: 891,  // HavingClause (1x)
+		58066: 892,  // IgnoreLines (1x)
+		58074: 893,  // IndexHintScope (1x)
+		58068: 894,  // InOrNotOp (1x)
+		58084: 895,  // InstanceOption (1x)
+		58085: 896,  // IntegerType (1x)
+		58088: 897,  // IsolationLevel (1x)
+		58087: 898,  // IsOrNotOp (1x)
 		57457: 899,  // leading (1x)
-		58095: 900,  // LikeEscapeOpt (1x)
-		58096: 901,  // LikeOrNotOp (1x)
-		58097: 902,  // LikeTableWithOrWithoutParen (1x)
-		58101: 903,  // Lines (1x)
-		58102: 904,  // LinesTerminated (1x)
-		58105: 905,  // LoadDataSetList (1x)
-		58106: 906,  // LoadDataSetSpecOpt (1x)
-		58109: 907,  // LocalOpt (1x)
-		58111: 908,  // LockClauseOpt (1x)
-		58113: 909,  // LockType (1x)
-		58114: 910,  // Match (1x)
+		58096: 900,  // LikeEscapeOpt (1x)
+		58097: 901,  // LikeOrNotOp (1x)
+		58098: 902,  // LikeTableWithOrWithoutParen (1x)
+		58102: 903,  // Lines (1x)
+		58103: 904,  // LinesTerminated (1x)
+		58106: 905,  // LoadDataSetList (1x)
+		58107: 906,  // LoadDataSetSpecOpt (1x)
+		58110: 907,  // LocalOpt (1x)
+		58112: 908,  // LockClauseOpt (1x)
+		58114: 909,  // LockType (1x)
+		58115: 910,  // Match (1x)
 		57470: 911,  // match (1x)
-		58115: 912,  // MatchOpt (1x)
-		58118: 913,  // MaxValueOrExpressionList (1x)
-		58120: 914,  // NationalOpt (1x)
+		58116: 912,  // MatchOpt (1x)
+		58119: 913,  // MaxValueOrExpressionList (1x)
+		58121: 914,  // NationalOpt (1x)
 		57479: 915,  // noWriteToBinLog (1x)
-		58121: 916,  // NoWriteToBinLogAliasOpt (1x)
-		58128: 917,  // NumericType (1x)
-		58132: 918,  // OnDeleteUpdateOpt (1x)
-		58133: 919,  // OnDuplicateKeyUpdate (1x)
-		58135: 920,  // OptBinMod (1x)
-		58138: 921,  // OptCollate (1x)
-		58139: 922,  // OptExistingWindowName (1x)
-		58141: 923,  // OptFromFirstLast (1x)
-		58142: 924,  // OptFull (1x)
-		58143: 925,  // OptGConcatSeparator (1x)
-		58148: 926,  // OptPartitionClause (1x)
-		58149: 927,  // OptTable (1x)
-		58150: 928,  // OptWindowFrameClause (1x)
-		58151: 929,  // OptWindowOrderByClause (1x)
-		58154: 930,  // OrReplace (1x)
-		58161: 931,  // PartDefValuesOpt (1x)
-		58163: 932,  // PartitionDefinitionList (1x)
-		58165: 933,  // PartitionKeyAlgorithmOpt (1x)
-		58166: 934,  // PartitionMethod (1x)
-		58169: 935,  // PartitionNumOpt (1x)
+		58122: 916,  // NoWriteToBinLogAliasOpt (1x)
+		58129: 917,  // NumericType (1x)
+		58133: 918,  // OnDeleteUpdateOpt (1x)
+		58134: 919,  // OnDuplicateKeyUpdate (1x)
+		58136: 920,  // OptBinMod (1x)
+		58139: 921,  // OptCollate (1x)
+		58140: 922,  // OptExistingWindowName (1x)
+		58142: 923,  // OptFromFirstLast (1x)
+		58143: 924,  // OptFull (1x)
+		58144: 925,  // OptGConcatSeparator (1x)
+		58149: 926,  // OptPartitionClause (1x)
+		58150: 927,  // OptTable (1x)
+		58151: 928,  // OptWindowFrameClause (1x)
+		58152: 929,  // OptWindowOrderByClause (1x)
+		58155: 930,  // OrReplace (1x)
+		58162: 931,  // PartDefValuesOpt (1x)
+		58164: 932,  // PartitionDefinitionList (1x)
+		58166: 933,  // PartitionKeyAlgorithmOpt (1x)
+		58167: 934,  // PartitionMethod (1x)
+		58170: 935,  // PartitionNumOpt (1x)
 		57493: 936,  // precisionType (1x)
-		58179: 937,  // PrepareSQL (1x)
+		58180: 937,  // PrepareSQL (1x)
 		57495: 938,  // procedure (1x)
-		58187: 939,  // QuickOptional (1x)
-		58191: 940,  // RegexpOrNotOp (1x)
-		58197: 941,  // RequireList (1x)
-		58204: 942,  // RoleSpecList (1x)
-		58213: 943,  // SelectStmtCalcFoundRows (1x)
-		58214: 944,  // SelectStmtFieldList (1x)
-		58217: 945,  // SelectStmtGroup (1x)
-		58219: 946,  // SelectStmtOpts (1x)
-		58220: 947,  // SelectStmtSQLBigResult (1x)
-		58221: 948,  // SelectStmtSQLBufferResult (1x)
-		58222: 949,  // SelectStmtSQLCache (1x)
-		58223: 950,  // SelectStmtSQLSmallResult (1x)
-		58224: 951,  // SelectStmtStraightJoin (1x)
-		58228: 952,  // SetRoleOpt (1x)
-		58232: 953,  // ShowIndexKwd (1x)
-		58234: 954,  // ShowProfileArgsOpt (1x)
-		58236: 955,  // ShowProfileTypes (1x)
-		58237: 956,  // ShowProfileTypesOpt (1x)
-		58240: 957,  // ShowTargetFilterable (1x)
-		58247: 958,  // SplitSyntaxOption (1x)
-		57522: 959,  // ssl (1x)
-		58248: 960,  // Start (1x)
-		58249: 961,  // Starting (1x)
-		57523: 962,  // starting (1x)
-		58251: 963,  // StatementList (1x)
-		57526: 964,  // stored (1x)
-		58256: 965,  // StringType (1x)
-		58258: 966,  // SubPartDefinitionList (1x)
-		58259: 967,  // SubPartDefinitionListOpt (1x)
-		58261: 968,  // SubPartitionNumOpt (1x)
-		58262: 969,  // SubPartitionOpt (1x)
-		58268: 970,  // TableAsNameOpt (1x)
-		58270: 971,  // TableElementList (1x)
-		58271: 972,  // TableElementListOpt (1x)
-		58274: 973,  // TableLockList (1x)
-		58277: 974,  // TableNameListOpt (1x)
-		58278: 975,  // TableOptimizerHintList (1x)
-		58286: 976,  // TableRefsClause (1x)
-		58288: 977,  // TableToTableList (1x)
-		58290: 978,  // TextType (1x)
-		57533: 979,  // trailing (1x)
-		58298: 980,  // TrimDirection (1x)
-		58300: 981,  // Type (1x)
-		58303: 982,  // UnionOpt (1x)
-		58312: 983,  // UserVariableList (1x)
-		58315: 984,  // UsingRoles (1x)
-		58317: 985,  // Values (1x)
-		58319: 986,  // ValuesOpt (1x)
-		58320: 987,  // Varchar (1x)
-		58323: 988,  // VariableAssignmentList (1x)
-		58324: 989,  // ViewAlgorithm (1x)
-		58325: 990,  // ViewCheckOption (1x)
-		58326: 991,  // ViewDefiner (1x)
-		58327: 992,  // ViewFieldList (1x)
-		58328: 993,  // ViewName (1x)
-		58329: 994,  // ViewSQLSecurity (1x)
-		57551: 995,  // virtual (1x)
-		58330: 996,  // VirtualOrStored (1x)
-		58332: 997,  // WhenClauseList (1x)
-		58335: 998,  // WindowClauseOptional (1x)
-		58337: 999,  // WindowDefinitionList (1x)
-		58338: 1000, // WindowFrameBetween (1x)
-		58340: 1001, // WindowFrameExtent (1x)
-		58342: 1002, // WindowFrameUnits (1x)
-		58345: 1003, // WindowNameOrSpec (1x)
-		58347: 1004, // WindowSpecDetails (1x)
-		58349: 1005, // WithGrantOptionOpt (1x)
-		58350: 1006, // WithReadLockOpt (1x)
-		57904: 1007, // $default (0x)
-		57872: 1008, // andnot (0x)
-		57920: 1009, // AssignmentListOpt (0x)
-		57958: 1010, // CommaOpt (0x)
-		57893: 1011, // createTableSelect (0x)
-		57886: 1012, // empty (0x)
-		57903: 1013, // higherThanComma (0x)
-		57891: 1014, // insertValues (0x)
+		58188: 939,  // QuickOptional (1x)
+		58192: 940,  // RegexpOrNotOp (1x)
+		58198: 941,  // RequireList (1x)
+		58205: 942,  // RoleSpecList (1x)
+		58214: 943,  // SelectStmtCalcFoundRows (1x)
+		58215: 944,  // SelectStmtFieldList (1x)
+		58218: 945,  // SelectStmtGroup (1x)
+		58220: 946,  // SelectStmtOpts (1x)
+		58221: 947,  // SelectStmtSQLBigResult (1x)
+		58222: 948,  // SelectStmtSQLBufferResult (1x)
+		58223: 949,  // SelectStmtSQLCache (1x)
+		58224: 950,  // SelectStmtSQLSmallResult (1x)
+		58225: 951,  // SelectStmtStraightJoin (1x)
+		58229: 952,  // SetRoleOpt (1x)
+		58233: 953,  // ShowIndexKwd (1x)
+		58235: 954,  // ShowProfileArgsOpt (1x)
+		58237: 955,  // ShowProfileTypes (1x)
+		58238: 956,  // ShowProfileTypesOpt (1x)
+		58241: 957,  // ShowTargetFilterable (1x)
+		58248: 958,  // SplitSyntaxOption (1x)
+		57523: 959,  // ssl (1x)
+		58249: 960,  // Start (1x)
+		58250: 961,  // Starting (1x)
+		57524: 962,  // starting (1x)
+		58252: 963,  // StatementList (1x)
+		57527: 964,  // stored (1x)
+		58257: 965,  // StringType (1x)
+		58259: 966,  // SubPartDefinitionList (1x)
+		58260: 967,  // SubPartDefinitionListOpt (1x)
+		58262: 968,  // SubPartitionNumOpt (1x)
+		58263: 969,  // SubPartitionOpt (1x)
+		58269: 970,  // TableAsNameOpt (1x)
+		58271: 971,  // TableElementList (1x)
+		58272: 972,  // TableElementListOpt (1x)
+		58275: 973,  // TableLockList (1x)
+		58278: 974,  // TableNameListOpt (1x)
+		58279: 975,  // TableOptimizerHintList (1x)
+		58287: 976,  // TableRefsClause (1x)
+		58289: 977,  // TableToTableList (1x)
+		58291: 978,  // TextType (1x)
+		57534: 979,  // trailing (1x)
+		58299: 980,  // TrimDirection (1x)
+		58301: 981,  // Type (1x)
+		58304: 982,  // UnionOpt (1x)
+		58313: 983,  // UserVariableList (1x)
+		58316: 984,  // UsingRoles (1x)
+		58318: 985,  // Values (1x)
+		58320: 986,  // ValuesOpt (1x)
+		58321: 987,  // Varchar (1x)
+		58324: 988,  // VariableAssignmentList (1x)
+		58325: 989,  // ViewAlgorithm (1x)
+		58326: 990,  // ViewCheckOption (1x)
+		58327: 991,  // ViewDefiner (1x)
+		58328: 992,  // ViewFieldList (1x)
+		58329: 993,  // ViewName (1x)
+		58330: 994,  // ViewSQLSecurity (1x)
+		57552: 995,  // virtual (1x)
+		58331: 996,  // VirtualOrStored (1x)
+		58333: 997,  // WhenClauseList (1x)
+		58336: 998,  // WindowClauseOptional (1x)
+		58338: 999,  // WindowDefinitionList (1x)
+		58339: 1000, // WindowFrameBetween (1x)
+		58341: 1001, // WindowFrameExtent (1x)
+		58343: 1002, // WindowFrameUnits (1x)
+		58346: 1003, // WindowNameOrSpec (1x)
+		58348: 1004, // WindowSpecDetails (1x)
+		58350: 1005, // WithGrantOptionOpt (1x)
+		58351: 1006, // WithReadLockOpt (1x)
+		57905: 1007, // $default (0x)
+		57873: 1008, // andnot (0x)
+		57921: 1009, // AssignmentListOpt (0x)
+		57959: 1010, // CommaOpt (0x)
+		57894: 1011, // createTableSelect (0x)
+		57887: 1012, // empty (0x)
+		57904: 1013, // higherThanComma (0x)
+		57892: 1014, // insertValues (0x)
 		57351: 1015, // invalid (0x)
-		57894: 1016, // lowerThanCharsetKwd (0x)
-		57902: 1017, // lowerThanComma (0x)
-		57892: 1018, // lowerThanCreateTableSelect (0x)
-		57898: 1019, // lowerThanEq (0x)
-		57890: 1020, // lowerThanInsertValues (0x)
-		57887: 1021, // lowerThanIntervalKeyword (0x)
-		57895: 1022, // lowerThanKey (0x)
-		57900: 1023, // lowerThanNot (0x)
-		57897: 1024, // lowerThanOn (0x)
-		57889: 1025, // lowerThanSetKeyword (0x)
-		57888: 1026, // lowerThanStringLitToken (0x)
-		57899: 1027, // neg (0x)
-		57901: 1028, // splitOptionPriv (0x)
-		57896: 1029, // tableRefPriority (0x)
+		57895: 1016, // lowerThanCharsetKwd (0x)
+		57903: 1017, // lowerThanComma (0x)
+		57893: 1018, // lowerThanCreateTableSelect (0x)
+		57899: 1019, // lowerThanEq (0x)
+		57891: 1020, // lowerThanInsertValues (0x)
+		57888: 1021, // lowerThanIntervalKeyword (0x)
+		57896: 1022, // lowerThanKey (0x)
+		57901: 1023, // lowerThanNot (0x)
+		57898: 1024, // lowerThanOn (0x)
+		57890: 1025, // lowerThanSetKeyword (0x)
+		57889: 1026, // lowerThanStringLitToken (0x)
+		57900: 1027, // neg (0x)
+		57505: 1028, // RegexpReplace (0x)
+		57902: 1029, // splitOptionPriv (0x)
+		57897: 1030, // tableRefPriority (0x)
 	}
 
 	yySymNames = []string{
@@ -2684,6 +2686,7 @@ var (
 		"lowerThanSetKeyword",
 		"lowerThanStringLitToken",
 		"neg",
+		"RegexpReplace",
 		"splitOptionPriv",
 		"tableRefPriority",
 	}

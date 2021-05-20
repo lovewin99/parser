@@ -446,6 +446,7 @@ var tokenMap = map[string]int{
 	"REPEAT":                   repeat,
 	"REPEATABLE":               repeatable,
 	"REPLACE":                  replace,
+	"REGEXPREPLACE":            RegexpReplace,
 	"RESPECT":                  respect,
 	"REPLICATION":              replication,
 	"REQUIRE":                  require,

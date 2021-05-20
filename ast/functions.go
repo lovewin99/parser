@@ -51,7 +51,7 @@ const (
 	Mod                = "mod"
 	Xor                = "bitxor"
 	Div                = "div"
-	REALDIV    		   = "realdiv"
+	REALDIV            = "realdiv"
 	Mul                = "mul"
 	UnaryNot           = "not" // Avoid name conflict with Not in github/pingcap/check.
 	BitNeg             = "bitneg"
@@ -207,6 +207,7 @@ const (
 	Quote           = "quote"
 	Repeat          = "repeat"
 	Replace         = "replace"
+	RegexpReplace   = "regexp_replace"
 	Reverse         = "reverse"
 	Right           = "right"
 	RTrim           = "rtrim"
