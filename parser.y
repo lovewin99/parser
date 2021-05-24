@@ -212,6 +212,7 @@ import (
 	repeat			"REPEAT"
 	replace			"REPLACE"
 	RegexpReplace		"REGEXPREPLACE"
+	irr			"IRR"
 	require			"REQUIRE"
 	restrict		"RESTRICT"
 	revoke			"REVOKE"
@@ -577,6 +578,7 @@ import (
 	builtinSysDate
 	builtinStddevPop
 	builtinStddevSamp
+	builtinIrr
 	builtinTrim
 	builtinUser
 	builtinVarPop
@@ -4785,6 +4787,14 @@ SumExpr:
 	}
 |	builtinStddevSamp '(' BuggyDefaultFalseDistinctOpt Expression ')'  OptWindowingClause
 	{
+		if $6 != nil {
+         		$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
+         	} else {
+         		$$ = &ast.AggregateFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool)}
+         	}
+         	}
+|	builtinIrr '(' BuggyDefaultFalseDistinctOpt Expression ')'  OptWindowingClause
+         {
 		if $6 != nil {
 			$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$4}, Distinct: $3.(bool), Spec: *($6.(*ast.WindowSpec)),}
 		} else {
