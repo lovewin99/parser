@@ -307,6 +307,7 @@ const (
 	PhoneParse				 = "f_phoneparse"
 	FixedParse				 = "f_fixedparse"
 	CityLable                = "f_citylabel"
+	BayesMatch               = "f_bayesmatch"
 
 	// json functions
 	JSONType          = "json_type"
